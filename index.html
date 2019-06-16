@@ -15,36 +15,13 @@
             --border-color: #999;
             --border-color-hover: #666;
         }
-        .g-button {
-            font-size: var(--font-size);
-            height: var(--button-height);
-            padding: 0 1em;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            background: var(--button-background);
-        }
-        .g-button:hover {
-            border-color: var(--border-color-hover);
-        }
-        .g-button:active {
-            background-color: var(--button-active-background);
-        }
-        .g-button:focus {
-            outline: none;
-        }
+
     </style>
 </head>
 <body>
     <div id="app">
-        <g-botton></g-botton>
+        <g-button></g-button>
     </div>
 </body>
-<script type="application/javascript" src="./node_modules/vue/dist/vue.min.js"></script>
-<script type="application/javascript" src="./button.js"></script>
-<script>
-    new Vue({
-        el: '#app',
-        data:{}
-    })
-</script>
+<script type="application/javascript" src="./src/app.js"></script>
 </html>

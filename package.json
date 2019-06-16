@@ -4,6 +4,7 @@
   "description": "UI-wheel",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,17 @@
   },
   "homepage": "https://github.com/xiaohuaye/vue-wheel-zl#readme",
   "dependencies": {
-    "vue": "^2.6.10"
+    "button": "^1.1.1",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.21.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
   }
 }
