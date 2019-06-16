@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/xiaohuaye/vue-wheel-zl/issues"
   },
-  "homepage": "https://github.com/xiaohuaye/vue-wheel-zl#readme"
+  "homepage": "https://github.com/xiaohuaye/vue-wheel-zl#readme",
+  "dependencies": {
+    "vue": "^2.6.10"
+  }
 }
