@@ -1,0 +1,23 @@
+{
+  "name": "vue-wheel",
+  "version": "1.0.0",
+  "description": "UI-wheel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaohuaye/vue-wheel-zl.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "xiaohuaye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiaohuaye/vue-wheel-zl/issues"
+  },
+  "homepage": "https://github.com/xiaohuaye/vue-wheel-zl#readme"
+}
