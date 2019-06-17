@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <title>wheel</title>
     <style>
-        *{ margin:0;padding:0;box-sizing:border-box;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --button-height: 32px;
             --font-size: 14px;
@@ -16,12 +21,22 @@
             --border-color-hover: #666;
         }
 
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-button></g-button>
-    </div>
-</body>
+<div id="app">
+    <g-button icon-name="set" icon-position="left">
+        button
+    </g-button>
+</div>
 <script type="application/javascript" src="./src/app.js"></script>
+<script type="application/javascript" src="//at.alicdn.com/t/font_1247243_8yxuy716eao.js"></script>
+</body>
 </html>
