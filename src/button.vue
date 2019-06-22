@@ -18,7 +18,7 @@
         type: String,
         validator: function (value) {
           if (value !== 'left' && value !== 'right') {
-            console.log(`${value}是无效的，iconPosition可以是'left'或者'right'`)
+            console.warn(`${value}是无效的，iconPosition可以是'left'或者'right'`)
           }
           return true
           //可查看传值内容返回true or false
@@ -32,7 +32,6 @@
     computed: {
       iconNameCurrent: function () {
         let iconName = this.loading ? 'loading' : this.iconName;
-        console.log(iconName)
         return iconName
       }
     },

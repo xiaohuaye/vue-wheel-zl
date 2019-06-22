@@ -27,23 +27,11 @@
 
 <style lang="scss" scoped>
   @keyframes loading-dash {
-    0%{
-      transform: rotate(0deg);
-    }
-    100%{
-      transform: rotate(360deg);
-    }
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
   }
 
-  .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-  }
+  .icon {width: 1em;height: 1em;vertical-align: -0.15em;fill: currentColor;overflow: hidden;}
 
-  .loading {
-    animation: 1s loading-dash linear infinite;
-  }
+  .loading {animation: 1s loading-dash linear infinite;}
 </style>
