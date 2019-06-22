@@ -1,8 +1,8 @@
 <template>
   <button class="g-button" @click="$emit('click')">
-    <g-icon v-if="iconName && iconPosition !== 'right'" :icon-name="iconNameCurrent" ></g-icon>
+    <g-icon v-if="iconNameCurrent && iconPosition !== 'right'" :icon-name="iconNameCurrent" ></g-icon>
     <slot></slot>
-    <g-icon v-if="iconName && iconPosition === 'right'" :icon-name="iconNameCurrent" ></g-icon>
+    <g-icon v-if="iconNameCurrent && iconPosition === 'right'" :icon-name="iconNameCurrent" ></g-icon>
   </button>
 </template>
 
