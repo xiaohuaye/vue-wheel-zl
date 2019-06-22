@@ -23,17 +23,17 @@
 </head>
 <body>
 <div id="app">
-    <g-button icon-name="set" icon-position="left">
+    <g-button icon-name="set" icon-position="left" :loading="isLoading1" @click="submitSthOne">
         button
     </g-button>
-    <g-button icon-name="set" icon-position="right">
+    <g-button icon-name="set" icon-position="right" :loading="isLoading2" @click="submitSthTwo">
         button1
     </g-button>
-    <g-button icon-name="set" icon-position="top">
+    <g-button icon-name="set" icon-position="top" :loading="isLoading3" @click="submitSthThree">
       button2
     </g-button>
 </div>
 <script type="application/javascript" src="./src/app.js"></script>
-<script type="application/javascript" src="//at.alicdn.com/t/font_1247243_8yxuy716eao.js"></script>
+<script type="application/javascript" src="//at.alicdn.com/t/font_1247243_ujmptofbxid.js"></script>
 </body>
 </html>
