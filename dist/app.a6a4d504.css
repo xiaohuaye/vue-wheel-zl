@@ -22,3 +22,27 @@
   fill: currentColor;
   overflow: hidden;
 }
+.loading[data-v-312330] {
+  animation: 1s loading-dash-data-v-312330 linear infinite;
+}
+.g-button-group[data-v-852d73] {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.g-button-group .g-button[data-v-852d73] {
+  border-radius: 0;
+  margin-left: -1px;
+}
+.g-button-group .g-button[data-v-852d73]:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+.g-button-group .g-button[data-v-852d73]:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+.g-button-group .g-button[data-v-852d73]:hover {
+  border-color: blue;
+  position: relative;
+  z-index: 1;
+}
