@@ -7,7 +7,11 @@
 </template>
 
 <script>
+  import Icon from './icon'
   export default {
+    components: {
+      gIcon: Icon
+    },
     props: {
       iconName: String,
       loading: {

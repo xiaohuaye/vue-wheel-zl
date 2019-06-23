@@ -1,3 +1,21 @@
+@keyframes loading-dash-data-v-312330 {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+.icon[data-v-312330] {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.loading[data-v-312330] {
+  animation: 1s loading-dash-data-v-312330 linear infinite;
+}
 .g-button[data-v-3059bd] {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -15,22 +33,14 @@
 .g-button[data-v-3059bd]:focus {
   outline: none;
 }
-.icon[data-v-312330] {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-.loading[data-v-312330] {
-  animation: 1s loading-dash-data-v-312330 linear infinite;
-}
 .g-button-group[data-v-852d73] {
   display: inline-flex;
   vertical-align: middle;
 }
 .g-button-group .g-button[data-v-852d73] {
   border-radius: 0;
+}
+.g-button-group .g-button[data-v-852d73]:not(:first-child) {
   margin-left: -1px;
 }
 .g-button-group .g-button[data-v-852d73]:first-child {
