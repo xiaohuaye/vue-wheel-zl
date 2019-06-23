@@ -76,7 +76,6 @@ import chai from 'chai'
 const  expect = chai.expect
 {
     /**
-     * 单元测试
      * @file: app.js
      * @see iconName
      * @description 测试iconName的入参
@@ -94,6 +93,48 @@ const  expect = chai.expect
     let useElement = button.$el.querySelector('use')
     console.log(useElement)
     expect(useElement.getAttribute('xlink:href')).to.eq('#i-set')
+}
+
+{
+    /**
+     * @file: app.js
+     * @see loading
+     * @description 测试loading的入参
+     * @author: zl
+     * @date: 2019/6/23
+     * @contact: 908347816@qq.com
+     */
+    const constructor = Vue.extend(Button)
+    const button = new constructor({
+        propsData: {
+            loading: true
+        }
+    })
+    button.$mount()
+    let useElement = button.$el.querySelector('use')
+    console.log(useElement)
+    expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
+}
+
+{
+    /**
+     * @file: app.js
+     * @see loading
+     * @description 测试loading的入参
+     * @author: zl
+     * @date: 2019/6/23
+     * @contact: 908347816@qq.com
+     */
+    const constructor = Vue.extend(Button)
+    const button = new constructor({
+        propsData: {
+            loading: true
+        }
+    })
+    button.$mount()
+    let useElement = button.$el.querySelector('use')
+    console.log(useElement)
+    expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
 }
 
 
