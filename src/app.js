@@ -16,8 +16,23 @@ new Vue({
         isLoading4: false,
         isLoading5: false
     },
+    /**
+     *  函数定义
+     *  @module function
+     */
     methods: {
         submitSthOne(){
+            /**
+             * submitSthOne模拟事件回调
+             * @file: app.js
+             * @method submitSthOne
+             * @description: submitSthOne模拟事件回调
+             * @return {undefined} undefined
+             * @author: zl
+             * @date: 2019/6/22
+             * @contact: 908347816@qq.com
+             */
+
             this.isLoading1 = true
             setTimeout(()=>{
                 this.isLoading1 = false
@@ -49,4 +64,40 @@ new Vue({
         },
 
     }
-})
+});
+
+
+
+/**
+ *  单元测试
+ *  @module unitTest
+ */
+import chai from 'chai'
+const  expect = chai.expect
+{
+    /**
+     * 单元测试
+     * @file: app.js
+     * @see iconName
+     * @description 测试iconName的入参
+     * @author: zl
+     * @date: 2019/6/23
+     * @contact: 908347816@qq.com
+     */
+    const constructor = Vue.extend(Button)
+    const button = new constructor({
+        propsData: {
+            iconName: 'set'
+        }
+    })
+    button.$mount()
+    let useElement = button.$el.querySelector('use')
+    console.log(useElement)
+    expect(useElement.getAttribute('xlink:href')).to.eq('#i-set')
+}
+
+
+
+
+
+

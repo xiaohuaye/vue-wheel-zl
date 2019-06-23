@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html -- no cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "jsdoc ./src ./README.md"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "dependencies": {
     "button": "^1.1.1",
     "chai": "^4.2.0",
+    "jsdoc": "^3.6.2",
     "npm": "^6.9.0",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3"
