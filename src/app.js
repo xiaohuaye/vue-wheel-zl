@@ -73,6 +73,8 @@ new Vue({
  *  @module unitTest
  */
 import chai from 'chai'
+import spies from 'chai-spies'
+chai.use(spies)
 const  expect = chai.expect
 {
     /**
@@ -91,7 +93,6 @@ const  expect = chai.expect
     })
     button.$mount()
     let useElement = button.$el.querySelector('use')
-    console.log(useElement)
     expect(useElement.getAttribute('xlink:href')).to.eq('#i-set')
 }
 
@@ -112,29 +113,30 @@ const  expect = chai.expect
     })
     button.$mount()
     let useElement = button.$el.querySelector('use')
-    console.log(useElement)
     expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
 }
 
 {
     /**
      * @file: app.js
-     * @see loading
-     * @description 测试loading的入参
+     * @event button点击事件
+     * @description 测试button点击事件
      * @author: zl
      * @date: 2019/6/23
      * @contact: 908347816@qq.com
      */
     const constructor = Vue.extend(Button)
-    const button = new constructor({
+    const vm = new constructor({
         propsData: {
-            loading: true
+            icon: 'settings'
         }
     })
-    button.$mount()
-    let useElement = button.$el.querySelector('use')
-    console.log(useElement)
-    expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
+    vm.$mount()
+    let spy = chai.spy(function () {})
+    vm.$on('click',spy)
+    let button = vm.$el
+    button.click()
+    expect(spy).to.have.been.called()
 }
 
 
