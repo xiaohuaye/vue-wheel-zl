@@ -115,7 +115,69 @@ const  expect = chai.expect
     let useElement = button.$el.querySelector('use')
     expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
 }
+{
+    /**
+     * @file: app.js
+     * @see iconPosition
+     * @description 测试iconPosition的入参
+     * @author: zl
+     * @date: 2019/6/23
+     * @contact: 908347816@qq.com
+     */
+    const constructor = Vue.extend(Button)
+    let button = new constructor({
+        propsData: {
+            iconName: 'set',
+            loading: true,
+            iconPosition: 'left'
+        }
+    })
+    button.$mount()
+    let useElement = button.$el.childNodes
+    let index = null
+    for(let i = 0;i<useElement.length;i++){
+        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
+            index = i
+            break
+        }
+    }
+    expect(useElement[index].tagName).to.eq('svg')
 
+    button = new constructor({
+        propsData: {
+            iconName: 'set',
+            loading: true,
+            iconPosition: 'right'
+        }
+    })
+    button.$mount()
+    useElement = button.$el.childNodes
+    index = null
+    for(let i = 0;i<useElement.length;i++){
+        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
+            index = i
+            break
+        }
+    }
+    expect(useElement[index].nodeType).to.eq(3)
+
+    button = new constructor({
+        propsData: {
+            iconName: 'set',
+            loading: true,
+        }
+    })
+    button.$mount()
+    useElement = button.$el.childNodes
+    index = null
+    for(let i = 0;i<useElement.length;i++){
+        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
+            index = i
+            break
+        }
+    }
+    expect(useElement[index].nodeType).same.to.eq(1)
+}
 {
     /**
      * @file: app.js

@@ -33,26 +33,3 @@
 .g-button[data-v-392c8a]:focus {
   outline: none;
 }
-.g-button-group[data-v-5a8ffd] {
-  display: inline-flex;
-  vertical-align: middle;
-}
-.g-button-group .g-button[data-v-5a8ffd] {
-  border-radius: 0;
-}
-.g-button-group .g-button[data-v-5a8ffd]:not(:first-child) {
-  margin-left: -1px;
-}
-.g-button-group .g-button[data-v-5a8ffd]:first-child {
-  border-top-left-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-}
-.g-button-group .g-button[data-v-5a8ffd]:last-child {
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-}
-.g-button-group .g-button[data-v-5a8ffd]:hover {
-  border-color: blue;
-  position: relative;
-  z-index: 1;
-}
