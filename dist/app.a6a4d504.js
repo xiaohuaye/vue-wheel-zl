@@ -12434,14 +12434,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $46d522 = exports.default || module.exports;
+        var $312330 = exports.default || module.exports;
       
-      if (typeof $46d522 === 'function') {
-        $46d522 = $46d522.options;
+      if (typeof $312330 === 'function') {
+        $312330 = $312330.options;
       }
     
         /* template */
-        Object.assign($46d522, (function () {
+        Object.assign($312330, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12463,7 +12463,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-46d522",
+            _scopeId: "data-v-312330",
             functional: undefined
           };
         })());
@@ -12476,9 +12476,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$46d522', $46d522);
+            api.createRecord('$312330', $312330);
           } else {
-            api.reload('$46d522', $46d522);
+            api.reload('$312330', $312330);
           }
         }
 
@@ -12543,14 +12543,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $392c8a = exports.default || module.exports;
+        var $3059bd = exports.default || module.exports;
       
-      if (typeof $392c8a === 'function') {
-        $392c8a = $392c8a.options;
+      if (typeof $3059bd === 'function') {
+        $3059bd = $3059bd.options;
       }
     
         /* template */
-        Object.assign($392c8a, (function () {
+        Object.assign($3059bd, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12586,7 +12586,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-392c8a",
+            _scopeId: "data-v-3059bd",
             functional: undefined
           };
         })());
@@ -12599,9 +12599,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$392c8a', $392c8a);
+            api.createRecord('$3059bd', $3059bd);
           } else {
-            api.reload('$392c8a', $392c8a);
+            api.reload('$3059bd', $3059bd);
           }
         }
 
@@ -12658,14 +12658,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $5a8ffd = exports.default || module.exports;
+        var $852d73 = exports.default || module.exports;
       
-      if (typeof $5a8ffd === 'function') {
-        $5a8ffd = $5a8ffd.options;
+      if (typeof $852d73 === 'function') {
+        $852d73 = $852d73.options;
       }
     
         /* template */
-        Object.assign($5a8ffd, (function () {
+        Object.assign($852d73, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12679,7 +12679,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-5a8ffd",
+            _scopeId: "data-v-852d73",
             functional: undefined
           };
         })());
@@ -12692,9 +12692,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$5a8ffd', $5a8ffd);
+            api.createRecord('$852d73', $852d73);
           } else {
-            api.reload('$5a8ffd', $5a8ffd);
+            api.reload('$852d73', $852d73);
           }
         }
 
@@ -24032,7 +24032,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63350" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55679" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

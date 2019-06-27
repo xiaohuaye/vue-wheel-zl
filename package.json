@@ -1,6 +1,6 @@
 {
   "name": "zl-vue-wheel-1",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "UI-wheel",
   "main": "dist/index.js",
   "scripts": {
