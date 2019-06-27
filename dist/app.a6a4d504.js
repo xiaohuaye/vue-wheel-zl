@@ -12434,14 +12434,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $312330 = exports.default || module.exports;
+        var $46d522 = exports.default || module.exports;
       
-      if (typeof $312330 === 'function') {
-        $312330 = $312330.options;
+      if (typeof $46d522 === 'function') {
+        $46d522 = $46d522.options;
       }
     
         /* template */
-        Object.assign($312330, (function () {
+        Object.assign($46d522, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12463,7 +12463,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-312330",
+            _scopeId: "data-v-46d522",
             functional: undefined
           };
         })());
@@ -12476,9 +12476,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$312330', $312330);
+            api.createRecord('$46d522', $46d522);
           } else {
-            api.reload('$312330', $312330);
+            api.reload('$46d522', $46d522);
           }
         }
 
@@ -12543,14 +12543,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $3059bd = exports.default || module.exports;
+        var $392c8a = exports.default || module.exports;
       
-      if (typeof $3059bd === 'function') {
-        $3059bd = $3059bd.options;
+      if (typeof $392c8a === 'function') {
+        $392c8a = $392c8a.options;
       }
     
         /* template */
-        Object.assign($3059bd, (function () {
+        Object.assign($392c8a, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12586,7 +12586,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-3059bd",
+            _scopeId: "data-v-392c8a",
             functional: undefined
           };
         })());
@@ -12599,9 +12599,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$3059bd', $3059bd);
+            api.createRecord('$392c8a', $392c8a);
           } else {
-            api.reload('$3059bd', $3059bd);
+            api.reload('$392c8a', $392c8a);
           }
         }
 
@@ -12658,14 +12658,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $852d73 = exports.default || module.exports;
+        var $5a8ffd = exports.default || module.exports;
       
-      if (typeof $852d73 === 'function') {
-        $852d73 = $852d73.options;
+      if (typeof $5a8ffd === 'function') {
+        $5a8ffd = $5a8ffd.options;
       }
     
         /* template */
-        Object.assign($852d73, (function () {
+        Object.assign($5a8ffd, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12679,7 +12679,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-852d73",
+            _scopeId: "data-v-5a8ffd",
             functional: undefined
           };
         })());
@@ -12692,9 +12692,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$852d73', $852d73);
+            api.createRecord('$5a8ffd', $5a8ffd);
           } else {
-            api.reload('$852d73', $852d73);
+            api.reload('$5a8ffd', $5a8ffd);
           }
         }
 
@@ -23767,7 +23767,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var _vue = _interopRequireDefault(require("vue"));
 
-var _button3 = _interopRequireDefault(require("./button"));
+var _button4 = _interopRequireDefault(require("./button"));
 
 var _icon = _interopRequireDefault(require("./icon"));
 
@@ -23781,7 +23781,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _vue.default.component('g-icon', _icon.default);
 
-_vue.default.component('g-button', _button3.default);
+_vue.default.component('g-button', _button4.default);
 
 _vue.default.component('g-button-group', _buttonGroup.default);
 
@@ -23869,7 +23869,7 @@ var expect = _chai.default.expect;
    * @date: 2019/6/23
    * @contact: 908347816@qq.com
    */
-  var _constructor = _vue.default.extend(_button3.default);
+  var _constructor = _vue.default.extend(_button4.default);
 
   var button = new _constructor({
     propsData: {
@@ -23889,7 +23889,7 @@ var expect = _chai.default.expect;
    * @date: 2019/6/23
    * @contact: 908347816@qq.com
    */
-  var _constructor2 = _vue.default.extend(_button3.default);
+  var _constructor2 = _vue.default.extend(_button4.default);
 
   var _button = new _constructor2({
     propsData: {
@@ -23906,15 +23906,89 @@ var expect = _chai.default.expect;
 {
   /**
    * @file: app.js
+   * @see iconPosition
+   * @description 测试iconPosition的入参
+   * @author: zl
+   * @date: 2019/6/23
+   * @contact: 908347816@qq.com
+   */
+  var _constructor3 = _vue.default.extend(_button4.default);
+
+  var _button2 = new _constructor3({
+    propsData: {
+      iconName: 'set',
+      loading: true,
+      iconPosition: 'left'
+    }
+  });
+
+  _button2.$mount();
+
+  var _useElement2 = _button2.$el.childNodes;
+  var index = null;
+
+  for (var i = 0; i < _useElement2.length; i++) {
+    if (_useElement2[i].nodeType === 1 || _useElement2[i].nodeType === 3) {
+      index = i;
+      break;
+    }
+  }
+
+  expect(_useElement2[index].tagName).to.eq('svg');
+  _button2 = new _constructor3({
+    propsData: {
+      iconName: 'set',
+      loading: true,
+      iconPosition: 'right'
+    }
+  });
+
+  _button2.$mount();
+
+  _useElement2 = _button2.$el.childNodes;
+  index = null;
+
+  for (var _i = 0; _i < _useElement2.length; _i++) {
+    if (_useElement2[_i].nodeType === 1 || _useElement2[_i].nodeType === 3) {
+      index = _i;
+      break;
+    }
+  }
+
+  expect(_useElement2[index].nodeType).to.eq(3);
+  _button2 = new _constructor3({
+    propsData: {
+      iconName: 'set',
+      loading: true
+    }
+  });
+
+  _button2.$mount();
+
+  _useElement2 = _button2.$el.childNodes;
+  index = null;
+
+  for (var _i2 = 0; _i2 < _useElement2.length; _i2++) {
+    if (_useElement2[_i2].nodeType === 1 || _useElement2[_i2].nodeType === 3) {
+      index = _i2;
+      break;
+    }
+  }
+
+  expect(_useElement2[index].nodeType).same.to.eq(1);
+}
+{
+  /**
+   * @file: app.js
    * @event button点击事件
    * @description 测试button点击事件
    * @author: zl
    * @date: 2019/6/23
    * @contact: 908347816@qq.com
    */
-  var _constructor3 = _vue.default.extend(_button3.default);
+  var _constructor4 = _vue.default.extend(_button4.default);
 
-  var vm = new _constructor3({
+  var vm = new _constructor4({
     propsData: {
       icon: 'settings'
     }
@@ -23924,9 +23998,9 @@ var expect = _chai.default.expect;
   var spy = _chai.default.spy(function () {});
 
   vm.$on('click', spy);
-  var _button2 = vm.$el;
+  var _button3 = vm.$el;
 
-  _button2.click();
+  _button3.click();
 
   expect(spy).to.have.been.called();
 }
@@ -23958,7 +24032,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55556" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63350" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
