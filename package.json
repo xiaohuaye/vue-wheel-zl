@@ -1,8 +1,8 @@
 {
   "name": "zl-vue-wheel-1",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UI-wheel",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev-test": "npx parcel watch test/* --no-cache",
     "dev-start": "npx karma start",
