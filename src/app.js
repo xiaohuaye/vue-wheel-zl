@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
+import Input from  './input'
 
 Vue.component('g-icon',Icon)
 Vue.component('g-button',Button)
 Vue.component('g-button-group',ButtonGroup)
+Vue.component('g-input',Input)
 
 new Vue({
     el: '#app',
@@ -65,142 +67,6 @@ new Vue({
 
     }
 });
-
-
-
-/**
- *  单元测试
- *  @module unitTest
- */
-import chai from 'chai'
-import spies from 'chai-spies'
-chai.use(spies)
-const  expect = chai.expect
-{
-    /**
-     * @file: app.js
-     * @see iconName
-     * @description 测试iconName的入参
-     * @author: zl
-     * @date: 2019/6/23
-     * @contact: 908347816@qq.com
-     */
-    const constructor = Vue.extend(Button)
-    const button = new constructor({
-        propsData: {
-            iconName: 'set'
-        }
-    })
-    button.$mount()
-    let useElement = button.$el.querySelector('use')
-    expect(useElement.getAttribute('xlink:href')).to.eq('#i-set')
-}
-
-{
-    /**
-     * @file: app.js
-     * @see loading
-     * @description 测试loading的入参
-     * @author: zl
-     * @date: 2019/6/23
-     * @contact: 908347816@qq.com
-     */
-    const constructor = Vue.extend(Button)
-    const button = new constructor({
-        propsData: {
-            loading: true
-        }
-    })
-    button.$mount()
-    let useElement = button.$el.querySelector('use')
-    expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
-}
-{
-    /**
-     * @file: app.js
-     * @see iconPosition
-     * @description 测试iconPosition的入参
-     * @author: zl
-     * @date: 2019/6/23
-     * @contact: 908347816@qq.com
-     */
-    const constructor = Vue.extend(Button)
-    let button = new constructor({
-        propsData: {
-            iconName: 'set',
-            loading: true,
-            iconPosition: 'left'
-        }
-    })
-    button.$mount()
-    let useElement = button.$el.childNodes
-    let index = null
-    for(let i = 0;i<useElement.length;i++){
-        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
-            index = i
-            break
-        }
-    }
-    expect(useElement[index].tagName).to.eq('svg')
-
-    button = new constructor({
-        propsData: {
-            iconName: 'set',
-            loading: true,
-            iconPosition: 'right'
-        }
-    })
-    button.$mount()
-    useElement = button.$el.childNodes
-    index = null
-    for(let i = 0;i<useElement.length;i++){
-        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
-            index = i
-            break
-        }
-    }
-    expect(useElement[index].nodeType).to.eq(3)
-
-    button = new constructor({
-        propsData: {
-            iconName: 'set',
-            loading: true,
-        }
-    })
-    button.$mount()
-    useElement = button.$el.childNodes
-    index = null
-    for(let i = 0;i<useElement.length;i++){
-        if(useElement[i].nodeType === 1 || useElement[i].nodeType === 3){
-            index = i
-            break
-        }
-    }
-    expect(useElement[index].nodeType).same.to.eq(1)
-}
-{
-    /**
-     * @file: app.js
-     * @event button点击事件
-     * @description 测试button点击事件
-     * @author: zl
-     * @date: 2019/6/23
-     * @contact: 908347816@qq.com
-     */
-    const constructor = Vue.extend(Button)
-    const vm = new constructor({
-        propsData: {
-            icon: 'settings'
-        }
-    })
-    vm.$mount()
-    let spy = chai.spy(function () {})
-    vm.$on('click',spy)
-    let button = vm.$el
-    button.click()
-    expect(spy).to.have.been.called()
-}
-
 
 
 
