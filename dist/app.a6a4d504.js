@@ -12781,6 +12781,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default = {
   name: 'ZLInput',
   components: {
@@ -12821,7 +12827,21 @@ exports.default = _default;
       _c("input", {
         class: { error: _vm.error },
         attrs: { type: "text", disabled: _vm.disabled, readonly: _vm.readonly },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.value },
+        on: {
+          change: function($event) {
+            return _vm.$emit("change", $event)
+          },
+          blur: function($event) {
+            return _vm.$emit("change", $event)
+          },
+          focus: function($event) {
+            return _vm.$emit("change", $event)
+          },
+          input: function($event) {
+            return _vm.$emit("change", $event)
+          }
+        }
       }),
       _vm._v(" "),
       _vm.error
@@ -12960,6 +12980,9 @@ new _vue.default({
       setTimeout(function () {
         _this5.isLoading5 = false;
       }, 2000);
+    },
+    inputChange: function inputChange(e) {
+      console.log(e.target.value);
     }
   }
 });
@@ -12991,7 +13014,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54913" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57757" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

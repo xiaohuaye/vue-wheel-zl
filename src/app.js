@@ -64,7 +64,9 @@ new Vue({
                 this.isLoading5 = false
             },2000)
         },
-
+        inputChange(e){
+            console.log(e.target.value);
+        }
     }
 });
 
