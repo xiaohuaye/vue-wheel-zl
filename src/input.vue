@@ -2,9 +2,9 @@
   <div class="wrapper">
     <input type="text" :value="value" :disabled="disabled" :readonly="readonly" :class="{error}"
            @change="$emit('change',$event)"
-           @blur="$emit('change',$event)"
-           @focus="$emit('change',$event)"
-           @input ="$emit('change',$event)"
+           @blur="$emit('blur',$event)"
+           @focus="$emit('focus',$event)"
+           @input ="$emit('input',$event)"
 
     >
     <template v-if="error">

@@ -57,4 +57,24 @@ describe('Input', () => {
       expect(inputElementMessage.innerHTML).to.equal('错了')
     })
   })
+
+  describe('事件',()=>{
+    const Constructor = Vue.extend(Input)
+    let vm
+    afterEach(()=>{
+      vm.$destroy()
+    })
+
+    it('支持 change等 事件',()=>{
+      ['change','input','blur','focus'].forEach((value, index)=>{
+        vm = new Constructor({}).$mount()
+        const callback = sinon.fake();
+        vm.$on(value,callback)
+        let event = new Event(value);
+        let inputElement = vm.$el.querySelector('input')
+        inputElement.dispatchEvent(event)
+        expect(callback).to.have.been.calledWith(event)
+      })
+    })
+  })
 })

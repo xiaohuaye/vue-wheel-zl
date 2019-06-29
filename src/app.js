@@ -18,6 +18,23 @@ new Vue({
         isLoading4: false,
         isLoading5: false
     },
+    created(){
+        /**
+         * 检测手动触发事件
+         * @file: app.js
+         * @method created
+         * @description: 使用dispatchEvent触发事件
+         * @author: zl
+         * @date: 2019/6/30
+         * @contact: 908347816@qq.com
+         */
+
+        setTimeout(()=>{
+            let event = new Event('change');
+            let inputElement = this.$el.querySelector('.testEvent input')
+            inputElement.dispatchEvent(event)
+        },3000)
+    },
     /**
      *  函数定义
      *  @module function
@@ -65,7 +82,7 @@ new Vue({
             },2000)
         },
         inputChange(e){
-            console.log(e.target.value);
+            console.log(e);
         }
     }
 });

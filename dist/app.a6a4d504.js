@@ -12833,13 +12833,13 @@ exports.default = _default;
             return _vm.$emit("change", $event)
           },
           blur: function($event) {
-            return _vm.$emit("change", $event)
+            return _vm.$emit("blur", $event)
           },
           focus: function($event) {
-            return _vm.$emit("change", $event)
+            return _vm.$emit("focus", $event)
           },
           input: function($event) {
-            return _vm.$emit("change", $event)
+            return _vm.$emit("input", $event)
           }
         }
       }),
@@ -12925,6 +12925,26 @@ new _vue.default({
     isLoading4: false,
     isLoading5: false
   },
+  created: function created() {
+    var _this = this;
+
+    /**
+     * 检测手动触发事件
+     * @file: app.js
+     * @method created
+     * @description: 使用dispatchEvent触发事件
+     * @author: zl
+     * @date: 2019/6/30
+     * @contact: 908347816@qq.com
+     */
+    setTimeout(function () {
+      var event = new Event('change');
+
+      var inputElement = _this.$el.querySelector('.testEvent input');
+
+      inputElement.dispatchEvent(event);
+    }, 3000);
+  },
 
   /**
    *  函数定义
@@ -12932,7 +12952,7 @@ new _vue.default({
    */
   methods: {
     submitSthOne: function submitSthOne() {
-      var _this = this;
+      var _this2 = this;
 
       /**
        * submitSthOne模拟事件回调
@@ -12946,43 +12966,43 @@ new _vue.default({
        */
       this.isLoading1 = true;
       setTimeout(function () {
-        _this.isLoading1 = false;
+        _this2.isLoading1 = false;
       }, 2000);
     },
     submitSthTwo: function submitSthTwo() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.isLoading2 = true;
       setTimeout(function () {
-        _this2.isLoading2 = false;
+        _this3.isLoading2 = false;
       }, 2000);
     },
     submitSthThree: function submitSthThree() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.isLoading3 = true;
       setTimeout(function () {
-        _this3.isLoading3 = false;
+        _this4.isLoading3 = false;
       }, 2000);
     },
     submitSthFour: function submitSthFour() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.isLoading4 = true;
       setTimeout(function () {
-        _this4.isLoading4 = false;
+        _this5.isLoading4 = false;
       }, 2000);
     },
     submitSthFive: function submitSthFive() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.isLoading5 = true;
       setTimeout(function () {
-        _this5.isLoading5 = false;
+        _this6.isLoading5 = false;
       }, 2000);
     },
     inputChange: function inputChange(e) {
-      console.log(e.target.value);
+      console.log(e);
     }
   }
 });
@@ -13014,7 +13034,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51420" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
