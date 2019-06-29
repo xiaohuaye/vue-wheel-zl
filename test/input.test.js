@@ -10,20 +10,22 @@ describe('Input', () => {
     expect(Input).to.be.ok
   })
   describe('测试prop',()=>{
+    const Constructor = Vue.extend(Input)
+    let vm
+    afterEach(()=>{
+      vm.$destroy()
+    })
     it('接收 value', () => {
-      const Constructor = Vue.extend(Input)
-      const vm = new Constructor({
+       vm = new Constructor({
         propsData: {
           value: '1234'
         }
       }).$mount()
       const inputElement = vm.$el.querySelector('input')
       expect(inputElement.value).to.equal('1234')
-      vm.$destroy()
     })
 
     it('接收 disabled', () => {
-      const Constructor = Vue.extend(Input)
       const vm = new Constructor({
         propsData: {
           disabled: true
@@ -31,24 +33,19 @@ describe('Input', () => {
       }).$mount()
       const inputElement = vm.$el.querySelector('input')
       expect(inputElement.disabled).to.equal(true)
-      vm.$destroy()
     })
 
     it('接收 readonly', () => {
-      const Constructor = Vue.extend(Input)
       const vm = new Constructor({
         propsData: {
           readonly: true
         }
       }).$mount()
       const inputElement = vm.$el.querySelector('input')
-      console.log(inputElement);
       expect(inputElement.readOnly).to.equal(true)
-      vm.$destroy()
     })
 
     it('接收 error', () => {
-      const Constructor = Vue.extend(Input)
       const vm = new Constructor({
         propsData: {
           error: '错了'
@@ -58,7 +55,6 @@ describe('Input', () => {
       const inputElementMessage = vm.$el.querySelector('.error-message')
       expect(inputElement.getAttribute('xlink:href')).to.equal('#i-error')
       expect(inputElementMessage.innerHTML).to.equal('错了')
-      vm.$destroy()
     })
   })
 })
