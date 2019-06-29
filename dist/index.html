@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <title>wheel</title>
     <style>* {margin: 0;padding: 0;box-sizing: border-box;}
-        :root {--button-height: 32px;--font-size: 14px;--button-background: white;--button-active-background: #eee;--border-radius: 4px;--color: #333;--border-color: #999;--border-color-hover: #666;}</style>
+        :root {--button-height: 32px;--font-size: 14px;--button-background: white;--button-active-background: #eee;--border-radius: 4px;--color: #333;--border-color: #999;--border-color-hover: #666;}
+        .box{margin: 30px 0;}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
 <div id="app">
-    <g-button icon-name="set" icon-position="left" :loading="isLoading1" @click="submitSthOne">
-        button
-    </g-button>
-    <g-button icon-name="set" icon-position="right" :loading="isLoading2" @click="submitSthTwo">
-        button1
-    </g-button>
-    <g-button icon-position="top" :loading="isLoading3" @click="submitSthThree">
-      button2
-    </g-button>
-    <g-button icon-name="set" :loading="isLoading1" @click="submitSthOne">
-    button3
-    </g-button>
-    <g-button-group>
-      <g-button icon-name="left" icon-position="left" :loading="isLoading4" @click="submitSthFour">上一页</g-button>
-      <g-button>更多</g-button>
-      <g-button icon-name="you" icon-position="right" :loading="isLoading5" @click="submitSthFive">下一页</g-button>
-    </g-button-group>
+    <div class="box">
+        <g-button icon-name="set" icon-position="left" :loading="isLoading1" @click="submitSthOne">
+            button
+        </g-button>
+        <g-button icon-name="set" icon-position="right" :loading="isLoading2" @click="submitSthTwo">
+            button1
+        </g-button>
+        <g-button icon-position="top" :loading="isLoading3" @click="submitSthThree">
+            button2
+        </g-button>
+        <g-button icon-name="set" :loading="isLoading1" @click="submitSthOne">
+            button3
+        </g-button>
+        <g-button-group>
+            <g-button icon-name="left" icon-position="left" :loading="isLoading4" @click="submitSthFour">上一页</g-button>
+            <g-button>更多</g-button>
+            <g-button icon-name="you" icon-position="right" :loading="isLoading5" @click="submitSthFive">下一页</g-button>
+        </g-button-group>
+    </div>
 
-    <g-input></g-input>
+    <div class="box">
+        <g-input value="张三"></g-input>
+        <g-input value="李四" disabled=""></g-input>
+        <g-input value="王二" readonly=""></g-input>
+    </div>
+    <div class="box">
+        <g-input value="赵" error="姓名不能少于两个字"></g-input>
+    </div>
+
 </div>
 <script type="application/javascript" src="/app.a6a4d504.js"></script>
 </body>
