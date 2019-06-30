@@ -16,7 +16,8 @@ new Vue({
         isLoading2: false,
         isLoading3: false,
         isLoading4: false,
-        isLoading5: false
+        isLoading5: false,
+        message: 'hi'
     },
     created(){
         /**
@@ -80,9 +81,6 @@ new Vue({
             setTimeout(()=>{
                 this.isLoading5 = false
             },2000)
-        },
-        inputChange(e){
-            console.log(e);
         }
     }
 });

@@ -32,7 +32,9 @@
     </div>
 
     <div class="box">
-        <g-input class="testEvent" value="张三" @change="inputChange"></g-input>
+        <g-input class="testEvent" v-model="message"></g-input>
+        <span>{{message}}</span>
+        <button @click="message+='1'">+1</button>
         <g-input value="李四" disabled></g-input>
         <g-input value="王二" readonly></g-input>
     </div>

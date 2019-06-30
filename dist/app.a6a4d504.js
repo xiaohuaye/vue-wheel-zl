@@ -12830,16 +12830,16 @@ exports.default = _default;
         domProps: { value: _vm.value },
         on: {
           change: function($event) {
-            return _vm.$emit("change", $event)
+            return _vm.$emit("change", $event.target.value)
           },
           blur: function($event) {
-            return _vm.$emit("blur", $event)
+            return _vm.$emit("blur", $event.target.value)
           },
           focus: function($event) {
-            return _vm.$emit("focus", $event)
+            return _vm.$emit("focus", $event.target.value)
           },
           input: function($event) {
-            return _vm.$emit("input", $event)
+            return _vm.$emit("input", $event.target.value)
           }
         }
       }),
@@ -12923,7 +12923,8 @@ new _vue.default({
     isLoading2: false,
     isLoading3: false,
     isLoading4: false,
-    isLoading5: false
+    isLoading5: false,
+    message: 'hi'
   },
   created: function created() {
     var _this = this;
@@ -13000,9 +13001,6 @@ new _vue.default({
       setTimeout(function () {
         _this6.isLoading5 = false;
       }, 2000);
-    },
-    inputChange: function inputChange(e) {
-      console.log(e);
     }
   }
 });
@@ -13034,7 +13032,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51420" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56087" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
