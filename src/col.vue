@@ -14,6 +14,19 @@
       offset: {
         type: [Number, String]
       },
+      phone: {
+        type: Object,
+        validate(value){
+          let keys = Object.keys(value)
+          let valid = true
+          keys.forEach(key=>{
+            if(!['span','offset'].includes(key)){
+              valid =false
+            }
+          })
+          return valid
+        }
+      }
     },
     data() {
       return {
