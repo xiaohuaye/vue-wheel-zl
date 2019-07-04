@@ -25,10 +25,6 @@
       offset: {
         type: [Number, String]
       },
-      phone: {
-        type: Object,
-        validate
-      },
       iPad: {
         type: Object,
         validate
@@ -53,15 +49,17 @@
     },
     computed: {
       colClass: function () {
-        let {span, offset, phone, iPad, narrowPC, pc, widePC} = this;
-        return [span && `col-${span}`, offset && `offset-${offset}`,
-          phone && [`col-phone-${phone.span}`],
-          iPad && [`col-iPad-${iPad.span}`],
-          narrowPC && [`col-narrowPC-${narrowPC.span}`],
-          pc && [`col-pc-${pc.span}`],
-          widePC && [`col-widePC-${widePC.span}`],
-        ]
-
+        let {span, offset, iPad, narrowPC, pc, widePC} = this;
+        let ArrayGet = [iPad, narrowPC, pc, widePC]
+        let initArray = [span && `col-${span}`, offset && `offset-${offset}`]
+        ArrayGet.filter(d=>d).map(item=>{
+          console.log(item)
+          if(item){
+            initArray.push(`col-${item}-${item.span}`)
+          }
+        })
+        console.info(initArray)
+        return initArray
       },
       colStyle: function () {
         return {
@@ -81,6 +79,9 @@
     padding: 0 10px;
   }
 
+  /**
+   * phone的样式
+   */
   $class-slug: col !default;
 
   @for $n from 1 through 24 {
@@ -97,25 +98,10 @@
     }
   }
 
-  @media (max-width: 576px) {
-    $class-slug: col-phone;
-
-    @for $n from 1 through 24 {
-      .col.#{$class-slug}-#{$n} {
-        width: ($n / 24) * 100%
-      }
-    }
-
-    $class-slug: col-phone-offset;
-
-    @for $n from 1 through 24 {
-      .col.#{$class-slug}-#{$n} {
-        width: ($n / 24) * 100%
-      }
-    }
-  }
-
-  @media (min-width: 576px) and(max-width: 768px) {
+  /**
+   * iPad的样式
+   */
+  @media (min-width: 576px){
     $class-slug: col-iPad;
 
     @for $n from 1 through 24 {
@@ -133,7 +119,10 @@
     }
   }
 
-  @media (min-width: 768px) and(max-width: 992px) {
+  /**
+   *  narrowPC的样式
+   */
+  @media (min-width: 768px) {
     $class-slug: col-narrowPC;
 
     @for $n from 1 through 24 {
@@ -150,8 +139,10 @@
       }
     }
   }
-
-  @media (min-width: 992px) and(max-width: 1200px) {
+  /**
+   * pc的样式
+   */
+  @media (min-width: 992px) {
     $class-slug: col-pc;
 
     @for $n from 1 through 24 {
@@ -169,6 +160,9 @@
     }
   }
 
+  /**
+   * widePc的样式
+   */
   @media (min-width: 1200px) {
     $class-slug: col-widePC;
 

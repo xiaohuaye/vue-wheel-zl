@@ -7,46 +7,35 @@
         * {margin: 0;padding: 0;box-sizing: border-box;}
         :root {--button-height: 32px;--font-size: 14px;--button-background: white;--button-active-background: #eee;--border-radius: 4px;--color: #333;--border-color: #999;--border-color-hover: #666;}
         .box{margin: 30px 0;}
+        .demo{
+          background-color: #ddd;
+          border: 1px solid #666;
+          height: 100px;
+        }
     </style>
 </head>
 <body>
 <div id="app">
-    <g-row gutter="20">
-      <g-col >1</g-col>
-      <g-col >1</g-col>
-    </g-row>
-  <g-row gutter="20">
-    <g-col>1</g-col>
-    <g-col>1</g-col>
-    <g-col>1</g-col>
+  <g-row>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
+    <g-col span="24" :i-pad="{span:12}" :narrow-p-c="{span:8}">
+      <div class="demo"></div>
+    </g-col>
   </g-row>
-  <g-row gutter="20" align="right">
-    <g-col>1</g-col>
-    <g-col>1</g-col>
-    <g-col>1</g-col>
-    <g-col>1</g-col>
-  </g-row>
-  <g-row gutter="20" align="right">
-    <g-col span="4"
-           :phone="{span: 24}"
-           :i-pad="{span: 16}"
-           :narrow-p-c="{span: 20}"
-           :pc="{span: 22}"
-           :wide-p-c="{span: 23}"
-    >2</g-col>
-    <g-col span="20"
-           :phone="{span: 24}"
-           :i-pad="{span: 8}"
-           :narrow-p-c="{span: 4}"
-           :pc="{span: 2}"
-           :wide-p-c="{span: 1}"
-    >20</g-col>
-  </g-row>
-    <g-row gutter="20">
-        <g-col span="4">4</g-col>
-        <g-col span="8" offset="2">10</g-col>
-        <g-col span="8" offset="2">10</g-col>
-    </g-row>
     <div class="box">
         <g-button icon-name="set" icon-position="left" :loading="isLoading1" @click="submitSthOne">
             button
