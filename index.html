@@ -27,8 +27,20 @@
     <g-col>1</g-col>
   </g-row>
   <g-row gutter="20" align="right">
-    <g-col span="2" >2</g-col>
-    <g-col span="20" offset="2">20</g-col>
+    <g-col span="4"
+           :phone="{span: 24}"
+           :i-pad="{span: 16}"
+           :narrow-p-c="{span: 20}"
+           :pc="{span: 22}"
+           :wide-p-c="{span: 23}"
+    >2</g-col>
+    <g-col span="20"
+           :phone="{span: 24}"
+           :i-pad="{span: 8}"
+           :narrow-p-c="{span: 4}"
+           :pc="{span: 2}"
+           :wide-p-c="{span: 1}"
+    >20</g-col>
   </g-row>
     <g-row gutter="20">
         <g-col span="4">4</g-col>
