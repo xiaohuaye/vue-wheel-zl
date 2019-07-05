@@ -50,16 +50,17 @@
     computed: {
       colClass: function () {
         let {span, offset, iPad, narrowPC, pc, widePC} = this;
-        let ArrayGet = [iPad, narrowPC, pc, widePC]
-        let initArray = [span && `col-${span}`, offset && `offset-${offset}`]
-        ArrayGet.filter(d=>d).map(item=>{
-          console.log(item)
-          if(item){
-            initArray.push(`col-${item}-${item.span}`)
+        let postfixClassArray = [{type:iPad,postfix:'iPad'},{type:narrowPC,postfix:'narrowPC'},{type:pc,postfix:'pc'},{type:widePC,postfix:'widePC'}]
+        let finClassArray = [span && `col-${span}`, offset && `offset-${offset}`]
+        postfixClassArray.map(item=>{
+          if(item.type && item.type.span){
+            finClassArray.push(`col-${item.postfix}-${item.type.span}`)
+          }
+          if(item.type && item.type.offset){
+            finClassArray.push(`offset-${item.postfix}-${item.type.offset}`)
           }
         })
-        console.info(initArray)
-        return initArray
+        return finClassArray
       },
       colStyle: function () {
         return {
