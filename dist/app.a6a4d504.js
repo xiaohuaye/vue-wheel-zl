@@ -12488,14 +12488,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $312330 = exports.default || module.exports;
+        var $46d522 = exports.default || module.exports;
       
-      if (typeof $312330 === 'function') {
-        $312330 = $312330.options;
+      if (typeof $46d522 === 'function') {
+        $46d522 = $46d522.options;
       }
     
         /* template */
-        Object.assign($312330, (function () {
+        Object.assign($46d522, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12517,7 +12517,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-312330",
+            _scopeId: "data-v-46d522",
             functional: undefined
           };
         })());
@@ -12530,9 +12530,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$312330', $312330);
+            api.createRecord('$46d522', $46d522);
           } else {
-            api.reload('$312330', $312330);
+            api.reload('$46d522', $46d522);
           }
         }
 
@@ -12597,14 +12597,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $3059bd = exports.default || module.exports;
+        var $392c8a = exports.default || module.exports;
       
-      if (typeof $3059bd === 'function') {
-        $3059bd = $3059bd.options;
+      if (typeof $392c8a === 'function') {
+        $392c8a = $392c8a.options;
       }
     
         /* template */
-        Object.assign($3059bd, (function () {
+        Object.assign($392c8a, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12640,7 +12640,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-3059bd",
+            _scopeId: "data-v-392c8a",
             functional: undefined
           };
         })());
@@ -12653,9 +12653,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$3059bd', $3059bd);
+            api.createRecord('$392c8a', $392c8a);
           } else {
-            api.reload('$3059bd', $3059bd);
+            api.reload('$392c8a', $392c8a);
           }
         }
 
@@ -12712,14 +12712,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $852d73 = exports.default || module.exports;
+        var $5a8ffd = exports.default || module.exports;
       
-      if (typeof $852d73 === 'function') {
-        $852d73 = $852d73.options;
+      if (typeof $5a8ffd === 'function') {
+        $5a8ffd = $5a8ffd.options;
       }
     
         /* template */
-        Object.assign($852d73, (function () {
+        Object.assign($5a8ffd, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12733,7 +12733,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-852d73",
+            _scopeId: "data-v-5a8ffd",
             functional: undefined
           };
         })());
@@ -12746,9 +12746,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$852d73', $852d73);
+            api.createRecord('$5a8ffd', $5a8ffd);
           } else {
-            api.reload('$852d73', $852d73);
+            api.reload('$5a8ffd', $5a8ffd);
           }
         }
 
@@ -12808,14 +12808,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $d255bb = exports.default || module.exports;
+        var $7b97c2 = exports.default || module.exports;
       
-      if (typeof $d255bb === 'function') {
-        $d255bb = $d255bb.options;
+      if (typeof $7b97c2 === 'function') {
+        $7b97c2 = $7b97c2.options;
       }
     
         /* template */
-        Object.assign($d255bb, (function () {
+        Object.assign($7b97c2, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12867,7 +12867,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-d255bb",
+            _scopeId: "data-v-7b97c2",
             functional: undefined
           };
         })());
@@ -12880,9 +12880,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$d255bb', $d255bb);
+            api.createRecord('$7b97c2', $7b97c2);
           } else {
-            api.reload('$d255bb', $d255bb);
+            api.reload('$7b97c2', $7b97c2);
           }
         }
 
@@ -12911,6 +12911,25 @@ var _default = {
   props: {
     gutter: {
       type: [Number, String]
+    },
+    align: {
+      type: String,
+      validate: function validate(value) {
+        ['left', 'right', 'center'].includes(value);
+      }
+    }
+  },
+  computed: {
+    rowStyle: function rowStyle() {
+      var gutter = this.gutter;
+      return {
+        marginLeft: -gutter / 2 + 'px',
+        marginRight: -gutter / 2 + 'px'
+      };
+    },
+    rowClass: function rowClass() {
+      var align = this.align;
+      return [align && "align-".concat(align)];
     }
   },
   mounted: function mounted() {
@@ -12922,27 +12941,21 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $756a17 = exports.default || module.exports;
+        var $7de154 = exports.default || module.exports;
       
-      if (typeof $756a17 === 'function') {
-        $756a17 = $756a17.options;
+      if (typeof $7de154 === 'function') {
+        $7de154 = $7de154.options;
       }
     
         /* template */
-        Object.assign($756a17, (function () {
+        Object.assign($7de154, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "row",
-      style: {
-        marginLeft: -_vm.gutter / 2 + "px",
-        marginRight: -_vm.gutter / 2 + "px"
-      }
-    },
+    { staticClass: "row", class: _vm.rowClass, style: _vm.rowStyle },
     [_vm._t("default")],
     2
   )
@@ -12954,7 +12967,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-756a17",
+            _scopeId: "data-v-7de154",
             functional: undefined
           };
         })());
@@ -12967,9 +12980,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$756a17', $756a17);
+            api.createRecord('$7de154', $7de154);
           } else {
-            api.reload('$756a17', $756a17);
+            api.reload('$7de154', $7de154);
           }
         }
 
@@ -12987,14 +13000,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
 //
 //
 //
 //
 //
 //
-//
-//
+var validate = function validate(value) {
+  var keys = Object.keys(value);
+  var valid = true;
+  keys.forEach(function (key) {
+    if (!['span', 'offset'].includes(key)) {
+      valid = false;
+    }
+  });
+  return valid;
+};
+
 var _default = {
   name: "zl-col",
   props: {
@@ -13003,6 +13026,22 @@ var _default = {
     },
     offset: {
       type: [Number, String]
+    },
+    iPad: {
+      type: Object,
+      validate: validate
+    },
+    narrowPC: {
+      type: Object,
+      validate: validate
+    },
+    pc: {
+      type: Object,
+      validate: validate
+    },
+    widePC: {
+      type: Object,
+      validate: validate
     }
   },
   data: function data() {
@@ -13013,8 +13052,35 @@ var _default = {
   computed: {
     colClass: function colClass() {
       var span = this.span,
-          offset = this.offset;
-      return [span && "col-".concat(span), offset && "offset-".concat(offset)];
+          offset = this.offset,
+          iPad = this.iPad,
+          narrowPC = this.narrowPC,
+          pc = this.pc,
+          widePC = this.widePC;
+      var postfixClassArray = [{
+        type: iPad,
+        postfix: 'iPad'
+      }, {
+        type: narrowPC,
+        postfix: 'narrowPC'
+      }, {
+        type: pc,
+        postfix: 'pc'
+      }, {
+        type: widePC,
+        postfix: 'widePC'
+      }];
+      var finClassArray = [span && "col-".concat(span), offset && "offset-".concat(offset)];
+      postfixClassArray.map(function (item) {
+        if (item.type && item.type.span) {
+          finClassArray.push("col-".concat(item.postfix, "-").concat(item.type.span));
+        }
+
+        if (item.type && item.type.offset) {
+          finClassArray.push("offset-".concat(item.postfix, "-").concat(item.type.offset));
+        }
+      });
+      return finClassArray;
     },
     colStyle: function colStyle() {
       return {
@@ -13025,14 +13091,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $61d431 = exports.default || module.exports;
+        var $6150f9 = exports.default || module.exports;
       
-      if (typeof $61d431 === 'function') {
-        $61d431 = $61d431.options;
+      if (typeof $6150f9 === 'function') {
+        $6150f9 = $6150f9.options;
       }
     
         /* template */
-        Object.assign($61d431, (function () {
+        Object.assign($6150f9, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -13040,14 +13106,8 @@ exports.default = _default;
   return _c(
     "div",
     { staticClass: "col", class: _vm.colClass, style: _vm.colStyle },
-    [
-      _c(
-        "div",
-        { staticStyle: { border: "1px solid green" } },
-        [_vm._t("default")],
-        2
-      )
-    ]
+    [_vm._t("default")],
+    2
   )
 }
 var staticRenderFns = []
@@ -13057,7 +13117,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-61d431",
+            _scopeId: "data-v-6150f9",
             functional: undefined
           };
         })());
@@ -13070,9 +13130,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$61d431', $61d431);
+            api.createRecord('$6150f9', $6150f9);
           } else {
-            api.reload('$61d431', $61d431);
+            api.reload('$6150f9', $6150f9);
           }
         }
 
@@ -13230,7 +13290,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59121" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
