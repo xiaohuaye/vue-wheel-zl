@@ -36,7 +36,8 @@ new Vue({
     isLoading5: false,
     message: 'hi'
   },
-  created(){
+  mounted(){
+    this.showToast()
   },
   /**
    *  函数定义
@@ -44,7 +45,13 @@ new Vue({
    */
   methods: {
     showToast(){
-      this.$toast('I am toast')
+      this.$toast('I am toast',{
+          text: '知道了',
+          callback(toast){
+            console.log(toast);
+            console.log('回调执行')
+          }
+      })
     }
   }
 });

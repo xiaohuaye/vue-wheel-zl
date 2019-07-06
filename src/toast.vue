@@ -1,7 +1,7 @@
 <template>
   <div class="g-toast">
     <slot></slot>
-    <span class="closeToast" v-if="closeButton" @click="close">
+    <span class="closeToast" v-if="closeButton" @click="clickClose">
       {{closeButton.text}}
     </span>
   </div>
@@ -24,9 +24,7 @@
         default: () => {
           return {
             text: '关闭',
-            callback: () => {
-
-            }
+            callback: undefined
           }
         }
       }
@@ -45,6 +43,12 @@
          */
         this.$el.remove()
         this.$destroy()
+      },
+      clickClose(){
+        this.close()
+        if(this.closeButton && typeof this.closeButton.callback === 'function'){
+          this.closeButton.callback(this)
+        }
       }
     }
   }
