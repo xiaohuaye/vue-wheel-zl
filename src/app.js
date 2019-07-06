@@ -10,7 +10,6 @@ import Footer from './footer'
 import Header from './header'
 import Layout from './layout'
 import Sider from './sider'
-import Toast from './toast'
 import PluginToast from './plugin-toast'
 
 Vue.component('g-icon',Icon);
@@ -24,7 +23,6 @@ Vue.component('g-footer',Footer);
 Vue.component('g-header',Header);
 Vue.component('g-layout',Layout);
 Vue.component('g-sider',Sider);
-Vue.component('g-toast',Toast)
 Vue.use(PluginToast)
 
 
