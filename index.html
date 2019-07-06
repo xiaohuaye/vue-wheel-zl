@@ -10,76 +10,11 @@
 
     .box {margin: 30px 0;}
 
-    .demo {min-height: 100px;}
-
-    .g-sider {
-      background: #333;
-      width: 200px;
-    }
-
-    .g-header {
-      background: #999;
-      height: 100px;
-    }
-    .g-footer{
-      height: 50px;
-      background: #ccc;
-    }
-  </style>
+    </style>
 </head>
 <body>
 <div id="app">
-  <div class="box">
-    <g-layout class="demo" style="border: 1px solid red;height: 100vh;">
-      <g-header class="demo" style="border: 1px solid green;">header</g-header>
-      <g-layout>
-        <g-sider class="demo" style="border: 1px solid gray">sider</g-sider>
-        <g-content class="demo" style="border: 1px solid yellow;">
-          <g-layout>
-            <g-header class="demo" style="border: 1px solid green;">header</g-header>
-            <g-content class="demo" style="border: 1px solid yellow;">content</g-content>
-            <g-footer class="demo" style="border: 1px solid blue;">footer</g-footer>
-          </g-layout>
-        </g-content>
-      </g-layout>
-      <g-footer class="demo" style="border: 1px solid blue;">footer</g-footer>
-    </g-layout>
-  </div>
-
-  <g-row gutter="20" align="center">
-    <g-col span="12"></g-col>
-    <g-col span="12"></g-col>
-  </g-row>
-  <div class="box">
-    <g-button icon-name="set" icon-position="left" :loading="isLoading1" @click="submitSthOne">
-      button
-    </g-button>
-    <g-button icon-name="set" icon-position="right" :loading="isLoading2" @click="submitSthTwo">
-      button1
-    </g-button>
-    <g-button icon-position="top" :loading="isLoading3" @click="submitSthThree">
-      button2
-    </g-button>
-    <g-button icon-name="set" :loading="isLoading1" @click="submitSthOne">
-      button3
-    </g-button>
-    <g-button-group>
-      <g-button icon-name="left" icon-position="left" :loading="isLoading4" @click="submitSthFour">上一页</g-button>
-      <g-button>更多</g-button>
-      <g-button icon-name="you" icon-position="right" :loading="isLoading5" @click="submitSthFive">下一页</g-button>
-    </g-button-group>
-  </div>
-
-  <div class="box">
-    <g-input class="testEvent" v-model="message"></g-input>
-    <span>{{message}}</span>
-    <button @click="message+='1'">+1</button>
-    <g-input value="李四" disabled></g-input>
-    <g-input value="王二" readonly></g-input>
-  </div>
-  <div class="box">
-    <g-input value="赵" error="姓名不能少于两个字"></g-input>
-  </div>
+  <button @click="showToast">toast</button>
 
 </div>
 <script type="application/javascript" src="./src/app.js"></script>
