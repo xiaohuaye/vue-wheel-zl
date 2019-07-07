@@ -11,7 +11,6 @@ import Header from './header'
 import Layout from './layout'
 import Sider from './sider'
 import PluginToast from './plugin-toast'
-import {match} from "sinon";
 
 Vue.component('g-icon', Icon);
 Vue.component('g-button', Button);
@@ -24,7 +23,7 @@ Vue.component('g-footer', Footer);
 Vue.component('g-header', Header);
 Vue.component('g-layout', Layout);
 Vue.component('g-sider', Sider);
-Vue.use(PluginToast)
+Vue.use(PluginToast);
 
 
 new Vue({
@@ -46,7 +45,8 @@ new Vue({
   methods: {
     showToast() {
       this.$toast(`I am toast${parseInt(Math.random()*100)}`, {
-        enableHtml: false,
+        enableHtml: true,
+        isAutoClose: false,
         position: 'bottom',
         closeButton: {
           text: '知道了',

@@ -12488,14 +12488,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $46d522 = exports.default || module.exports;
+        var $312330 = exports.default || module.exports;
       
-      if (typeof $46d522 === 'function') {
-        $46d522 = $46d522.options;
+      if (typeof $312330 === 'function') {
+        $312330 = $312330.options;
       }
     
         /* template */
-        Object.assign($46d522, (function () {
+        Object.assign($312330, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12517,7 +12517,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-46d522",
+            _scopeId: "data-v-312330",
             functional: undefined
           };
         })());
@@ -12530,9 +12530,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$46d522', $46d522);
+            api.createRecord('$312330', $312330);
           } else {
-            api.reload('$46d522', $46d522);
+            api.reload('$312330', $312330);
           }
         }
 
@@ -12597,14 +12597,14 @@ var _default = {
   methods: {}
 };
 exports.default = _default;
-        var $392c8a = exports.default || module.exports;
+        var $3059bd = exports.default || module.exports;
       
-      if (typeof $392c8a === 'function') {
-        $392c8a = $392c8a.options;
+      if (typeof $3059bd === 'function') {
+        $3059bd = $3059bd.options;
       }
     
         /* template */
-        Object.assign($392c8a, (function () {
+        Object.assign($3059bd, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12640,7 +12640,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-392c8a",
+            _scopeId: "data-v-3059bd",
             functional: undefined
           };
         })());
@@ -12653,9 +12653,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$392c8a', $392c8a);
+            api.createRecord('$3059bd', $3059bd);
           } else {
-            api.reload('$392c8a', $392c8a);
+            api.reload('$3059bd', $3059bd);
           }
         }
 
@@ -12840,7 +12840,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59094" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57164" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

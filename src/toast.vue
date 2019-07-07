@@ -5,9 +5,7 @@
       <slot></slot>
     </div>
     <div class="line" v-if="!isAutoClose" ref="line"></div>
-    <span class="closeToast" v-if="!isAutoClose" @click="clickClose">
-      {{closeButton.text}}
-    </span>
+    <span class="closeToast" v-if="!isAutoClose" @click="clickClose">{{closeButton.text}}</span>
   </div>
 </template>
 
@@ -16,12 +14,11 @@
     name: "zl-toast",
     props: {
       isAutoClose: {
-        type: Boolean,
-        default: true
-      },
-      autoCloseDelay: {
-        type: Number,
-        default: 5
+        type: [Boolean,Number],
+        default: 2,
+        validate(value) {
+          return typeof value === 'boolean' || typeof value === 'number'
+        }
       },
       closeButton: {
         type: Object,
@@ -72,7 +69,7 @@
         if (this.isAutoClose) {
           setTimeout(() => {
             this.close()
-          }, this.autoCloseDelay * 1000)
+          }, this.isAutoClose * 1000)
         }
       },
       close() {

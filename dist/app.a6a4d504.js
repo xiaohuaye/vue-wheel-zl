@@ -13515,7 +13515,235 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/toast.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "zl-toast",
+  props: {
+    isAutoClose: {
+      type: [Boolean, Number],
+      default: 2,
+      validate: function validate(value) {
+        return typeof value === 'boolean' || typeof value === 'number';
+      }
+    },
+    closeButton: {
+      type: Object,
+      default: function _default() {
+        return {
+          text: '关闭',
+          callback: undefined
+        };
+      }
+    },
+    enableHtml: {
+      type: Boolean,
+      default: false
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'middle'].indexOf(value) >= 0;
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.styleChange();
+    this.autoCloseHandle();
+  },
+  computed: {
+    toastPositionClass: function toastPositionClass() {
+      return "toast-".concat(this.position);
+    }
+  },
+  methods: {
+    styleChange: function styleChange() {
+      var _this = this;
+
+      /**
+       *  样式的改变 -- line元素height
+       */
+      if (this.$refs.line) {
+        this.$nextTick(function () {
+          _this.$refs.line.style.height = _this.$refs.wrapper.getBoundingClientRect().height + 'px';
+        });
+      }
+    },
+    autoCloseHandle: function autoCloseHandle() {
+      var _this2 = this;
+
+      /**
+       * 自动关闭
+       */
+      if (this.isAutoClose) {
+        setTimeout(function () {
+          _this2.close();
+        }, this.isAutoClose * 1000);
+      }
+    },
+    close: function close() {
+      /**
+       * @method 销毁toast组件实例
+       */
+      this.$el.remove();
+      this.$emit('close');
+      this.$destroy();
+    },
+    clickClose: function clickClose() {
+      this.close();
+
+      if (this.closeButton && typeof this.closeButton.callback === 'function') {
+        this.closeButton.callback(this);
+      }
+    }
+  }
+};
+exports.default = _default;
+        var $f68aa5 = exports.default || module.exports;
+      
+      if (typeof $f68aa5 === 'function') {
+        $f68aa5 = $f68aa5.options;
+      }
+    
+        /* template */
+        Object.assign($f68aa5, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { ref: "wrapper", staticClass: "g-toast", class: _vm.toastPositionClass },
+    [
+      _vm.enableHtml
+        ? _c("div", { domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) } })
+        : !_vm.enableHtml
+        ? _c("div", { staticClass: "message" }, [_vm._t("default")], 2)
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.isAutoClose
+        ? _c("div", { ref: "line", staticClass: "line" })
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.isAutoClose
+        ? _c(
+            "span",
+            { staticClass: "closeToast", on: { click: _vm.clickClose } },
+            [_vm._v(_vm._s(_vm.closeButton.text))]
+          )
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-f68aa5",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$f68aa5', $f68aa5);
+          } else {
+            api.reload('$f68aa5', $f68aa5);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/plugin-toast.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _toast = _interopRequireDefault(require("./toast"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var currentToast = null;
+var _default = {
+  install: function install(Vue, options) {
+    Vue.prototype.$toast = function (message, propsDataOptions) {
+      if (currentToast) {
+        currentToast.close();
+      }
+
+      currentToast = createToast({
+        Vue: Vue,
+        message: message,
+        propsData: propsDataOptions,
+        havenClosed: function havenClosed() {
+          currentToast = null;
+        }
+      });
+    };
+  }
+};
+exports.default = _default;
+
+function createToast(_ref) {
+  var Vue = _ref.Vue,
+      message = _ref.message,
+      propsData = _ref.propsData,
+      havenClosed = _ref.havenClosed;
+
+  /**
+   * 创建toast组件
+   * @method createToast
+   * @param {Object} Vue - 工程项目中引入的Vue实例
+   * @param {String} message - toast的message
+   * @param {Object} propsData - 用户传入的options
+   * @return {Object} toast - 组件
+   * @date: 2019/7/7
+   */
+  var Constructor = Vue.extend(_toast.default);
+  var toast = new Constructor({
+    propsData: propsData
+  });
+  toast.$slots.default = [message];
+  toast.$mount();
+  toast.$on('close', havenClosed);
+  document.body.appendChild(toast.$el);
+  return toast;
+}
+},{"./toast":"src/toast.vue"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -13542,6 +13770,8 @@ var _layout = _interopRequireDefault(require("./layout"));
 
 var _sider = _interopRequireDefault(require("./sider"));
 
+var _pluginToast = _interopRequireDefault(require("./plugin-toast"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.component('g-icon', _icon.default);
@@ -13566,6 +13796,8 @@ _vue.default.component('g-layout', _layout.default);
 
 _vue.default.component('g-sider', _sider.default);
 
+_vue.default.use(_pluginToast.default);
+
 new _vue.default({
   el: '#app',
   data: {
@@ -13576,85 +13808,30 @@ new _vue.default({
     isLoading5: false,
     message: 'hi'
   },
-  created: function created() {
-    var _this = this;
-
-    /**
-     * 检测手动触发事件
-     * @file: app.js
-     * @method created
-     * @description: 使用dispatchEvent触发事件
-     * @author: zl
-     * @date: 2019/6/30
-     * @contact: 908347816@qq.com
-     */
-    setTimeout(function () {
-      var event = new Event('change');
-
-      var inputElement = _this.$el.querySelector('.testEvent input');
-
-      inputElement.dispatchEvent(event);
-    }, 3000);
-  },
+  mounted: function mounted() {},
 
   /**
    *  函数定义
    *  @module function
    */
   methods: {
-    submitSthOne: function submitSthOne() {
-      var _this2 = this;
-
-      /**
-       * submitSthOne模拟事件回调
-       * @file: app.js
-       * @method submitSthOne
-       * @description: submitSthOne模拟事件回调
-       * @return {undefined} undefined
-       * @author: zl
-       * @date: 2019/6/22
-       * @contact: 908347816@qq.com
-       */
-      this.isLoading1 = true;
-      setTimeout(function () {
-        _this2.isLoading1 = false;
-      }, 2000);
-    },
-    submitSthTwo: function submitSthTwo() {
-      var _this3 = this;
-
-      this.isLoading2 = true;
-      setTimeout(function () {
-        _this3.isLoading2 = false;
-      }, 2000);
-    },
-    submitSthThree: function submitSthThree() {
-      var _this4 = this;
-
-      this.isLoading3 = true;
-      setTimeout(function () {
-        _this4.isLoading3 = false;
-      }, 2000);
-    },
-    submitSthFour: function submitSthFour() {
-      var _this5 = this;
-
-      this.isLoading4 = true;
-      setTimeout(function () {
-        _this5.isLoading4 = false;
-      }, 2000);
-    },
-    submitSthFive: function submitSthFive() {
-      var _this6 = this;
-
-      this.isLoading5 = true;
-      setTimeout(function () {
-        _this6.isLoading5 = false;
-      }, 2000);
+    showToast: function showToast() {
+      this.$toast("I am toast".concat(parseInt(Math.random() * 100)), {
+        enableHtml: true,
+        isAutoClose: false,
+        position: 'bottom',
+        closeButton: {
+          text: '知道了',
+          callback: function callback(toast) {
+            console.log(toast);
+            console.log('回调执行');
+          }
+        }
+      });
     }
   }
 });
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./content":"src/content.vue","./footer":"src/footer.vue","./header":"src/header.vue","./layout":"src/layout.vue","./sider":"src/sider.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./content":"src/content.vue","./footer":"src/footer.vue","./header":"src/header.vue","./layout":"src/layout.vue","./sider":"src/sider.vue","./plugin-toast":"src/plugin-toast.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13682,7 +13859,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61022" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52274" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
