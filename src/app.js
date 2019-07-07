@@ -45,9 +45,9 @@ new Vue({
    */
   methods: {
     showToast() {
-      this.$toast('<a style="color: red;" href="https://baidu.com">I am toast</a>', {
+      this.$toast('I am toast', {
         enableHtml: false,
-        isAutoClose: false,
+        position: 'middle',
         closeButton: {
           text: '知道了',
           callback(toast) {

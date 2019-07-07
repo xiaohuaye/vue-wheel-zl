@@ -1,5 +1,5 @@
 <template>
-  <div class="g-toast" ref="wrapper">
+  <div class="g-toast" ref="wrapper" :class="toastPositionClass">
     <div v-if="enableHtml" v-html="$slots.default[0]"></div>
     <div class="message" v-else-if="!enableHtml">
       <slot></slot>
@@ -32,25 +32,38 @@
           }
         }
       },
-      enableHtml:{
+      enableHtml: {
         type: Boolean,
         default: false
       },
+      position: {
+        type: String,
+        default: 'top',
+        validator(value) {
+          return ['top', 'bottom', 'middle'].indexOf(value) >= 0
+        }
+      }
+
     },
     mounted() {
       this.styleChange()
       this.autoCloseHandle()
     },
+    computed: {
+      toastPositionClass() {
+        return `toast-${this.position}`
+      }
+    },
     methods: {
-      styleChange(){
+      styleChange() {
         /**
          *  样式的改变 -- line元素height
          */
-        this.$nextTick(()=>{
-          this.$refs.line.style.height =  this.$refs.wrapper.getBoundingClientRect().height + 'px'
+        this.$nextTick(() => {
+          this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
         })
       },
-      autoCloseHandle(){
+      autoCloseHandle() {
         /**
          * 自动关闭
          */
@@ -67,9 +80,9 @@
         this.$el.remove()
         this.$destroy()
       },
-      clickClose(){
+      clickClose() {
         this.close()
-        if(this.closeButton && typeof this.closeButton.callback === 'function'){
+        if (this.closeButton && typeof this.closeButton.callback === 'function') {
           this.closeButton.callback(this)
         }
       }
@@ -81,16 +94,27 @@
   $font-size: 14px;
   $toast-min-height: 40px;
   $toast-bg: rgba(0, 0, 0, 0.74);
-  .g-toast {display: flex;align-items: center;min-height:$toast-min-height; color: white;font-style: $font-size;line-height: 1.8;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: $toast-bg;box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);padding: 0 16px;border-radius: 4px;
-    .closeToast{padding-left: 12px;flex-shrink: 0;
+  .g-toast {display: flex;align-items: center;min-height: $toast-min-height; color: white;font-style: $font-size;line-height: 1.8;position: fixed;left: 50%;background: $toast-bg;box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);padding: 0 16px;border-radius: 4px;
+
+    .closeToast {padding-left: 12px;flex-shrink: 0;}
+
+    .message {padding: 5px;}
+
+    .line {border-left: 1px solid white;margin-left: 16px;}
+
+    &.toast-top {
+      top: 10%;
+      transform: translateX(-50%);
     }
-    .message{
-      padding: 5px;
+
+    &.toast-bottom {
+      bottom: 10%;
+      transform: translateX(-50%);
     }
-    .line{
-      height: 100%;
-      border-left: 1px solid white;
-      margin-left: 16px;
+
+    &.toast-middle {
+      top: 50%;
+      transform: translateX(-50%);
     }
   }
 
