@@ -11,6 +11,7 @@ import Header from './header'
 import Layout from './layout'
 import Sider from './sider'
 import PluginToast from './plugin-toast'
+import {match} from "sinon";
 
 Vue.component('g-icon', Icon);
 Vue.component('g-button', Button);
@@ -45,7 +46,7 @@ new Vue({
    */
   methods: {
     showToast() {
-      this.$toast('I am toast', {
+      this.$toast(`I am toast${parseInt(Math.random()*100)}`, {
         enableHtml: false,
         position: 'middle',
         closeButton: {

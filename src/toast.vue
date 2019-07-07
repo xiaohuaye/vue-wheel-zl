@@ -59,9 +59,11 @@
         /**
          *  样式的改变 -- line元素height
          */
-        this.$nextTick(() => {
-          this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
-        })
+        if(this.$refs.line){
+          this.$nextTick(() => {
+            this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+          })
+        }
       },
       autoCloseHandle() {
         /**
