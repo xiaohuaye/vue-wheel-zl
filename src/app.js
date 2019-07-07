@@ -38,7 +38,6 @@ new Vue({
     message: 'hi'
   },
   mounted() {
-    this.showToast()
   },
   /**
    *  函数定义
@@ -48,7 +47,7 @@ new Vue({
     showToast() {
       this.$toast(`I am toast${parseInt(Math.random()*100)}`, {
         enableHtml: false,
-        position: 'middle',
+        position: 'bottom',
         closeButton: {
           text: '知道了',
           callback(toast) {

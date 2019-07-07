@@ -97,7 +97,12 @@
   $font-size: 14px;
   $toast-min-height: 40px;
   $toast-bg: rgba(0, 0, 0, 0.74);
+  @keyframes toast-fade-in {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+  }
   .g-toast {display: flex;align-items: center;min-height: $toast-min-height; color: white;font-style: $font-size;line-height: 1.8;position: fixed;left: 50%;background: $toast-bg;box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);padding: 0 16px;border-radius: 4px;
+    animation: toast-fade-in 1s;
 
     .closeToast {padding-left: 12px;flex-shrink: 0;}
 
