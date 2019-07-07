@@ -4,13 +4,23 @@ let currentToast = null
 export default {
   install(Vue, options) {
     Vue.prototype.$toast = function (message, propsDataOptions) {
-      if(currentToast){currentToast.close()}
-      currentToast = createToast({Vue, message, propsData: propsDataOptions});
+      if (currentToast) {
+        currentToast.close()
+      }
+      currentToast = createToast(
+          {
+            Vue,
+            message,
+            propsData: propsDataOptions,
+            havenClosed: () => {
+              currentToast = null
+            }
+          });
     }
   }
 }
 
-function createToast({Vue, message, propsData}) {
+function createToast({Vue, message, propsData, havenClosed}) {
   /**
    * 创建toast组件
    * @method createToast
@@ -25,6 +35,7 @@ function createToast({Vue, message, propsData}) {
   let toast = new Constructor({propsData})
   toast.$slots.default = [message]
   toast.$mount()
+  toast.$on('close', havenClosed)
   document.body.appendChild(toast.$el)
   return toast
 }

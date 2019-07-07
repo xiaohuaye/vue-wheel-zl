@@ -80,6 +80,7 @@
          * @method 销毁toast组件实例
          */
         this.$el.remove()
+        this.$emit('close')
         this.$destroy()
       },
       clickClose() {
