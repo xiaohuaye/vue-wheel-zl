@@ -1,5 +1,5 @@
 <template>
-  <div @click="changeSelectOption" class="tabs-item">
+  <div @click="changeSelectOption" class="tabs-item" :class="{'active':active }">
     <slot></slot>
   </div>
 </template>
@@ -14,18 +14,20 @@
         type: Number| String
       }
     },
+    data(){
+      return {
+        active: false
+      }
+    },
     mounted: function(){
       this.eventBus.$on('update:selected',(option)=>{
-        if(option.toString() === this.name.toString()){
-          console.log(`${this.name}被点中了`)
-        }
+          this.active = option.toString() === this.name.toString();
       })
     },
     methods: {
       changeSelectOption: function(){
         this.eventBus.$emit('update:selected',this.name)
       }
-
     }
   }
 </script>
@@ -34,5 +36,9 @@
   .tabs-item{
     flex-shrink: 0;
     padding: 0.5em 1em;
+    cursor: pointer;
+  }
+  .tabs-item.active{
+    color: #20c1c8;
   }
 </style>
