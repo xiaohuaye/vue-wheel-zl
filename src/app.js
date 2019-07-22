@@ -40,19 +40,10 @@ Vue.use(PluginToast);
 new Vue({
   el: '#app',
   data: {
-    isLoading1: false,
-    isLoading2: false,
-    isLoading3: false,
-    isLoading4: false,
-    isLoading5: false,
-    message: 'hi'
+    selected: 'sport'
   },
   mounted() {
   },
-  /**
-   *  函数定义
-   *  @module function
-   */
   methods: {
     showToast() {
       this.$toast(`I am toast${parseInt(Math.random()*100)}`, {
