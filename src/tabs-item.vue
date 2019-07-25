@@ -1,5 +1,5 @@
 <template>
-  <div @click="changeSelectOption" class="tabs-item" :class="{'active':active }">
+  <div @click="changeSelectOption" class="tabs-item" :class="{'active':active,'canIUse':!disabled }">
     <slot></slot>
   </div>
 </template>
@@ -12,11 +12,16 @@
       name: {
         required: true,
         type: Number| String
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
+
     },
     data(){
       return {
-        active: false
+        active: false,
       }
     },
     mounted: function(){
@@ -26,6 +31,7 @@
     },
     methods: {
       changeSelectOption: function(){
+        if (this.disabled) return
         this.eventBus.$emit('update:selected',this.name)
       }
     }
@@ -34,11 +40,18 @@
 
 <style scoped lang="scss">
   .tabs-item{
+    cursor: not-allowed;
     flex-shrink: 0;
     padding: 0.5em 1em;
-    cursor: pointer;
+    color: #ddd;
+    &.canIUse{
+      cursor: pointer;
+      color: black;
+    }
+    &.active{
+      color: #20c1c8;
+    }
   }
-  .tabs-item.active{
-    color: #20c1c8;
-  }
+
+
 </style>

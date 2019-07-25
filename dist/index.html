@@ -3,14 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>wheel</title>
-  <style>* {margin: 0;padding: 0;box-sizing: border-box;}
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    :root {--button-height: 32px;--font-size: 14px;--button-background: white;--button-active-background: #eee;--border-radius: 4px;--color: #333;--border-color: #999;--border-color-hover: #666;}</style>
+    :root {
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-background: white;
+      --button-active-background: #eee;
+      --border-radius: 4px;
+      --color: #333;
+      --border-color: #999;
+      --border-color-hover: #666;
+    }</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
 <div id="app">
-  <button @click="showToast">toast</button>
-
+  <g-tabs :selected="selected">
+    <g-tabs-head>
+      <g-tabs-item name="woman">
+        <g-icon icon-name="set"></g-icon>美女
+      </g-tabs-item>
+      <g-tabs-item name="finance" disabled="">
+        财经
+      </g-tabs-item>
+      <g-tabs-item name="sport">
+        体育
+      </g-tabs-item>
+      <template v-slot:other="">
+        <button>其他骚操作</button>
+      </template>
+    </g-tabs-head>
+    <g-tabs-body>
+      <g-tabs-pane name="woman">美女相关资讯</g-tabs-pane>
+      <g-tabs-pane name="finance">财经相关资讯</g-tabs-pane>
+      <g-tabs-pane name="sport">体育相关资讯</g-tabs-pane>
+    </g-tabs-body>
+  </g-tabs>
 </div>
 <script type="application/javascript" src="/app.a6a4d504.js"></script>
 </body>

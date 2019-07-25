@@ -4,7 +4,7 @@
     <div class="other">
       <slot name="other"></slot>
     </div>
-    <div class="line"></div>
+    <div class="line" ref="line"></div>
   </div>
 </template>
 
@@ -13,7 +13,19 @@
     name: "tabs-head",
     inject:['eventBus'],
     props: {
-    }
+
+    },
+    mounted(){
+      this.eventBus.$on('update:selected',(option)=>{
+        this.$children.map(child=>{
+          if(option.toString() === child.name.toString()){
+            this.$refs.line.style.transform = `translateX(${child.$el.getBoundingClientRect().left}px)`
+            this.$refs.line.style.width = child.$el.getBoundingClientRect().width + 'px'
+          }
+        })
+      })
+    },
+
   }
 </script>
 
@@ -29,11 +41,10 @@
     >.line{
       position: absolute;
       bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 10px;
+      height: 2px;
       border-radius: 5px;
-      background-color: green;
+      background-color: #3e999f;
+      transition: all 0.35s;
     }
   }
 
