@@ -14267,10 +14267,7 @@ new _vue.default({
         position: 'bottom',
         closeButton: {
           text: '知道了',
-          callback: function callback(toast) {
-            console.log(toast);
-            console.log('回调执行');
-          }
+          callback: function callback(toast) {}
         }
       });
     }
@@ -14304,7 +14301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62172" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64349" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

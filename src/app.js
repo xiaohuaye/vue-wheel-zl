@@ -53,8 +53,7 @@ new Vue({
         closeButton: {
           text: '知道了',
           callback(toast) {
-            console.log(toast);
-            console.log('回调执行')
+
           }
         }
       })
