@@ -40,7 +40,7 @@ Vue.use(PluginToast);
 new Vue({
   el: '#app',
   data: {
-    selected: 'sport'
+    selected: 'finance'
   },
   mounted() {
   },
