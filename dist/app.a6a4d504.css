@@ -985,3 +985,12 @@
 .tabs-item.active[data-v-e1f2c5] {
   color: #20c1c8;
 }
+.wrapper .popTouch[data-v-e185b4] {
+  display: inline-block;
+  border: 1px solid red;
+}
+.popover-content[data-v-e185b4] {
+  border: 1px solid blue;
+  display: inline-block;
+  position: absolute;
+}

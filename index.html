@@ -20,32 +20,22 @@
       --border-color: #999;
       --border-color-hover: #666;
     }
-
+    .popover-wrapper{
+      margin: 50px;
+      border: 1px solid gray;
+    }
   </style>
 </head>
 <body>
 <div id="app">
-  <g-tabs :selected="selected">
-    <g-tabs-head>
-      <g-tabs-item name="woman">
-        <g-icon icon-name="set"></g-icon>美女
-      </g-tabs-item>
-      <g-tabs-item name="finance" disabled>
-        财经
-      </g-tabs-item>
-      <g-tabs-item name="sport">
-        体育
-      </g-tabs-item>
-      <template v-slot:other>
-        <button>其他骚操作</button>
-      </template>
-    </g-tabs-head>
-    <g-tabs-body>
-      <g-tabs-pane name="woman">美女相关资讯</g-tabs-pane>
-      <g-tabs-pane name="finance">财经相关资讯</g-tabs-pane>
-      <g-tabs-pane name="sport">体育相关资讯</g-tabs-pane>
-    </g-tabs-body>
-  </g-tabs>
+  <g-popover class="popover-wrapper">
+      <div>
+        <button>点击</button>
+      </div>
+    <template v-slot:popover>
+      <div style="color: red;">popover</div>
+    </template>
+  </g-popover>
 </div>
 <script type="application/javascript" src="./src/app.js"></script>
 </body>

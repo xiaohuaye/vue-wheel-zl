@@ -16,6 +16,7 @@ import TabsBody from './tabs-body'
 import TabsHead from './tabs-head'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
+import Popover from  './popover'
 
 
 Vue.component('g-tabs-body',TabsBody);
@@ -34,6 +35,7 @@ Vue.component('g-footer', Footer);
 Vue.component('g-header', Header);
 Vue.component('g-layout', Layout);
 Vue.component('g-sider', Sider);
+Vue.component('g-popover',Popover)
 Vue.use(PluginToast);
 
 
@@ -45,19 +47,6 @@ new Vue({
   mounted() {
   },
   methods: {
-    showToast() {
-      this.$toast(`I am toast${parseInt(Math.random()*100)}`, {
-        enableHtml: true,
-        isAutoClose: false,
-        position: 'bottom',
-        closeButton: {
-          text: '知道了',
-          callback(toast) {
-
-          }
-        }
-      })
-    }
   }
 });
 
