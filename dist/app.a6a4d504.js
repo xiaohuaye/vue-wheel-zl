@@ -14205,7 +14205,7 @@ var _default = {
   },
   mounted: function mounted() {},
   methods: {
-    isShowPopHandle: function isShowPopHandle(event) {
+    ShowPopHandle: function ShowPopHandle(event) {
       var _this = this;
 
       var _event$target$getBoun = event.target.getBoundingClientRect(),
@@ -14217,24 +14217,32 @@ var _default = {
       this.isShowPop = !this.isShowPop;
       this.$nextTick(function () {
         var popDom = _this.$refs.popovercontent;
+        var popTouch = _this.$refs.popovertouch;
 
-        if (popDom) {
-          popDom.style.left = "".concat(left + window.scrollX, "px");
-          popDom.style.top = "".concat(top + window.scrollY, "px");
-          popDom.style.transform = "translate(0,-100%)";
-        }
+        _this.setStyleToPop(left, top, popDom);
 
-        var windowClosePop = function windowClosePop(e) {
-          if (event.target === e.target && _this.isShowPop || popDom.contains(e.target)) return;
-          _this.isShowPop = false;
-          document.removeEventListener('click', windowClosePop);
-        };
-
-        if (_this.isShowPop) {
-          document.body.append(popDom);
-          document.addEventListener('click', windowClosePop);
-        }
+        _this.showOrClosePop(event, popDom, popTouch);
       });
+    },
+    setStyleToPop: function setStyleToPop(left, top, popDom) {
+      if (popDom) {
+        popDom.style.left = "".concat(left + window.scrollX, "px");
+        popDom.style.top = "".concat(top + window.scrollY, "px");
+      }
+    },
+    showOrClosePop: function showOrClosePop(event, popDom, popTouch) {
+      var _this2 = this;
+
+      var windowClosePop = function windowClosePop(e) {
+        if (popTouch.contains(e.target) && _this2.isShowPop || popDom.contains(e.target)) return;
+        _this2.isShowPop = false;
+        document.removeEventListener('click', windowClosePop);
+      };
+
+      if (this.isShowPop) {
+        document.body.append(popDom);
+        document.addEventListener('click', windowClosePop);
+      }
     }
   }
 };
@@ -14254,7 +14262,11 @@ exports.default = _default;
   return _c("div", { staticClass: "wrapper" }, [
     _c(
       "div",
-      { staticClass: "popTouch", on: { click: _vm.isShowPopHandle } },
+      {
+        ref: "popovertouch",
+        staticClass: "popTouch",
+        on: { click: _vm.ShowPopHandle }
+      },
       [_vm._t("default")],
       2
     ),

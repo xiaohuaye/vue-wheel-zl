@@ -985,12 +985,39 @@
 .tabs-item.active[data-v-2ac373] {
   color: #20c1c8;
 }
+.wrapper[data-v-39055b] {
+  display: inline-block;
+}
 .wrapper .popTouch[data-v-39055b] {
   display: inline-block;
-  border: 1px solid red;
 }
 .popover-content[data-v-39055b] {
-  border: 1px solid blue;
   display: inline-block;
   position: absolute;
+  transform: translate(0, -100%);
+  border: 1px solid #333;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  padding: 0.5em 1em;
+  margin-top: -10px;
+  max-width: 20em;
+  word-break: break-all;
+}
+.popover-content[data-v-39055b]::before, .popover-content[data-v-39055b]::after {
+  content: "";
+  display: block;
+  border: 10px solid transparent;
+  border-top-color: black;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 100%;
+  left: 10px;
+}
+.popover-content[data-v-39055b]::after {
+  border: 10px solid transparent;
+  border-top-color: white;
+  top: calc(100% - 1px);
 }
