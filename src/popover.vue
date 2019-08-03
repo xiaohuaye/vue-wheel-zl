@@ -27,13 +27,12 @@
         this.$nextTick(()=>{
           let popDom = this.$refs.popovercontent
           if(popDom){
-            popDom.style.left = `${left}px`
-            popDom.style.top = `${top}px`
+            popDom.style.left = `${left + window.scrollX}px`
+            popDom.style.top = `${top + window.scrollY}px`
             popDom.style.transform = `translate(0,-100%)`
-            //todo 当界面有scroll时，pop不正确显示问题
           }
           let windowClosePop = (e)=>{
-            if(event.target === e.target || popDom.contains(e.target)) return;
+            if(event.target === e.target && this.isShowPop  || popDom.contains(e.target)) return;
             this.isShowPop = false
             document.removeEventListener('click',windowClosePop)
           }
