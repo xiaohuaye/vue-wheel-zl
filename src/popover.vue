@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="popTouch" @click="ShowPopHandle" ref="popovertouch">
+    <div class="popTouch" @click="ShowPopHandle" @mouseenter="ShowPopHandle" @mouseleave="ShowPopHandle"  ref="popovertouch">
       <slot></slot>
     </div>
     <div v-if="isShowPop" ref="popovercontent" class="popover-content" :class=`${position}-position`>
@@ -24,21 +24,28 @@
         validator(value){
           return ['top','bottom','left','right'].indexOf(value)>=0
         }
+      },
+      triggle:{
+        type: String,
+        default: 'click',
+        validator(value){
+          return ['click','hover'].indexOf(value)>=0
+        }
       }
     },
     mounted(){
 
     },
     methods:{
-      ShowPopHandle(event){
-        console.log(event.target.getBoundingClientRect());
-        let {left,right,top,bottom,width} = event.target.getBoundingClientRect()
+      ShowPopHandle: function (event) {
+        if (!(event.type === 'mouseenter' && this.triggle === 'hover' || event.type === 'click' && this.triggle === 'click' || event.type === 'mouseleave' && this.triggle === 'hover')) return
+        let {left, right, top, bottom, width} = event.target.getBoundingClientRect()
         this.isShowPop = !this.isShowPop
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           let popDom = this.$refs.popovercontent
           let popTouch = this.$refs.popovertouch
-          this.setStyleToPop(left,top,width,popDom)
-          this.showOrClosePop(event,popDom,popTouch)
+          this.setStyleToPop(left, top, width, popDom)
+          this.showOrClosePop(event, popDom, popTouch)
         })
       },
       setStyleToPop(left,top,width,popDom){
@@ -53,18 +60,18 @@
               popDom.style.top = `${top + window.scrollY}px`
               break
           }
-
         }
       },
       showOrClosePop(event,popDom,popTouch){
+        let eventName = event.type === 'click'?'click':'mouseenter'
         let windowClosePop = (e)=>{
           if(popTouch.contains(e.target) && this.isShowPop  || popDom.contains(e.target)) return;
           this.isShowPop = false
-          document.removeEventListener('click',windowClosePop)
+          document.removeEventListener(eventName,windowClosePop)
         }
         if(this.isShowPop){
           document.body.append(popDom)
-          document.addEventListener('click', windowClosePop)
+          document.addEventListener(eventName, windowClosePop)
         }
       }
     }

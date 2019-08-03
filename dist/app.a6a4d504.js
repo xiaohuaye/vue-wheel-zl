@@ -14210,6 +14210,13 @@ var _default = {
       validator: function validator(value) {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
       }
+    },
+    triggle: {
+      type: String,
+      default: 'click',
+      validator: function validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0;
+      }
     }
   },
   mounted: function mounted() {},
@@ -14217,7 +14224,7 @@ var _default = {
     ShowPopHandle: function ShowPopHandle(event) {
       var _this = this;
 
-      console.log(event.target.getBoundingClientRect());
+      if (!(event.type === 'mouseenter' && this.triggle === 'hover' || event.type === 'click' && this.triggle === 'click' || event.type === 'mouseleave' && this.triggle === 'hover')) return;
 
       var _event$target$getBoun = event.target.getBoundingClientRect(),
           left = _event$target$getBoun.left,
@@ -14254,15 +14261,17 @@ var _default = {
     showOrClosePop: function showOrClosePop(event, popDom, popTouch) {
       var _this2 = this;
 
+      var eventName = event.type === 'click' ? 'click' : 'mouseenter';
+
       var windowClosePop = function windowClosePop(e) {
         if (popTouch.contains(e.target) && _this2.isShowPop || popDom.contains(e.target)) return;
         _this2.isShowPop = false;
-        document.removeEventListener('click', windowClosePop);
+        document.removeEventListener(eventName, windowClosePop);
       };
 
       if (this.isShowPop) {
         document.body.append(popDom);
-        document.addEventListener('click', windowClosePop);
+        document.addEventListener(eventName, windowClosePop);
       }
     }
   }
@@ -14286,7 +14295,11 @@ exports.default = _default;
       {
         ref: "popovertouch",
         staticClass: "popTouch",
-        on: { click: _vm.ShowPopHandle }
+        on: {
+          click: _vm.ShowPopHandle,
+          mouseenter: _vm.ShowPopHandle,
+          mouseleave: _vm.ShowPopHandle
+        }
       },
       [_vm._t("default")],
       2
