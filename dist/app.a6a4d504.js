@@ -14203,31 +14203,52 @@ var _default = {
       isShowPop: false
     };
   },
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
+      }
+    }
+  },
   mounted: function mounted() {},
   methods: {
     ShowPopHandle: function ShowPopHandle(event) {
       var _this = this;
 
+      console.log(event.target.getBoundingClientRect());
+
       var _event$target$getBoun = event.target.getBoundingClientRect(),
           left = _event$target$getBoun.left,
           right = _event$target$getBoun.right,
           top = _event$target$getBoun.top,
-          bottom = _event$target$getBoun.bottom;
+          bottom = _event$target$getBoun.bottom,
+          width = _event$target$getBoun.width;
 
       this.isShowPop = !this.isShowPop;
       this.$nextTick(function () {
         var popDom = _this.$refs.popovercontent;
         var popTouch = _this.$refs.popovertouch;
 
-        _this.setStyleToPop(left, top, popDom);
+        _this.setStyleToPop(left, top, width, popDom);
 
         _this.showOrClosePop(event, popDom, popTouch);
       });
     },
-    setStyleToPop: function setStyleToPop(left, top, popDom) {
+    setStyleToPop: function setStyleToPop(left, top, width, popDom) {
       if (popDom) {
-        popDom.style.left = "".concat(left + window.scrollX, "px");
-        popDom.style.top = "".concat(top + window.scrollY, "px");
+        switch (this.position === 'right') {
+          case false:
+            popDom.style.left = "".concat(left + window.scrollX, "px");
+            popDom.style.top = "".concat(top + window.scrollY, "px");
+            break;
+
+          case true:
+            popDom.style.left = "".concat(left + width + window.scrollX, "px");
+            popDom.style.top = "".concat(top + window.scrollY, "px");
+            break;
+        }
       }
     },
     showOrClosePop: function showOrClosePop(event, popDom, popTouch) {
@@ -14274,7 +14295,11 @@ exports.default = _default;
     _vm.isShowPop
       ? _c(
           "div",
-          { ref: "popovercontent", staticClass: "popover-content" },
+          {
+            ref: "popovercontent",
+            staticClass: "popover-content",
+            class: _vm.position + "-position"
+          },
           [_vm._t("popover")],
           2
         )

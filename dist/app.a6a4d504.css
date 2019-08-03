@@ -994,22 +994,19 @@
 .popover-content[data-v-39055b] {
   display: inline-block;
   position: absolute;
-  transform: translate(0, -100%);
   border: 1px solid #333;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
   background: white;
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   padding: 0.5em 1em;
-  margin-top: -10px;
   max-width: 20em;
   word-break: break-all;
 }
 .popover-content[data-v-39055b]::before, .popover-content[data-v-39055b]::after {
   content: "";
   display: block;
-  border: 10px solid transparent;
-  border-top-color: black;
+  border: 8px solid transparent;
   width: 0;
   height: 0;
   position: absolute;
@@ -1017,7 +1014,56 @@
   left: 10px;
 }
 .popover-content[data-v-39055b]::after {
-  border: 10px solid transparent;
+  border: 8px solid transparent;
+}
+.popover-content.top-position[data-v-39055b] {
+  transform: translate(0, calc(-100% - 10px));
+}
+.popover-content.top-position[data-v-39055b]::before, .popover-content.top-position[data-v-39055b]::after {
+  border-top-color: black;
+  top: 100%;
+  left: 10px;
+}
+.popover-content.top-position[data-v-39055b]::after {
   border-top-color: white;
   top: calc(100% - 1px);
+}
+.popover-content.bottom-position[data-v-39055b] {
+  transform: translate(0, calc(100% + 10px));
+}
+.popover-content.bottom-position[data-v-39055b]::before, .popover-content.bottom-position[data-v-39055b]::after {
+  border-bottom-color: black;
+  top: 0;
+  left: 10px;
+  transform: translateY(-100%);
+}
+.popover-content.bottom-position[data-v-39055b]::after {
+  border-bottom-color: white;
+  top: calc(1.2px);
+}
+.popover-content.left-position[data-v-39055b] {
+  transform: translate(calc(-100% - 10px), 0);
+}
+.popover-content.left-position[data-v-39055b]::before, .popover-content.left-position[data-v-39055b]::after {
+  border-left-color: black;
+  top: 0;
+  left: 100%;
+  transform: translate(0%, 50%);
+}
+.popover-content.left-position[data-v-39055b]::after {
+  border-left-color: white;
+  left: calc(100% - 1.2px);
+}
+.popover-content.right-position[data-v-39055b] {
+  transform: translate(calc(10px), 0);
+}
+.popover-content.right-position[data-v-39055b]::before, .popover-content.right-position[data-v-39055b]::after {
+  border-right-color: black;
+  top: 0;
+  left: 0;
+  transform: translate(-100%, 50%);
+}
+.popover-content.right-position[data-v-39055b]::after {
+  border-right-color: white;
+  left: calc(1.2px);
 }
