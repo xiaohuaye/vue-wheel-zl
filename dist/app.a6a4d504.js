@@ -14211,7 +14211,7 @@ var _default = {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
       }
     },
-    triggle: {
+    trigger: {
       type: String,
       default: 'click',
       validator: function validator(value) {
@@ -14224,7 +14224,7 @@ var _default = {
     ShowPopHandle: function ShowPopHandle(event) {
       var _this = this;
 
-      if (!(event.type === 'mouseenter' && this.triggle === 'hover' || event.type === 'click' && this.triggle === 'click' || event.type === 'mouseleave' && this.triggle === 'hover')) return;
+      if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return;
 
       var _event$target$getBoun = event.target.getBoundingClientRect(),
           left = _event$target$getBoun.left,

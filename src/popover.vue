@@ -25,7 +25,7 @@
           return ['top','bottom','left','right'].indexOf(value)>=0
         }
       },
-      triggle:{
+      trigger:{
         type: String,
         default: 'click',
         validator(value){
@@ -38,7 +38,7 @@
     },
     methods:{
       ShowPopHandle: function (event) {
-        if (!(event.type === 'mouseenter' && this.triggle === 'hover' || event.type === 'click' && this.triggle === 'click' || event.type === 'mouseleave' && this.triggle === 'hover')) return
+        if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return
         let {left, right, top, bottom, width} = event.target.getBoundingClientRect()
         this.isShowPop = !this.isShowPop
         this.$nextTick(() => {
@@ -115,6 +115,7 @@
       transform: translate(0,calc(-100% - 10px) );
       &::before, &::after{
         border-top-color: black;
+        border-bottom: none;
         top: 100%;
         left: 10px;
       }
@@ -127,6 +128,7 @@
       transform: translate(0,calc(100% + 10px) );
       &::before, &::after{
         border-bottom-color: black;
+        border-top: none;
         top: 0;
         left: 10px;
         transform: translateY(-100%);
@@ -140,6 +142,7 @@
       transform: translate(calc(-100% - 10px) ,0);
       &::before, &::after{
         border-left-color: black;
+        border-right: none;
         top: 0;
         left: 100%;
         transform: translate(0%,50%);
@@ -153,6 +156,7 @@
       transform: translate(calc(10px) ,0);
       &::before, &::after{
         border-right-color: black;
+        border-left: none;
         top: 0;
         left: 0;
         transform: translate(-100% , 50%);
