@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
 <head>
   <meta charset="UTF-8">
   <title>wheel</title>
@@ -29,8 +29,8 @@
       <div>
         <g-button>点击</g-button>
       </div>
-    <template v-slot:popover="">
-      <div style="color: red;">popover</div>
+    <template v-slot:popover="{ closePop }">
+      <div style="color: red;">popover <g-button @click="closePop">关闭</g-button></div>
     </template>
   </g-popover>
   <g-popover class="popover-wrapper" trigger="hover">

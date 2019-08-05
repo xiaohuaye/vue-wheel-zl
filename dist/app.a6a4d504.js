@@ -14197,10 +14197,12 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "popover",
+  name: "g-popover",
   data: function data() {
     return {
-      isShowPop: false
+      isShowPop: false,
+      popDom: null,
+      popTouch: null
     };
   },
   props: {
@@ -14219,59 +14221,58 @@ var _default = {
       }
     }
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.popTouch = this.$refs.popovertouch;
+  },
   methods: {
     ShowPopHandle: function ShowPopHandle(event) {
+      if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return;
+
+      if (this.isShowPop) {
+        this.closePop(event);
+      } else {
+        this.openPop(event);
+      }
+    },
+    openPop: function openPop(event) {
       var _this = this;
 
-      if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return;
+      this.isShowPop = true;
+      this.$nextTick(function () {
+        _this.setStyleToPop(event);
+
+        var eventName = event.type === 'click' ? 'click' : 'mouseenter';
+        document.body.append(_this.popDom);
+        document.addEventListener(eventName, _this.windowClosePopListener);
+      });
+    },
+    windowClosePopListener: function windowClosePopListener(event) {
+      if (this.popTouch.contains(event.target) && this.isShowPop || this.popDom.contains(event.target)) return;
+      this.closePop(event);
+    },
+    closePop: function closePop(event) {
+      this.isShowPop = false;
+      var eventName = event ? event.type === 'click' ? 'click' : 'mouseenter' : 'click';
+      document.removeEventListener(eventName, this.windowClosePopListener);
+    },
+    setStyleToPop: function setStyleToPop(event) {
+      this.popDom = this.$refs.popovercontent;
 
       var _event$target$getBoun = event.target.getBoundingClientRect(),
           left = _event$target$getBoun.left,
-          right = _event$target$getBoun.right,
           top = _event$target$getBoun.top,
-          bottom = _event$target$getBoun.bottom,
           width = _event$target$getBoun.width;
 
-      this.isShowPop = !this.isShowPop;
-      this.$nextTick(function () {
-        var popDom = _this.$refs.popovercontent;
-        var popTouch = _this.$refs.popovertouch;
+      switch (this.position === 'right') {
+        case false:
+          this.popDom.style.left = "".concat(left + window.scrollX, "px");
+          this.popDom.style.top = "".concat(top + window.scrollY, "px");
+          break;
 
-        _this.setStyleToPop(left, top, width, popDom);
-
-        _this.showOrClosePop(event, popDom, popTouch);
-      });
-    },
-    setStyleToPop: function setStyleToPop(left, top, width, popDom) {
-      if (popDom) {
-        switch (this.position === 'right') {
-          case false:
-            popDom.style.left = "".concat(left + window.scrollX, "px");
-            popDom.style.top = "".concat(top + window.scrollY, "px");
-            break;
-
-          case true:
-            popDom.style.left = "".concat(left + width + window.scrollX, "px");
-            popDom.style.top = "".concat(top + window.scrollY, "px");
-            break;
-        }
-      }
-    },
-    showOrClosePop: function showOrClosePop(event, popDom, popTouch) {
-      var _this2 = this;
-
-      var eventName = event.type === 'click' ? 'click' : 'mouseenter';
-
-      var windowClosePop = function windowClosePop(e) {
-        if (popTouch.contains(e.target) && _this2.isShowPop || popDom.contains(e.target)) return;
-        _this2.isShowPop = false;
-        document.removeEventListener(eventName, windowClosePop);
-      };
-
-      if (this.isShowPop) {
-        document.body.append(popDom);
-        document.addEventListener(eventName, windowClosePop);
+        case true:
+          this.popDom.style.left = "".concat(left + width + window.scrollX, "px");
+          this.popDom.style.top = "".concat(top + window.scrollY, "px");
+          break;
       }
     }
   }
@@ -14313,7 +14314,7 @@ exports.default = _default;
             staticClass: "popover-content",
             class: _vm.position + "-position"
           },
-          [_vm._t("popover")],
+          [_vm._t("popover", null, { closePop: _vm.closePop })],
           2
         )
       : _vm._e()
@@ -14467,7 +14468,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51902" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63773" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
