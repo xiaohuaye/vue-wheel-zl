@@ -35,11 +35,6 @@ describe('tab组件测试', () => {
   Vue.component('g-icon', Icon)
   const div = document.createElement('div')
   document.body.appendChild(div)
-  const ConstructorTabs = Vue.extend(Tabs)
-  const ConstructorTabsBody = Vue.extend(TabsBody)
-  const ConstructorTabsHead = Vue.extend(TabsHead)
-  const ConstructorTabsItem = Vue.extend(TabsItem)
-  const ConstructorTabsPane = Vue.extend(TabsPane)
   it('验证tab组件传值，item/body组件的展示', () => {
     div.innerHTML = `<g-tabs selected="finance">
     <g-tabs-head>
