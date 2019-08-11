@@ -17,6 +17,8 @@ import TabsHead from './tabs-head'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import Popover from  './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
 
 
 Vue.component('g-tabs-body',TabsBody);
@@ -36,15 +38,20 @@ Vue.component('g-header', Header);
 Vue.component('g-layout', Layout);
 Vue.component('g-sider', Sider);
 Vue.component('g-popover',Popover)
+Vue.component('g-collapse',Collapse)
+Vue.component('g-collapse-item',CollapseItem)
 Vue.use(PluginToast);
 
 
 new Vue({
   el: '#app',
   data: {
-    selected: 'finance'
+    defaultopen: ['111','222'],
   },
   mounted() {
+    this.$on('update:defaultopen',(option)=>{
+      this.defaultopen = option.openArray
+    })
   },
   methods: {
   }

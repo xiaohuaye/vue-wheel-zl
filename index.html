@@ -20,45 +20,25 @@
       --border-color: #999;
       --border-color-hover: #666;
     }
-    .popover-wrapper{
-      margin: 100px;
+    .collapse{
+      margin: 20px;
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <g-popover class="popover-wrapper" position="bottom">
-      <div>
-        <g-button>点击</g-button>
-      </div>
-    <template v-slot:popover="{ closePop }">
-      <div style="color: red;">popover <g-button @click="closePop">关闭</g-button></div>
-    </template>
-  </g-popover>
-  <g-popover class="popover-wrapper" trigger="hover">
-    <div>
-      <g-button>点击</g-button>
-    </div>
-    <template v-slot:popover>
-      <div style="color: red;">popover</div>
-    </template>
-  </g-popover>
-  <g-popover class="popover-wrapper" position="left">
-    <div>
-      <g-button>点击</g-button>
-    </div>
-    <template v-slot:popover>
-      <div style="color: red;">popover</div>
-    </template>
-  </g-popover>
-  <g-popover class="popover-wrapper" position="right">
-    <div>
-      <g-button>点击</g-button>
-    </div>
-    <template v-slot:popover>
-      <div style="color: red;">popover</div>
-    </template>
-  </g-popover>
+  <g-collapse class="collapse" :defaultopen.sync=defaultopen single>
+    <g-collapse-item title="111">
+      <div>123</div>
+    </g-collapse-item>
+    <g-collapse-item title="222">
+      <div>456</div>
+    </g-collapse-item>
+    <g-collapse-item title="333">
+      <div>789</div>
+    </g-collapse-item>
+  </g-collapse>
+  {{defaultopen}}
 </div>
 <script type="application/javascript" src="./src/app.js"></script>
 </body>

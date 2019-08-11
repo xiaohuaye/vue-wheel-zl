@@ -14353,6 +14353,257 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/collapse.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "collapse",
+  props: {
+    defaultopen: {
+      type: Array
+    },
+    single: {}
+  },
+  data: function data() {
+    return {
+      eventBus: new _vue.default(),
+      open: this.defaultopen,
+      singleMode: this.single !== undefined
+    };
+  },
+  provide: function provide() {
+    return {
+      eventBus: this.eventBus
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.singleMode && this.open.length > 1) {
+      try {
+        console.warn('单个item显示开启时不要默认开启多个item');
+      } catch (e) {
+        console.log('单个item显示开启时不要默认开启多个item');
+      }
+    }
+
+    this.eventBus.$emit('update:open', {
+      openArray: this.open,
+      singleMode: this.singleMode
+    });
+    this.eventBus.$on('update:open', function (option) {
+      _this.open = option.openArray;
+
+      _this.$emit('update:defaultopen', _this.open);
+    });
+  }
+};
+exports.default = _default;
+        var $e1d045 = exports.default || module.exports;
+      
+      if (typeof $e1d045 === 'function') {
+        $e1d045 = $e1d045.options;
+      }
+    
+        /* template */
+        Object.assign($e1d045, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "collapse-wrapper" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-e1d045",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$e1d045', $e1d045);
+          } else {
+            api.reload('$e1d045', $e1d045);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/collapse-item.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "collapse-item",
+  inject: ['eventBus'],
+  props: {
+    title: {
+      type: String,
+      require: true
+    }
+  },
+  data: function data() {
+    return {
+      open: [],
+      isShow: false,
+      singleMode: false
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.eventBus.$on('update:open', function (option) {
+      _this.open = option.openArray;
+      _this.singleMode = option.singleMode;
+      _this.isShow = _this.open.indexOf(_this.title) >= 0;
+    });
+  },
+  methods: {
+    showHandle: function showHandle() {
+      var index = this.open.indexOf(this.title);
+      var array = JSON.parse(JSON.stringify(this.open));
+
+      if (index < 0) {
+        if (this.singleMode) {
+          array = [];
+        }
+
+        array.push(this.title);
+      } else {
+        array.splice(index, 1);
+      }
+
+      this.eventBus.$emit('update:open', {
+        openArray: array,
+        singleMode: this.singleMode
+      });
+    }
+  }
+};
+exports.default = _default;
+        var $359ee7 = exports.default || module.exports;
+      
+      if (typeof $359ee7 === 'function') {
+        $359ee7 = $359ee7.options;
+      }
+    
+        /* template */
+        Object.assign($359ee7, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "collapse-item" },
+    [
+      _c("div", { staticClass: "title", on: { click: _vm.showHandle } }, [
+        _vm._v("\n    " + _vm._s(_vm.title) + "\n  ")
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isShow,
+                expression: "isShow"
+              }
+            ],
+            staticClass: "content"
+          },
+          [_vm._t("default")],
+          2
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-359ee7",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$359ee7', $359ee7);
+          } else {
+            api.reload('$359ee7', $359ee7);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -14394,6 +14645,10 @@ var _tabsPane = _interopRequireDefault(require("./tabs-pane"));
 
 var _popover = _interopRequireDefault(require("./popover"));
 
+var _collapse = _interopRequireDefault(require("./collapse"));
+
+var _collapseItem = _interopRequireDefault(require("./collapse-item"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.component('g-tabs-body', _tabsBody.default);
@@ -14430,17 +14685,27 @@ _vue.default.component('g-sider', _sider.default);
 
 _vue.default.component('g-popover', _popover.default);
 
+_vue.default.component('g-collapse', _collapse.default);
+
+_vue.default.component('g-collapse-item', _collapseItem.default);
+
 _vue.default.use(_pluginToast.default);
 
 new _vue.default({
   el: '#app',
   data: {
-    selected: 'finance'
+    defaultopen: ['111', '222']
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$on('update:defaultopen', function (option) {
+      _this.defaultopen = option.openArray;
+    });
+  },
   methods: {}
 });
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./content":"src/content.vue","./footer":"src/footer.vue","./header":"src/header.vue","./layout":"src/layout.vue","./sider":"src/sider.vue","./plugin-toast":"src/plugin-toast.js","./tabs":"src/tabs.vue","./tabs-body":"src/tabs-body.vue","./tabs-head":"src/tabs-head.vue","./tabs-item":"src/tabs-item.vue","./tabs-pane":"src/tabs-pane.vue","./popover":"src/popover.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./content":"src/content.vue","./footer":"src/footer.vue","./header":"src/header.vue","./layout":"src/layout.vue","./sider":"src/sider.vue","./plugin-toast":"src/plugin-toast.js","./tabs":"src/tabs.vue","./tabs-body":"src/tabs-body.vue","./tabs-head":"src/tabs-head.vue","./tabs-item":"src/tabs-item.vue","./tabs-pane":"src/tabs-pane.vue","./popover":"src/popover.vue","./collapse":"src/collapse.vue","./collapse-item":"src/collapse-item.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -14468,7 +14733,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62818" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59548" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
