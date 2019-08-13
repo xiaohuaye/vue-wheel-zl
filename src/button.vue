@@ -1,8 +1,8 @@
 <template>
   <button class="g-button" @click="$emit('click')">
-    <g-icon v-if="iconNameCurrent && iconPosition !== 'right'" :icon-name="iconNameCurrent"></g-icon>
+    <g-icon v-if="iconNameCurrent && iconPosition !== 'right'" :icon="iconNameCurrent"></g-icon>
     <slot></slot>
-    <g-icon v-if="iconNameCurrent && iconPosition === 'right'" :icon-name="iconNameCurrent"></g-icon>
+    <g-icon v-if="iconNameCurrent && iconPosition === 'right'" :icon="iconNameCurrent"></g-icon>
   </button>
 </template>
 
@@ -13,7 +13,7 @@
       gIcon: Icon
     },
     props: {
-      iconName: String,
+      icon: String,
       loading: {
         type: Boolean,
         default: false
@@ -35,8 +35,8 @@
     },
     computed: {
       iconNameCurrent: function () {
-        let iconName = this.loading ? 'loading' : this.iconName;
-        return iconName
+        let icon = this.loading ? 'loading' : this.icon;
+        return icon
       }
     },
     methods: {}
@@ -45,10 +45,18 @@
 </script>
 
 <style lang="scss" scoped>
-
-  .g-button {font-size: var(--font-size);height: var(--button-height);padding: 0 0.63em;border-radius: var(--border-radius);border: 1px solid var(--border-color);background: var(--button-background);
-    &:hover {border-color: var(--border-color-hover);}
-    &:active {background-color: var(--button-active-background);}
+  $font-size: 14px;
+  $button-height: 32px;
+  $font-size: 14px;
+  $button-background: white;
+  $button-active-background: #eee;
+  $border-radius: 4px;
+  $color: #333;
+  $border-color: #999;
+  $border-color-hover: #666;
+  .g-button {font-size: $font-size;height: $button-height;padding: 0 0.63em;border-radius: $border-radius;border: 1px solid $border-color;background: $button-background;
+    &:hover {border-color: $border-color-hover;}
+    &:active {background-color: $button-active-background;}
     &:focus {outline: none;}
   }
 

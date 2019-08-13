@@ -1,0 +1,18 @@
+@keyframes loading-dash-data-v-312330 {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+.icon[data-v-312330] {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.loading[data-v-312330] {
+  animation: 1s loading-dash-data-v-312330 linear infinite;
+}

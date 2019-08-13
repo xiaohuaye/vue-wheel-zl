@@ -1,0 +1,57 @@
+@keyframes loading-dash-data-v-312330 {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+.icon[data-v-312330] {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.loading[data-v-312330] {
+  animation: 1s loading-dash-data-v-312330 linear infinite;
+}
+
+.wrapper[data-v-d255bb] {
+  font-size: 12px;
+  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+}
+.wrapper[data-v-d255bb] > :not(:last-child) {
+    margin-right: .5em;
+}
+.wrapper > input[data-v-d255bb] {
+    height: 32px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: 12px;
+}
+.wrapper > input[data-v-d255bb]:hover {
+      border-color: #666;
+}
+.wrapper > input[data-v-d255bb]:focus {
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+      outline: none;
+}
+.wrapper > input[disabled][data-v-d255bb], .wrapper > input[readonly][data-v-d255bb] {
+      color: #bbb;
+      border-color: #bbb;
+      cursor: not-allowed;
+}
+.wrapper > input.error[data-v-d255bb] {
+      border-color: #F1453D;
+}
+.wrapper > .icon-error[data-v-d255bb] {
+    fill: #F1453D;
+}
+.wrapper > .error-message[data-v-d255bb] {
+    color: #F1453D;
+}
+

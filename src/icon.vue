@@ -1,6 +1,6 @@
 <template>
   <svg class="icon" :class="{loading:isLoading}" aria-hidden="true">
-    <use :xlink:href=`#i-${iconName}`></use>
+    <use :xlink:href="`#i-${icon}`"></use>
   </svg>
 </template>
 
@@ -9,11 +9,11 @@
   export default {
     name: "icon",
     props: {
-      iconName: String
+      icon: String
     },
     computed: {
       isLoading: function () {
-        if( this.iconName === 'loading'){
+        if( this.icon === 'loading'){
           return true
         }else {
           return false

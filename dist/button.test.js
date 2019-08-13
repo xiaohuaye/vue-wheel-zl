@@ -12474,11 +12474,11 @@ require("./svg");
 var _default = {
   name: "icon",
   props: {
-    iconName: String
+    icon: String
   },
   computed: {
     isLoading: function isLoading() {
-      if (this.iconName === 'loading') {
+      if (this.icon === 'loading') {
         return true;
       } else {
         return false;
@@ -12507,7 +12507,7 @@ exports.default = _default;
       class: { loading: _vm.isLoading },
       attrs: { "aria-hidden": "true" }
     },
-    [_c("use", { attrs: { "xlink:href": "#i-" + _vm.iconName } })]
+    [_c("use", { attrs: { "xlink:href": "#i-" + _vm.icon } })]
   )
 }
 var staticRenderFns = []
@@ -12568,7 +12568,7 @@ var _default = {
     gIcon: _icon.default
   },
   props: {
-    iconName: String,
+    icon: String,
     loading: {
       type: Boolean,
       default: false
@@ -12590,8 +12590,8 @@ var _default = {
   },
   computed: {
     iconNameCurrent: function iconNameCurrent() {
-      var iconName = this.loading ? 'loading' : this.iconName;
-      return iconName;
+      var icon = this.loading ? 'loading' : this.icon;
+      return icon;
     }
   },
   methods: {}
@@ -12621,13 +12621,13 @@ exports.default = _default;
     },
     [
       _vm.iconNameCurrent && _vm.iconPosition !== "right"
-        ? _c("g-icon", { attrs: { "icon-name": _vm.iconNameCurrent } })
+        ? _c("g-icon", { attrs: { icon: _vm.iconNameCurrent } })
         : _vm._e(),
       _vm._v(" "),
       _vm._t("default"),
       _vm._v(" "),
       _vm.iconNameCurrent && _vm.iconPosition === "right"
-        ? _c("g-icon", { attrs: { "icon-name": _vm.iconNameCurrent } })
+        ? _c("g-icon", { attrs: { icon: _vm.iconNameCurrent } })
         : _vm._e()
     ],
     2
@@ -12687,7 +12687,7 @@ describe('Button', function () {
 
     var vm = new Constructor({
       propsData: {
-        iconName: 'set'
+        icon: 'set'
       }
     }).$mount();
     var useElement = vm.$el.querySelector('use');
@@ -12840,7 +12840,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59961" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57385" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

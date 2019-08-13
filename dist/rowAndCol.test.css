@@ -1,0 +1,770 @@
+.row[data-v-756a17] {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.align-left[data-v-756a17] {
+  justify-content: flex-start;
+}
+.row.align-right[data-v-756a17] {
+  justify-content: flex-end;
+}
+.row.align-center[data-v-756a17] {
+  justify-content: center;
+}
+
+@charset "UTF-8";
+.col[data-v-61d431] {
+  height: 100px;
+  width: 50%;
+  border: 1px solid red;
+  padding: 0 10px;
+}
+
+/**
+ * phone的样式
+ */
+.col.col-1[data-v-61d431] {
+  width: 4.16667%;
+}
+.col.col-2[data-v-61d431] {
+  width: 8.33333%;
+}
+.col.col-3[data-v-61d431] {
+  width: 12.5%;
+}
+.col.col-4[data-v-61d431] {
+  width: 16.66667%;
+}
+.col.col-5[data-v-61d431] {
+  width: 20.83333%;
+}
+.col.col-6[data-v-61d431] {
+  width: 25%;
+}
+.col.col-7[data-v-61d431] {
+  width: 29.16667%;
+}
+.col.col-8[data-v-61d431] {
+  width: 33.33333%;
+}
+.col.col-9[data-v-61d431] {
+  width: 37.5%;
+}
+.col.col-10[data-v-61d431] {
+  width: 41.66667%;
+}
+.col.col-11[data-v-61d431] {
+  width: 45.83333%;
+}
+.col.col-12[data-v-61d431] {
+  width: 50%;
+}
+.col.col-13[data-v-61d431] {
+  width: 54.16667%;
+}
+.col.col-14[data-v-61d431] {
+  width: 58.33333%;
+}
+.col.col-15[data-v-61d431] {
+  width: 62.5%;
+}
+.col.col-16[data-v-61d431] {
+  width: 66.66667%;
+}
+.col.col-17[data-v-61d431] {
+  width: 70.83333%;
+}
+.col.col-18[data-v-61d431] {
+  width: 75%;
+}
+.col.col-19[data-v-61d431] {
+  width: 79.16667%;
+}
+.col.col-20[data-v-61d431] {
+  width: 83.33333%;
+}
+.col.col-21[data-v-61d431] {
+  width: 87.5%;
+}
+.col.col-22[data-v-61d431] {
+  width: 91.66667%;
+}
+.col.col-23[data-v-61d431] {
+  width: 95.83333%;
+}
+.col.col-24[data-v-61d431] {
+  width: 100%;
+}
+.col.offset-1[data-v-61d431] {
+  margin-left: 4.16667%;
+}
+.col.offset-2[data-v-61d431] {
+  margin-left: 8.33333%;
+}
+.col.offset-3[data-v-61d431] {
+  margin-left: 12.5%;
+}
+.col.offset-4[data-v-61d431] {
+  margin-left: 16.66667%;
+}
+.col.offset-5[data-v-61d431] {
+  margin-left: 20.83333%;
+}
+.col.offset-6[data-v-61d431] {
+  margin-left: 25%;
+}
+.col.offset-7[data-v-61d431] {
+  margin-left: 29.16667%;
+}
+.col.offset-8[data-v-61d431] {
+  margin-left: 33.33333%;
+}
+.col.offset-9[data-v-61d431] {
+  margin-left: 37.5%;
+}
+.col.offset-10[data-v-61d431] {
+  margin-left: 41.66667%;
+}
+.col.offset-11[data-v-61d431] {
+  margin-left: 45.83333%;
+}
+.col.offset-12[data-v-61d431] {
+  margin-left: 50%;
+}
+.col.offset-13[data-v-61d431] {
+  margin-left: 54.16667%;
+}
+.col.offset-14[data-v-61d431] {
+  margin-left: 58.33333%;
+}
+.col.offset-15[data-v-61d431] {
+  margin-left: 62.5%;
+}
+.col.offset-16[data-v-61d431] {
+  margin-left: 66.66667%;
+}
+.col.offset-17[data-v-61d431] {
+  margin-left: 70.83333%;
+}
+.col.offset-18[data-v-61d431] {
+  margin-left: 75%;
+}
+.col.offset-19[data-v-61d431] {
+  margin-left: 79.16667%;
+}
+.col.offset-20[data-v-61d431] {
+  margin-left: 83.33333%;
+}
+.col.offset-21[data-v-61d431] {
+  margin-left: 87.5%;
+}
+.col.offset-22[data-v-61d431] {
+  margin-left: 91.66667%;
+}
+.col.offset-23[data-v-61d431] {
+  margin-left: 95.83333%;
+}
+.col.offset-24[data-v-61d431] {
+  margin-left: 100%;
+}
+
+/**
+ * iPad的样式
+ */
+@media (min-width: 576px) {
+.col.col-iPad-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-iPad-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-iPad-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-iPad-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-iPad-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-iPad-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-iPad-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-iPad-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-iPad-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-iPad-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-iPad-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-iPad-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-iPad-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-iPad-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-iPad-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-iPad-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-iPad-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-iPad-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-iPad-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-iPad-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-iPad-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-iPad-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-iPad-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-iPad-24[data-v-61d431] {
+    width: 100%;
+}
+.col.col-iPad-offset-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-iPad-offset-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-iPad-offset-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-iPad-offset-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-iPad-offset-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-iPad-offset-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-iPad-offset-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-iPad-offset-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-iPad-offset-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-iPad-offset-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-iPad-offset-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-iPad-offset-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-iPad-offset-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-iPad-offset-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-iPad-offset-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-iPad-offset-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-iPad-offset-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-iPad-offset-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-iPad-offset-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-iPad-offset-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-iPad-offset-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-iPad-offset-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-iPad-offset-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-iPad-offset-24[data-v-61d431] {
+    width: 100%;
+}
+}
+
+/**
+ *  narrowPC的样式
+ */
+@media (min-width: 768px) {
+.col.col-narrowPC-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-narrowPC-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-narrowPC-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-narrowPC-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-narrowPC-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-narrowPC-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-narrowPC-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-narrowPC-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-narrowPC-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-narrowPC-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-narrowPC-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-narrowPC-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-narrowPC-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-narrowPC-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-narrowPC-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-narrowPC-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-narrowPC-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-narrowPC-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-narrowPC-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-narrowPC-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-narrowPC-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-narrowPC-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-narrowPC-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-narrowPC-24[data-v-61d431] {
+    width: 100%;
+}
+.col.col-narrowPC-offset-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-narrowPC-offset-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-narrowPC-offset-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-narrowPC-offset-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-narrowPC-offset-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-narrowPC-offset-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-narrowPC-offset-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-narrowPC-offset-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-narrowPC-offset-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-narrowPC-offset-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-narrowPC-offset-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-narrowPC-offset-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-narrowPC-offset-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-narrowPC-offset-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-narrowPC-offset-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-narrowPC-offset-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-narrowPC-offset-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-narrowPC-offset-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-narrowPC-offset-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-narrowPC-offset-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-narrowPC-offset-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-narrowPC-offset-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-narrowPC-offset-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-narrowPC-offset-24[data-v-61d431] {
+    width: 100%;
+}
+}
+
+/**
+ * pc的样式
+ */
+@media (min-width: 992px) {
+.col.col-pc-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-pc-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-pc-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-pc-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-pc-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-pc-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-pc-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-pc-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-pc-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-pc-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-pc-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-pc-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-pc-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-pc-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-pc-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-pc-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-pc-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-pc-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-pc-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-pc-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-pc-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-pc-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-pc-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-pc-24[data-v-61d431] {
+    width: 100%;
+}
+.col.col-pc-offset-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-pc-offset-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-pc-offset-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-pc-offset-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-pc-offset-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-pc-offset-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-pc-offset-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-pc-offset-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-pc-offset-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-pc-offset-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-pc-offset-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-pc-offset-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-pc-offset-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-pc-offset-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-pc-offset-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-pc-offset-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-pc-offset-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-pc-offset-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-pc-offset-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-pc-offset-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-pc-offset-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-pc-offset-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-pc-offset-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-pc-offset-24[data-v-61d431] {
+    width: 100%;
+}
+}
+
+/**
+ * widePc的样式
+ */
+@media (min-width: 1200px) {
+.col.col-widePC-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-widePC-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-widePC-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-widePC-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-widePC-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-widePC-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-widePC-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-widePC-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-widePC-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-widePC-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-widePC-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-widePC-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-widePC-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-widePC-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-widePC-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-widePC-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-widePC-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-widePC-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-widePC-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-widePC-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-widePC-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-widePC-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-widePC-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-widePC-24[data-v-61d431] {
+    width: 100%;
+}
+.col.col-widePC-offset-1[data-v-61d431] {
+    width: 4.16667%;
+}
+.col.col-widePC-offset-2[data-v-61d431] {
+    width: 8.33333%;
+}
+.col.col-widePC-offset-3[data-v-61d431] {
+    width: 12.5%;
+}
+.col.col-widePC-offset-4[data-v-61d431] {
+    width: 16.66667%;
+}
+.col.col-widePC-offset-5[data-v-61d431] {
+    width: 20.83333%;
+}
+.col.col-widePC-offset-6[data-v-61d431] {
+    width: 25%;
+}
+.col.col-widePC-offset-7[data-v-61d431] {
+    width: 29.16667%;
+}
+.col.col-widePC-offset-8[data-v-61d431] {
+    width: 33.33333%;
+}
+.col.col-widePC-offset-9[data-v-61d431] {
+    width: 37.5%;
+}
+.col.col-widePC-offset-10[data-v-61d431] {
+    width: 41.66667%;
+}
+.col.col-widePC-offset-11[data-v-61d431] {
+    width: 45.83333%;
+}
+.col.col-widePC-offset-12[data-v-61d431] {
+    width: 50%;
+}
+.col.col-widePC-offset-13[data-v-61d431] {
+    width: 54.16667%;
+}
+.col.col-widePC-offset-14[data-v-61d431] {
+    width: 58.33333%;
+}
+.col.col-widePC-offset-15[data-v-61d431] {
+    width: 62.5%;
+}
+.col.col-widePC-offset-16[data-v-61d431] {
+    width: 66.66667%;
+}
+.col.col-widePC-offset-17[data-v-61d431] {
+    width: 70.83333%;
+}
+.col.col-widePC-offset-18[data-v-61d431] {
+    width: 75%;
+}
+.col.col-widePC-offset-19[data-v-61d431] {
+    width: 79.16667%;
+}
+.col.col-widePC-offset-20[data-v-61d431] {
+    width: 83.33333%;
+}
+.col.col-widePC-offset-21[data-v-61d431] {
+    width: 87.5%;
+}
+.col.col-widePC-offset-22[data-v-61d431] {
+    width: 91.66667%;
+}
+.col.col-widePC-offset-23[data-v-61d431] {
+    width: 95.83333%;
+}
+.col.col-widePC-offset-24[data-v-61d431] {
+    width: 100%;
+}
+}
+
