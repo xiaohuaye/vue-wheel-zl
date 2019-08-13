@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/vue-wheel-zl/',
   title: '小花UI',
   description: '真香',
   plugins: [
