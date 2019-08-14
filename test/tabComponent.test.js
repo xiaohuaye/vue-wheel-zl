@@ -39,7 +39,7 @@ describe('tab组件测试', () => {
     div.innerHTML = `<g-tabs selected="finance">
     <g-tabs-head>
       <g-tabs-item name="woman">
-        <g-icon icon-name="set"></g-icon>美女
+        <g-icon icon="set"></g-icon>美女
       </g-tabs-item>
       <g-tabs-item name="finance">
         财经
@@ -72,7 +72,7 @@ describe('tab组件测试', () => {
     div.innerHTML = `<g-tabs selected="finance">
     <g-tabs-head>
       <g-tabs-item name="woman" disabled>
-        <g-icon icon-name="set"></g-icon>美女
+        <g-icon icon="set"></g-icon>美女
       </g-tabs-item>
       <g-tabs-item name="finance">
         财经
@@ -111,7 +111,7 @@ describe('tab组件测试', () => {
     div.innerHTML = `<g-tabs selected="sport">
     <g-tabs-head>
       <g-tabs-item name="woman">
-        <g-icon icon-name="set"></g-icon>美女
+        <g-icon icon="set"></g-icon>美女
       </g-tabs-item>
       <g-tabs-item name="finance" disabled>
         财经
@@ -151,7 +151,7 @@ describe('tab组件测试', () => {
     div.innerHTML = `<g-tabs selected="sport">
     <g-tabs-head>
       <g-tabs-item name="woman">
-        <g-icon icon-name="set"></g-icon>美女
+        <g-icon icon="set"></g-icon>美女
       </g-tabs-item>
       <g-tabs-item name="finance" disabled>
         财经

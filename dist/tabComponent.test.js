@@ -13032,7 +13032,7 @@ describe('tab组件测试', function () {
   var div = document.createElement('div');
   document.body.appendChild(div);
   it('验证tab组件传值，item/body组件的展示', function () {
-    div.innerHTML = "<g-tabs selected=\"finance\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon-name=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\">\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
+    div.innerHTML = "<g-tabs selected=\"finance\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\">\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
     var vm = new _vue.default({
       el: div
     });
@@ -13044,7 +13044,7 @@ describe('tab组件测试', function () {
     });
   });
   it('disabled参数 item/body组件的展示', function () {
-    div.innerHTML = "<g-tabs selected=\"finance\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\" disabled>\n        <g-icon icon-name=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\">\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
+    div.innerHTML = "<g-tabs selected=\"finance\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\" disabled>\n        <g-icon icon=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\">\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
     var vm = new _vue.default({
       el: div
     });
@@ -13064,7 +13064,7 @@ describe('tab组件测试', function () {
     });
   });
   it('点击可点击item，触发pane变化', function () {
-    div.innerHTML = "<g-tabs selected=\"sport\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon-name=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\" disabled>\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
+    div.innerHTML = "<g-tabs selected=\"sport\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\" disabled>\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
     document.body.appendChild(div);
     var vm = new _vue.default({
       el: div
@@ -13084,7 +13084,7 @@ describe('tab组件测试', function () {
     });
   });
   it('disabled参数 item不可点击', function () {
-    div.innerHTML = "<g-tabs selected=\"sport\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon-name=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\" disabled>\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
+    div.innerHTML = "<g-tabs selected=\"sport\">\n    <g-tabs-head>\n      <g-tabs-item name=\"woman\">\n        <g-icon icon=\"set\"></g-icon>\u7F8E\u5973\n      </g-tabs-item>\n      <g-tabs-item name=\"finance\" disabled>\n        \u8D22\u7ECF\n      </g-tabs-item>\n      <g-tabs-item name=\"sport\">\n        \u4F53\u80B2\n      </g-tabs-item>\n      <template v-slot:other>\n        <button>\u5176\u4ED6\u9A9A\u64CD\u4F5C</button>\n      </template>\n    </g-tabs-head>\n    <g-tabs-body>\n      <g-tabs-pane name=\"woman\">\u7F8E\u5973\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"finance\">\u8D22\u7ECF\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n      <g-tabs-pane name=\"sport\">\u4F53\u80B2\u76F8\u5173\u8D44\u8BAF</g-tabs-pane>\n    </g-tabs-body>\n  </g-tabs>";
     document.body.appendChild(div);
     var vm = new _vue.default({
       el: div
@@ -13133,7 +13133,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57385" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52090" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

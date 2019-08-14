@@ -3,7 +3,7 @@
     <div class="popTouch" @click="ShowPopHandle" @mouseenter="ShowPopHandle" @mouseleave="ShowPopHandle"  ref="popovertouch">
       <slot></slot>
     </div>
-    <div v-if="isShowPop" ref="popovercontent" class="popover-content" :class=`${position}-position`>
+    <div v-if="isShowPop" ref="popovercontent" class="popover-content" :class="`${position}-position`">
       <slot name="popover" :closePop="closePop"></slot>
     </div>
   </div>
