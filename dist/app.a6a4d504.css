@@ -115,7 +115,6 @@
 .col[data-v-61d431] {
   height: 100px;
   width: 50%;
-  border: 1px solid red;
   padding: 0 10px;
 }
 
@@ -1107,10 +1106,10 @@
 .collapse-item .content[data-v-359ee7] {
     border-top: 1px solid #ccc;
 }
-.fade-enter-active[data-v-359ee7], .fade-leave-active[data-v-359ee7] {
-  transition: opacity .2s;
+.fade-enter-active[data-v-359ee7] {
+  transition: opacity .1s;
 }
-.fade-enter[data-v-359ee7], .fade-leave-to[data-v-359ee7] {
+.fade-leave-to[data-v-359ee7] {
   opacity: 0;
 }
 

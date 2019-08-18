@@ -12580,13 +12580,19 @@ var _default = {
   name: "tabs-head",
   inject: ['eventBus'],
   props: {},
+  data: function data() {
+    return {
+      lineInitPosition: 0
+    };
+  },
   mounted: function mounted() {
     var _this = this;
 
+    this.lineInitPosition = this.$refs.line.getBoundingClientRect().left;
     this.eventBus.$on('update:selected', function (option) {
       _this.$children.map(function (child) {
         if (option.toString() === child.name.toString()) {
-          _this.$refs.line.style.transform = "translateX(".concat(child.$el.getBoundingClientRect().left, "px)");
+          _this.$refs.line.style.transform = "translateX(".concat(child.$el.getBoundingClientRect().left - _this.lineInitPosition, "px)");
           _this.$refs.line.style.width = child.$el.getBoundingClientRect().width + 'px';
         }
       });
@@ -13133,7 +13139,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63258" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58516" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

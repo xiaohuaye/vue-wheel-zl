@@ -12692,7 +12692,7 @@ var _default = {
         var name = node.nodeName.toLowerCase();
 
         if (name !== 'button') {
-          console.warn("g-button-group\u7684\u5B50\u5143\u7D20\u5E94\u8BE5\u65F6 g-button, \u4F46\u73B0\u5728\u6709".concat(name));
+          console.warn("g-button-group\u7684\u5B50\u5143\u7D20\u5E94\u8BE5\u662F g-button, \u4F46\u73B0\u5728\u6709".concat(name));
         }
       }
     } catch (err) {
@@ -12786,7 +12786,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: 'ZLInput',
   components: {
@@ -12848,7 +12847,7 @@ exports.default = _default;
         ? [
             _c("g-icon", {
               staticClass: "icon-error",
-              attrs: { "icon-name": "error" }
+              attrs: { icon: "error" }
             }),
             _vm._v(" "),
             _c("span", { staticClass: "error-message" }, [
@@ -12907,7 +12906,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-row",
+  name: "g-row",
   props: {
     gutter: {
       type: [Number, String]
@@ -13008,6 +13007,11 @@ exports.default = void 0;
 //
 //
 var validate = function validate(value) {
+  if (typeof value === "string") {
+    value = JSON.parse(value);
+  }
+
+  console.log(value);
   var keys = Object.keys(value);
   var valid = true;
   keys.forEach(function (key) {
@@ -13019,7 +13023,7 @@ var validate = function validate(value) {
 };
 
 var _default = {
-  name: "zl-col",
+  name: "g-col",
   props: {
     span: {
       type: [Number, String]
@@ -13028,46 +13032,67 @@ var _default = {
       type: [Number, String]
     },
     iPad: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     narrowPC: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     pc: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     widePC: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     }
   },
   data: function data() {
     return {
-      gutter: 0
+      gutter: 0,
+      iPadObj: this.iPad,
+      narrowPCObj: this.narrowPC,
+      pcObj: this.pc,
+      widePCObj: this.widePC
     };
+  },
+  created: function created() {
+    if (this.narrowPCObj && typeof this.narrowPCObj === 'string') {
+      this.narrowPCObj = JSON.parse(this.narrowPCObj);
+    }
+
+    if (this.iPadObj && typeof this.iPadObj === 'string') {
+      this.iPadObj = JSON.parse(this.iPadObj);
+    }
+
+    if (this.pcObj && typeof this.pcObj === 'string') {
+      this.pcObj = JSON.parse(this.pcObj);
+    }
+
+    if (this.widePCObj && typeof this.widePCObj === 'string') {
+      this.widePCObj = JSON.parse(this.widePCObj);
+    }
   },
   computed: {
     colClass: function colClass() {
       var span = this.span,
           offset = this.offset,
-          iPad = this.iPad,
-          narrowPC = this.narrowPC,
-          pc = this.pc,
-          widePC = this.widePC;
+          iPadObj = this.iPadObj,
+          narrowPCObj = this.narrowPCObj,
+          pcObj = this.pcObj,
+          widePCObj = this.widePCObj;
       var postfixClassArray = [{
-        type: iPad,
+        type: iPadObj,
         postfix: 'iPad'
       }, {
-        type: narrowPC,
+        type: narrowPCObj,
         postfix: 'narrowPC'
       }, {
-        type: pc,
+        type: pcObj,
         postfix: 'pc'
       }, {
-        type: widePC,
+        type: widePCObj,
         postfix: 'widePC'
       }];
       var finClassArray = [span && "col-".concat(span), offset && "offset-".concat(offset)];
@@ -13157,7 +13182,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-content"
+  name: "g-content"
 };
 exports.default = _default;
         var $51f8be = exports.default || module.exports;
@@ -13221,7 +13246,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-footer"
+  name: "g-footer"
 };
 exports.default = _default;
         var $b27e5d = exports.default || module.exports;
@@ -13285,7 +13310,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-header"
+  name: "g-header"
 };
 exports.default = _default;
         var $885ae8 = exports.default || module.exports;
@@ -13349,7 +13374,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-layout",
+  name: "g-layout",
   data: function data() {
     return {
       layoutClass: {
@@ -13361,7 +13386,7 @@ var _default = {
     var _this = this;
 
     this.$children.forEach(function (vm) {
-      if (vm.$options.name === 'zl-sider') {
+      if (vm.$options.name === 'g-sider') {
         _this.layoutClass.hasSider = true;
       }
     });
@@ -13437,10 +13462,16 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-sider",
+  name: "g-sider",
+  props: {
+    visibility: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: function data() {
     return {
-      visibility: true
+      Gvisibility: true
     };
   }
 };
@@ -13458,24 +13489,26 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "slide" } }, [
-    _vm.visibility
+    _vm.Gvisibility
       ? _c(
           "div",
           { staticClass: "g-sider" },
           [
             _vm._t("default"),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.visibility = false
-                  }
-                }
-              },
-              [_vm._v("close")]
-            )
+            _vm.visibility
+              ? _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.Gvisibility = false
+                      }
+                    }
+                  },
+                  [_vm._v("close")]
+                )
+              : _vm._e()
           ],
           2
         )
@@ -13919,13 +13952,19 @@ var _default = {
   name: "tabs-head",
   inject: ['eventBus'],
   props: {},
+  data: function data() {
+    return {
+      lineInitPosition: 0
+    };
+  },
   mounted: function mounted() {
     var _this = this;
 
+    this.lineInitPosition = this.$refs.line.getBoundingClientRect().left;
     this.eventBus.$on('update:selected', function (option) {
       _this.$children.map(function (child) {
         if (option.toString() === child.name.toString()) {
-          _this.$refs.line.style.transform = "translateX(".concat(child.$el.getBoundingClientRect().left, "px)");
+          _this.$refs.line.style.transform = "translateX(".concat(child.$el.getBoundingClientRect().left - _this.lineInitPosition, "px)");
           _this.$refs.line.style.width = child.$el.getBoundingClientRect().width + 'px';
         }
       });
@@ -14733,7 +14772,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55105" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59229" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

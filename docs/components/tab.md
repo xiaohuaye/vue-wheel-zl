@@ -1,6 +1,6 @@
 # tab
 
-使用方法
+样式展示
 
 <ClientOnly>
 <tab-demos></tab-demos>

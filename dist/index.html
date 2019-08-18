@@ -7,27 +7,34 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-    .collapse{
-      margin: 20px;
     }</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
 <div id="app">
-  <g-collapse class="collapse" :defaultopen.sync="defaultopen" single="">
-    <g-collapse-item title="111">
-      <div>123</div>
-    </g-collapse-item>
-    <g-collapse-item title="222">
-      <div>456</div>
-    </g-collapse-item>
-    <g-collapse-item title="333">
-      <div>789</div>
-    </g-collapse-item>
-  </g-collapse>
-  {{defaultopen}}
-  <g-button icon="set"></g-button>
-  <g-button icon="loading"></g-button>
+  <div style="width: 1800px;">
+    222
+  </div>
+  <g-tabs selected="sport" style="margin-left: 2000px;margin-top: 2000px;">
+    <g-tabs-head>
+      <g-tabs-item name="woman">
+        <g-icon icon="set"></g-icon>美女
+      </g-tabs-item>
+      <g-tabs-item name="finance" disabled="">
+        财经
+      </g-tabs-item>
+      <g-tabs-item name="sport">
+        体育
+      </g-tabs-item>
+      <template v-slot:other="">
+        <button>其他骚操作</button>
+      </template>
+    </g-tabs-head>
+    <g-tabs-body>
+      <g-tabs-pane name="woman">美女相关资讯</g-tabs-pane>
+      <g-tabs-pane name="finance">财经相关资讯</g-tabs-pane>
+      <g-tabs-pane name="sport">体育相关资讯</g-tabs-pane>
+    </g-tabs-body>
+  </g-tabs>
 </div>
 <script type="application/javascript" src="/app.a6a4d504.js"></script>
 </body>
