@@ -54,6 +54,10 @@ new Vue({
     })
   },
   methods: {
+    handleClick(){
+      console.log(Vue)
+      Vue.$toast('toast')
+    }
   }
 });
 

@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: "zl-toast",
+    name: "g-toast",
     props: {
       isAutoClose: {
         type: [Boolean,Number],

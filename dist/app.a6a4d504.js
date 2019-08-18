@@ -13567,7 +13567,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-toast",
+  name: "g-toast",
   props: {
     isAutoClose: {
       type: [Boolean, Number],
@@ -14742,7 +14742,13 @@ new _vue.default({
       _this.defaultopen = option.openArray;
     });
   },
-  methods: {}
+  methods: {
+    handleClick: function handleClick() {
+      console.log(_vue.default);
+
+      _vue.default.$toast('toast');
+    }
+  }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./content":"src/content.vue","./footer":"src/footer.vue","./header":"src/header.vue","./layout":"src/layout.vue","./sider":"src/sider.vue","./plugin-toast":"src/plugin-toast.js","./tabs":"src/tabs.vue","./tabs-body":"src/tabs-body.vue","./tabs-head":"src/tabs-head.vue","./tabs-item":"src/tabs-item.vue","./tabs-pane":"src/tabs-pane.vue","./popover":"src/popover.vue","./collapse":"src/collapse.vue","./collapse-item":"src/collapse-item.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -14772,7 +14778,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59229" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54909" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
