@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "zl-footer"
+    name: "g-footer"
   }
 </script>
 

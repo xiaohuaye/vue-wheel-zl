@@ -1,18 +1,24 @@
 <template>
   <transition name="slide">
-    <div class="g-sider" v-if="visibility">
+    <div class="g-sider" v-if="Gvisibility">
       <slot></slot>
-      <button @click="visibility = false ">close</button>
+      <button v-if="visibility" @click="Gvisibility = false">close</button>
     </div>
   </transition>
 </template>
 
 <script>
   export default {
-    name: "zl-sider",
+    name: "g-sider",
+    props:{
+      visibility: {
+        type: Boolean,
+        default: false
+      }
+    },
     data(){
       return {
-        visibility: true
+        Gvisibility : true
       }
     }
   }

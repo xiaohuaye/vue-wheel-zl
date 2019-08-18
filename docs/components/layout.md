@@ -1,6 +1,6 @@
 # 布局
 
-使用方法
+简单示例
 
 <ClientOnly>
 <layout-demos></layout-demos>

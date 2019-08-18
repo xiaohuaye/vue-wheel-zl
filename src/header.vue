@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "zl-header"
+    name: "g-header"
   }
 </script>
 

@@ -65,10 +65,10 @@
       border-top: 1px solid #ccc;
     }
   }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .2s;
+  .fade-enter-active{
+    transition: opacity .1s;
   }
-  .fade-enter, .fade-leave-to {
+  .fade-leave-to {
     opacity: 0;
   }
 </style>
