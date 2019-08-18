@@ -6,6 +6,10 @@
 
 <script>
   let validate = value => {
+    if( typeof(value) === "string" ){
+      value = JSON.parse(value)
+    }
+    console.log(value);
     let keys = Object.keys(value)
     let valid = true
     keys.forEach(key => {
@@ -17,7 +21,7 @@
   }
 
   export default {
-    name: "zl-col",
+    name: "g-col",
     props: {
       span: {
         type: [Number, String]
@@ -26,31 +30,49 @@
         type: [Number, String]
       },
       iPad: {
-        type: Object,
+        type: [Object,String],
         validate
       },
       narrowPC: {
-        type: Object,
+        type: [Object,String],
         validate
       },
       pc: {
-        type: Object,
+        type: [Object,String],
         validate
       },
       widePC: {
-        type: Object,
+        type: [Object,String],
         validate
       }
     },
     data() {
       return {
-        gutter: 0
+        gutter: 0,
+        iPadObj: this.iPad,
+        narrowPCObj: this.narrowPC,
+        pcObj: this.pc,
+        widePCObj: this.widePC
+      }
+    },
+    created(){
+      if(this.narrowPCObj && typeof (this.narrowPCObj ) === 'string') {
+        this.narrowPCObj = JSON.parse(this.narrowPCObj)
+      }
+      if(this.iPadObj && typeof (this.iPadObj ) === 'string') {
+        this.iPadObj = JSON.parse(this.iPadObj)
+      }
+      if(this.pcObj && typeof (this.pcObj ) === 'string') {
+        this.pcObj = JSON.parse(this.pcObj)
+      }
+      if(this.widePCObj && typeof (this.widePCObj ) === 'string') {
+        this.widePCObj = JSON.parse(this.widePCObj)
       }
     },
     computed: {
       colClass: function () {
-        let {span, offset, iPad, narrowPC, pc, widePC} = this;
-        let postfixClassArray = [{type:iPad,postfix:'iPad'},{type:narrowPC,postfix:'narrowPC'},{type:pc,postfix:'pc'},{type:widePC,postfix:'widePC'}]
+        let {span, offset, iPadObj, narrowPCObj, pcObj, widePCObj} = this;
+        let postfixClassArray = [{type:iPadObj,postfix:'iPad'},{type:narrowPCObj,postfix:'narrowPC'},{type:pcObj,postfix:'pc'},{type:widePCObj,postfix:'widePC'}]
         let finClassArray = [span && `col-${span}`, offset && `offset-${offset}`]
         postfixClassArray.map(item=>{
           if(item.type && item.type.span){
@@ -76,7 +98,6 @@
   .col {
     height: 100px;
     width: 50%;
-    border: 1px solid red;
     padding: 0 10px;
   }
 

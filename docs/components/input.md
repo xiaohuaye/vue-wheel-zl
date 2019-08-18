@@ -1,6 +1,6 @@
 # 文本输入框
 
-使用方法
+文本输入框样式展示
 
 <ClientOnly>
 <input-demos></input-demos>

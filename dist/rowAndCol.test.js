@@ -12418,7 +12418,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "zl-row",
+  name: "g-row",
   props: {
     gutter: {
       type: [Number, String]
@@ -12519,6 +12519,11 @@ exports.default = void 0;
 //
 //
 var validate = function validate(value) {
+  if (typeof value === "string") {
+    value = JSON.parse(value);
+  }
+
+  console.log(value);
   var keys = Object.keys(value);
   var valid = true;
   keys.forEach(function (key) {
@@ -12530,7 +12535,7 @@ var validate = function validate(value) {
 };
 
 var _default = {
-  name: "zl-col",
+  name: "g-col",
   props: {
     span: {
       type: [Number, String]
@@ -12539,46 +12544,67 @@ var _default = {
       type: [Number, String]
     },
     iPad: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     narrowPC: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     pc: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     },
     widePC: {
-      type: Object,
+      type: [Object, String],
       validate: validate
     }
   },
   data: function data() {
     return {
-      gutter: 0
+      gutter: 0,
+      iPadObj: this.iPad,
+      narrowPCObj: this.narrowPC,
+      pcObj: this.pc,
+      widePCObj: this.widePC
     };
+  },
+  created: function created() {
+    if (this.narrowPCObj && typeof this.narrowPCObj === 'string') {
+      this.narrowPCObj = JSON.parse(this.narrowPCObj);
+    }
+
+    if (this.iPadObj && typeof this.iPadObj === 'string') {
+      this.iPadObj = JSON.parse(this.iPadObj);
+    }
+
+    if (this.pcObj && typeof this.pcObj === 'string') {
+      this.pcObj = JSON.parse(this.pcObj);
+    }
+
+    if (this.widePCObj && typeof this.widePCObj === 'string') {
+      this.widePCObj = JSON.parse(this.widePCObj);
+    }
   },
   computed: {
     colClass: function colClass() {
       var span = this.span,
           offset = this.offset,
-          iPad = this.iPad,
-          narrowPC = this.narrowPC,
-          pc = this.pc,
-          widePC = this.widePC;
+          iPadObj = this.iPadObj,
+          narrowPCObj = this.narrowPCObj,
+          pcObj = this.pcObj,
+          widePCObj = this.widePCObj;
       var postfixClassArray = [{
-        type: iPad,
+        type: iPadObj,
         postfix: 'iPad'
       }, {
-        type: narrowPC,
+        type: narrowPCObj,
         postfix: 'narrowPC'
       }, {
-        type: pc,
+        type: pcObj,
         postfix: 'pc'
       }, {
-        type: widePC,
+        type: widePCObj,
         postfix: 'widePC'
       }];
       var finClassArray = [span && "col-".concat(span), offset && "offset-".concat(offset)];
@@ -12855,7 +12881,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52090" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63258" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

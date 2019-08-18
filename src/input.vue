@@ -5,7 +5,6 @@
            @blur="$emit('blur',$event.target.value)"
            @focus="$emit('focus',$event.target.value)"
            @input ="$emit('input',$event.target.value)"
-
     >
     <template v-if="error">
       <g-icon icon="error" class="icon-error"></g-icon>
