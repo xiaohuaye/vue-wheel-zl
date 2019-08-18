@@ -1,6 +1,6 @@
 # popover
 
-使用方法
+样式展示
 
 <ClientOnly>
 <popover-demos></popover-demos>

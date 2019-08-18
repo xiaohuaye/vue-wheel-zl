@@ -102,6 +102,8 @@
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
     padding: 0.5em 1em;
     max-width: 20em;
+    min-width: 3em;
+    min-height: 15px;
     word-break: break-all;
     &::before, &::after{
       content: '';
