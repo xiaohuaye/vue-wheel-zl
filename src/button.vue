@@ -45,15 +45,7 @@
 </script>
 
 <style lang="scss" scoped>
-  $font-size: 14px;
-  $button-height: 32px;
-  $font-size: 14px;
-  $button-background: white;
-  $button-active-background: #eee;
-  $border-radius: 4px;
-  $color: #333;
-  $border-color: #999;
-  $border-color-hover: #666;
+  @import 'var/var_scss';
   .g-button {font-size: $font-size;height: $button-height;padding: 0 0.63em;border-radius: $border-radius;border: 1px solid $border-color;background: $button-background;
     &:hover {border-color: $border-color-hover;}
     &:active {background-color: $button-active-background;}
