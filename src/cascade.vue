@@ -28,21 +28,56 @@
       'g-cascade-complex': CascadeComplex
     },
     mounted() {
-      this.dataSourceHandle = this.dataSource.map((item,index)=>{
-        return { name:item.name , index:index , deep: 1}
-      })
+      this.initDataSourceHandle()
     },
     methods:{
       tellMeIndexes($event){
-        console.log($event)
-        this.dataSourceHandle = this.dataSource.map((item,index)=>{
-          return { name:item.name , index:index, deep: 1}
-        })
+        this.initDataSourceHandle()
+        console.log('$event',$event) //name indexArray
+        // let array = []
+        for(let i=0;i<$event.indexArray.length;i++) { //深度
+          for (let j = 0; j < this.dataSource.length; j++) {  //广度
+            if (i < $event.indexArray.length) {
+              let currentIndexArrayNum =  $event.indexArray[i]
+              let indexArrayNumFst = $event.indexArray[0]
+              if(i === 0 && j === currentIndexArrayNum){
+                this.dataSourceHandle[j].children = this.dataSource[j].children.map((item,index) =>{
+                  let indexArray = this.dataSourceHandle[j].indexArray.push(index)
+                  return { name:item.name , indexArray:indexArray ,children:[]}
+                })
+              }else if( i !== 0 && j === currentIndexArrayNum){
+                function f(dataSourceHandleFather,dataSourceFather){
+                   let u = 1
+                   if( u === i){
+                     dataSourceHandleFather[$event.indexArray[u]].children = dataSourceFather[$event.indexArray[u]].children.map((item,index) =>{
+                       let indexArray = dataSourceHandleFather[$event.indexArray[u]].indexArray.push(index)
+                       return { name:item.name , indexArray:indexArray ,children:[]}
+                     })
+                   }else{
+                     u++
+                     f(dataSourceHandleFather[$event.indexArray[u]].children,dataSourceFather[$event.indexArray[u]].children)
+                   }
+                }
+                f(this.dataSourceHandle[indexArrayNumFst].children,this.dataSource[indexArrayNumFst].children)
+              }
+            }
+          }
+        }
       },
-      mapChildren(array,index,deep){
-        deep++
-        array.map((item,itemIndex)=>{
-          return { name:item.name , index:itemIndex, deep: deep}
+      complexDataSource(array,source,$event){
+        let obj = {
+          name: source.name,
+          indexArray:source.indexArray
+        }
+        if(source.indexArray.length <= $event.indexArray.length){
+          obj.children = []
+        }
+        array.push(obj)
+      },
+      initDataSourceHandle(){
+        this.dataSourceHandle = this.dataSource.map((item,index)=>{
+          let indexArray = [index]
+          return { name:item.name , indexArray:indexArray ,children:[]}
         })
       }
     }
