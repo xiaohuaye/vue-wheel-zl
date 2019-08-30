@@ -18,7 +18,7 @@
 }
 
 .wrapper[data-v-d255bb] {
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block;
   display: inline-flex;
   align-items: center;
@@ -31,7 +31,7 @@
     border: 1px solid #999;
     border-radius: 4px;
     padding: 0 8px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .wrapper > input[data-v-d255bb]:hover {
       border-color: #666;

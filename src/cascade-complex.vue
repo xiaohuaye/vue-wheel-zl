@@ -19,6 +19,7 @@
     },
     methods:{
       tellMeIndex(sourceItem){
+        this.eventBus.$emit('tellMeIndex',sourceItem)
         this.$emit('tellMeIndex',sourceItem)
       }
     }
