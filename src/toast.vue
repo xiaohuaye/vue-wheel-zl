@@ -10,84 +10,84 @@
 </template>
 
 <script>
-  export default {
-    name: "g-toast",
-    props: {
-      isAutoClose: {
-        type: [Boolean,Number],
-        default: 2,
-        validate(value) {
-          return typeof value === 'boolean' || typeof value === 'number'
-        }
-      },
-      closeButton: {
-        type: Object,
-        default: () => {
-          return {
-            text: '关闭',
-            callback: undefined
-          }
-        }
-      },
-      enableHtml: {
-        type: Boolean,
-        default: false
-      },
-      position: {
-        type: String,
-        default: 'top',
-        validator(value) {
-          return ['top', 'bottom', 'middle'].indexOf(value) >= 0
+export default {
+  name: 'g-toast',
+  props: {
+    isAutoClose: {
+      type: [Boolean, Number],
+      default: 2,
+      validate (value) {
+        return typeof value === 'boolean' || typeof value === 'number'
+      }
+    },
+    closeButton: {
+      type: Object,
+      default: () => {
+        return {
+          text: '关闭',
+          callback: undefined
         }
       }
+    },
+    enableHtml: {
+      type: Boolean,
+      default: false
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator (value) {
+        return ['top', 'bottom', 'middle'].indexOf(value) >= 0
+      }
+    }
 
-    },
-    mounted() {
-      this.styleChange();
-      this.autoCloseHandle()
-    },
-    computed: {
-      toastPositionClass() {
-        return `toast-${this.position}`
-      }
-    },
-    methods: {
-      styleChange() {
-        /**
+  },
+  mounted () {
+    this.styleChange()
+    this.autoCloseHandle()
+  },
+  computed: {
+    toastPositionClass () {
+      return `toast-${this.position}`
+    }
+  },
+  methods: {
+    styleChange () {
+      /**
          *  样式的改变 -- line元素height
          */
-        if(this.$refs.line){
-          this.$nextTick(() => {
-            this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
-          })
-        }
-      },
-      autoCloseHandle() {
-        /**
+      if (this.$refs.line) {
+        this.$nextTick(() => {
+          this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+        })
+      }
+    },
+    autoCloseHandle () {
+      /**
          * 自动关闭
          */
-        if (this.isAutoClose) {
-          setTimeout(() => {
-            this.close()
-          }, this.isAutoClose * 1000)
-        }
-      },
-      close() {
-        /**
+      if (this.isAutoClose) {
+        setTimeout(() => {
+          this.close()
+        }, this.isAutoClose * 1000)
+      }
+    },
+    close () {
+      /**
          * @method 销毁toast组件实例
          */
-        this.$el.remove();
-        this.$emit('close');
-        this.$destroy()
-      },
-      clickClose() {
-        this.close();
-        if (this.closeButton && typeof this.closeButton.callback === 'function') {
-          this.closeButton.callback(this)
-        }
+      this.$el.remove()
+      this.$emit('close')
+      this.$destroy()
+    },
+    clickClose () {
+      this.close()
+      if (this.closeButton && typeof this.closeButton.callback === 'function') {
+        this.closeButton.callback(this)
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

@@ -5,17 +5,17 @@
 </template>
 
 <script>
-  export default {
-    name: "button-group",
-    mounted() {
-      for(let node  of this.$el.children){
-        let name = node.nodeName.toLowerCase()
-        if(name !== 'button'){
-          console.warn(`g-button-group的子元素应该是 g-button, 但现在有${name}`)
-        }
+export default {
+  name: 'button-group',
+  mounted () {
+    for (let node of this.$el.children) {
+      let name = node.nodeName.toLowerCase()
+      if (name !== 'button') {
+        console.warn(`g-button-group的子元素应该是 g-button, 但现在有${name}`)
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

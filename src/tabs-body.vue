@@ -4,13 +4,12 @@
   </div>
 </template>
 
-
 <script>
-  export default {
-    name: "tabs-body",
-    inject: ['eventBus'],
-    props: {},
-  }
+export default {
+  name: 'tabs-body',
+  inject: ['eventBus'],
+  props: {}
+}
 </script>
 
 <style scoped lang="scss">

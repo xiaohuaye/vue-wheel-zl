@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: "g-content"
-  }
+export default {
+  name: 'g-content'
+}
 </script>
 
 <style scoped lang="scss">

@@ -5,23 +5,23 @@
 </template>
 
 <script>
-  export default {
-    name: "g-layout",
-    data(){
-      return {
-        layoutClass: {
-          hasSider: false
-        }
+export default {
+  name: 'g-layout',
+  data () {
+    return {
+      layoutClass: {
+        hasSider: false
       }
-    },
-    mounted() {
-      this.$children.forEach(vm=>{
-        if(vm.$options.name === 'g-sider'){
-          this.layoutClass.hasSider = true
-        }
-      })
     }
+  },
+  mounted () {
+    this.$children.forEach(vm => {
+      if (vm.$options.name === 'g-sider') {
+        this.layoutClass.hasSider = true
+      }
+    })
   }
+}
 </script>
 
 <style scoped lang="scss">

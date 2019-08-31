@@ -5,93 +5,93 @@
 </template>
 
 <script>
-  let validate = value => {
-    if( typeof(value) === "string" ){
-      value = JSON.parse(value)
-    }
-    console.log(value);
-    let keys = Object.keys(value)
-    let valid = true
-    keys.forEach(key => {
-      if (!['span', 'offset'].includes(key)) {
-        valid = false
-      }
-    })
-    return valid
+let validate = value => {
+  if (typeof (value) === 'string') {
+    value = JSON.parse(value)
   }
+  console.log(value)
+  let keys = Object.keys(value)
+  let valid = true
+  keys.forEach(key => {
+    if (!['span', 'offset'].includes(key)) {
+      valid = false
+    }
+  })
+  return valid
+}
 
-  export default {
-    name: "g-col",
-    props: {
-      span: {
-        type: [Number, String]
-      },
-      offset: {
-        type: [Number, String]
-      },
-      iPad: {
-        type: [Object,String],
-        validate
-      },
-      narrowPC: {
-        type: [Object,String],
-        validate
-      },
-      pc: {
-        type: [Object,String],
-        validate
-      },
-      widePC: {
-        type: [Object,String],
-        validate
-      }
+export default {
+  name: 'g-col',
+  props: {
+    span: {
+      type: [Number, String]
     },
-    data() {
-      return {
-        gutter: 0,
-        iPadObj: this.iPad,
-        narrowPCObj: this.narrowPC,
-        pcObj: this.pc,
-        widePCObj: this.widePC
-      }
+    offset: {
+      type: [Number, String]
     },
-    created(){
-      if(this.narrowPCObj && typeof (this.narrowPCObj ) === 'string') {
-        this.narrowPCObj = JSON.parse(this.narrowPCObj)
-      }
-      if(this.iPadObj && typeof (this.iPadObj ) === 'string') {
-        this.iPadObj = JSON.parse(this.iPadObj)
-      }
-      if(this.pcObj && typeof (this.pcObj ) === 'string') {
-        this.pcObj = JSON.parse(this.pcObj)
-      }
-      if(this.widePCObj && typeof (this.widePCObj ) === 'string') {
-        this.widePCObj = JSON.parse(this.widePCObj)
-      }
+    iPad: {
+      type: [Object, String],
+      validate
     },
-    computed: {
-      colClass: function () {
-        let {span, offset, iPadObj, narrowPCObj, pcObj, widePCObj} = this;
-        let postfixClassArray = [{type:iPadObj,postfix:'iPad'},{type:narrowPCObj,postfix:'narrowPC'},{type:pcObj,postfix:'pc'},{type:widePCObj,postfix:'widePC'}]
-        let finClassArray = [span && `col-${span}`, offset && `offset-${offset}`]
-        postfixClassArray.map(item=>{
-          if(item.type && item.type.span){
-            finClassArray.push(`col-${item.postfix}-${item.type.span}`)
-          }
-          if(item.type && item.type.offset){
-            finClassArray.push(`offset-${item.postfix}-${item.type.offset}`)
-          }
-        })
-        return finClassArray
-      },
-      colStyle: function () {
-        return {
-          paddingLeft: this.gutter / 2 + 'px',
-          paddingRight: this.gutter / 2 + 'px'
+    narrowPC: {
+      type: [Object, String],
+      validate
+    },
+    pc: {
+      type: [Object, String],
+      validate
+    },
+    widePC: {
+      type: [Object, String],
+      validate
+    }
+  },
+  data () {
+    return {
+      gutter: 0,
+      iPadObj: this.iPad,
+      narrowPCObj: this.narrowPC,
+      pcObj: this.pc,
+      widePCObj: this.widePC
+    }
+  },
+  created () {
+    if (this.narrowPCObj && typeof (this.narrowPCObj) === 'string') {
+      this.narrowPCObj = JSON.parse(this.narrowPCObj)
+    }
+    if (this.iPadObj && typeof (this.iPadObj) === 'string') {
+      this.iPadObj = JSON.parse(this.iPadObj)
+    }
+    if (this.pcObj && typeof (this.pcObj) === 'string') {
+      this.pcObj = JSON.parse(this.pcObj)
+    }
+    if (this.widePCObj && typeof (this.widePCObj) === 'string') {
+      this.widePCObj = JSON.parse(this.widePCObj)
+    }
+  },
+  computed: {
+    colClass: function () {
+      let { span, offset, iPadObj, narrowPCObj, pcObj, widePCObj } = this
+      let postfixClassArray = [{ type: iPadObj, postfix: 'iPad' }, { type: narrowPCObj, postfix: 'narrowPC' }, { type: pcObj, postfix: 'pc' }, { type: widePCObj, postfix: 'widePC' }]
+      let finClassArray = [span && `col-${span}`, offset && `offset-${offset}`]
+      postfixClassArray.map(item => {
+        if (item.type && item.type.span) {
+          finClassArray.push(`col-${item.postfix}-${item.type.span}`)
         }
+        if (item.type && item.type.offset) {
+          finClassArray.push(`offset-${item.postfix}-${item.type.offset}`)
+        }
+      })
+      return finClassArray
+    },
+    colStyle: function () {
+      return {
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px'
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
@@ -202,6 +202,5 @@
       }
     }
   }
-
 
 </style>

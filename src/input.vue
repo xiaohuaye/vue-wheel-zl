@@ -14,28 +14,28 @@
 </template>
 
 <script>
-  import Icon from './icon'
+import Icon from './icon'
 
-  export default {
-    name: 'ZLInput',
-    components: {
-      'g-icon': Icon
+export default {
+  name: 'ZLInput',
+  components: {
+    'g-icon': Icon
+  },
+  props: {
+    value: {
+      type: String
     },
-    props: {
-      value: {
-        type: String
-      },
-      disabled: {
-        type: Boolean
-      },
-      readonly: {
-        type: Boolean
-      },
-      error: {
-        type: String
-      }
+    disabled: {
+      type: Boolean
+    },
+    readonly: {
+      type: Boolean
+    },
+    error: {
+      type: String
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

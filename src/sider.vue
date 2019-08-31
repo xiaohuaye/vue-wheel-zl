@@ -8,20 +8,20 @@
 </template>
 
 <script>
-  export default {
-    name: "g-sider",
-    props:{
-      visibility: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data(){
-      return {
-        Gvisibility : true
-      }
+export default {
+  name: 'g-sider',
+  props: {
+    visibility: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      Gvisibility: true
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

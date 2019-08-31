@@ -9,30 +9,30 @@
 </template>
 
 <script>
-  export default {
-    name: "tabs-head",
-    inject:['eventBus'],
-    props: {
+export default {
+  name: 'tabs-head',
+  inject: ['eventBus'],
+  props: {
 
-    },
-    data(){
-      return{
-        lineInitPosition: 0
-      }
-    },
-    mounted(){
-      this.lineInitPosition = this.$refs.line.getBoundingClientRect().left
-      this.eventBus.$on('update:selected',(option)=>{
-        this.$children.map(child=>{
-          if(option.toString() === child.name.toString()){
-            this.$refs.line.style.transform = `translateX(${child.$el.getBoundingClientRect().left - this.lineInitPosition}px)`
-            this.$refs.line.style.width = child.$el.getBoundingClientRect().width + 'px'
-          }
-        })
+  },
+  data () {
+    return {
+      lineInitPosition: 0
+    }
+  },
+  mounted () {
+    this.lineInitPosition = this.$refs.line.getBoundingClientRect().left
+    this.eventBus.$on('update:selected', (option) => {
+      this.$children.map(child => {
+        if (option.toString() === child.name.toString()) {
+          this.$refs.line.style.transform = `translateX(${child.$el.getBoundingClientRect().left - this.lineInitPosition}px)`
+          this.$refs.line.style.width = child.$el.getBoundingClientRect().width + 'px'
+        }
       })
-    },
-
+    })
   }
+
+}
 </script>
 
 <style scoped lang="scss">

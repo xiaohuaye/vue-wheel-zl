@@ -5,25 +5,25 @@
 </template>
 
 <script>
-  import  './svg'
-  export default {
-    name: "icon",
-    props: {
-      icon: String
-    },
-    computed: {
-      isLoading: function () {
-        if( this.icon === 'loading'){
-          return true
-        }else {
-          return false
-        }
+import './svg'
+export default {
+  name: 'icon',
+  props: {
+    icon: String
+  },
+  computed: {
+    isLoading: function () {
+      if (this.icon === 'loading') {
+        return true
+      } else {
+        return false
       }
-    },
-    methods: {
-
     }
+  },
+  methods: {
+
   }
+}
 </script>
 
 <style lang="scss" scoped>

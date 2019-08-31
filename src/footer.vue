@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: "g-footer"
-  }
+export default {
+  name: 'g-footer'
+}
 </script>
 
 <style scoped lang="scss">

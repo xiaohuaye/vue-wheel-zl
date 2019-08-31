@@ -5,35 +5,35 @@
 </template>
 
 <script>
-  export default {
-    name: "g-row",
-    props: {
-      gutter: {
-        type: [Number,String]
-      },
-      align: {
-        type: String,
-        validate(value){
-          ['left','right','center'].includes(value)
-        }
-      }
+export default {
+  name: 'g-row',
+  props: {
+    gutter: {
+      type: [Number, String]
     },
-    computed: {
-      rowStyle: function () {
-        let {gutter} = this
-        return {marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px'}
-      },
-      rowClass: function () {
-        let {align} = this
-        return [ align && `align-${align}`]
+    align: {
+      type: String,
+      validate (value) {
+        ['left', 'right', 'center'].includes(value)
       }
-    },
-    mounted() {
-      this.$children.forEach(vm=>{
-        vm.gutter = this.gutter
-      })
     }
+  },
+  computed: {
+    rowStyle: function () {
+      let { gutter } = this
+      return { marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px' }
+    },
+    rowClass: function () {
+      let { align } = this
+      return [ align && `align-${align}`]
+    }
+  },
+  mounted () {
+    this.$children.forEach(vm => {
+      vm.gutter = this.gutter
+    })
   }
+}
 </script>
 
 <style scoped lang="scss">

@@ -10,77 +10,77 @@
 </template>
 
 <script>
-  export default {
-    name: "g-popover",
-    data(){
-      return {
-        isShowPop: false,
-        popDom : null,
-        popTouch: null
+export default {
+  name: 'g-popover',
+  data () {
+    return {
+      isShowPop: false,
+      popDom: null,
+      popTouch: null
+    }
+  },
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator (value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
       }
     },
-    props:{
-      position:{
-        type: String,
-        default: 'top',
-        validator(value){
-          return ['top','bottom','left','right'].indexOf(value)>=0
-        }
-      },
-      trigger:{
-        type: String,
-        default: 'click',
-        validator(value){
-          return ['click','hover'].indexOf(value)>=0
-        }
+    trigger: {
+      type: String,
+      default: 'click',
+      validator (value) {
+        return ['click', 'hover'].indexOf(value) >= 0
       }
-    },
-    mounted(){
-      this.popTouch = this.$refs.popovertouch
-    },
-    methods:{
-      ShowPopHandle: function (event) {
-        if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return
-        if (this.isShowPop) {
-          this.closePop(event)
-        } else {
-          this.openPop(event)
-        }
-      },
-      openPop(event){
-        this.isShowPop = true
-        this.$nextTick(() => {
-          this.setStyleToPop(event)
-          let eventName = event.type === 'click'?'click':'mouseenter'
-          document.body.append(this.popDom)
-          document.addEventListener(eventName, this.windowClosePopListener)
-        })
-      },
-      windowClosePopListener(event){
-        if(this.popTouch.contains(event.target) && this.isShowPop  || this.popDom.contains(event.target)) return;
+    }
+  },
+  mounted () {
+    this.popTouch = this.$refs.popovertouch
+  },
+  methods: {
+    ShowPopHandle: function (event) {
+      if (!(event.type === 'mouseenter' && this.trigger === 'hover' || event.type === 'click' && this.trigger === 'click' || event.type === 'mouseleave' && this.trigger === 'hover')) return
+      if (this.isShowPop) {
         this.closePop(event)
-      },
-      closePop(event){
-        this.isShowPop = false
-        let eventName = event? event.type === 'click'?'click':'mouseenter' : 'click'
-        document.removeEventListener(eventName,this.windowClosePopListener)
-      },
-      setStyleToPop(event){
-        this.popDom = this.$refs.popovercontent
-        let {left, top, width} = event.target.getBoundingClientRect()
-        switch (this.position === 'right') {
-          case false:
-            this.popDom.style.left = `${left + window.scrollX}px`
-            this.popDom.style.top = `${top + window.scrollY}px`
-            break
-          case true:
-            this.popDom.style.left = `${left + width + window.scrollX}px`
-            this.popDom.style.top = `${top + window.scrollY}px`
-            break
-        }
+      } else {
+        this.openPop(event)
+      }
+    },
+    openPop (event) {
+      this.isShowPop = true
+      this.$nextTick(() => {
+        this.setStyleToPop(event)
+        let eventName = event.type === 'click' ? 'click' : 'mouseenter'
+        document.body.append(this.popDom)
+        document.addEventListener(eventName, this.windowClosePopListener)
+      })
+    },
+    windowClosePopListener (event) {
+      if (this.popTouch.contains(event.target) && this.isShowPop || this.popDom.contains(event.target)) return
+      this.closePop(event)
+    },
+    closePop (event) {
+      this.isShowPop = false
+      let eventName = event ? event.type === 'click' ? 'click' : 'mouseenter' : 'click'
+      document.removeEventListener(eventName, this.windowClosePopListener)
+    },
+    setStyleToPop (event) {
+      this.popDom = this.$refs.popovercontent
+      let { left, top, width } = event.target.getBoundingClientRect()
+      switch (this.position === 'right') {
+        case false:
+          this.popDom.style.left = `${left + window.scrollX}px`
+          this.popDom.style.top = `${top + window.scrollY}px`
+          break
+        case true:
+          this.popDom.style.left = `${left + width + window.scrollX}px`
+          this.popDom.style.top = `${top + window.scrollY}px`
+          break
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

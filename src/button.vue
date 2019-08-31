@@ -7,41 +7,41 @@
 </template>
 
 <script>
-  import Icon from './icon'
-  export default {
-    components: {
-      gIcon: Icon
+import Icon from './icon'
+export default {
+  components: {
+    gIcon: Icon
+  },
+  props: {
+    icon: String,
+    loading: {
+      type: Boolean,
+      default: false
     },
-    props: {
-      icon: String,
-      loading: {
-        type: Boolean,
-        default: false
+    iconPosition: {
+      type: String,
+      validator: function (value) {
+        if (value !== 'left' && value !== 'right') {
+          console.warn(`${value}是无效的，iconPosition可以是'left'或者'right'`)
+        }
+        return true
+        // 可查看传值内容返回true or false
       },
-      iconPosition: {
-        type: String,
-        validator: function (value) {
-          if (value !== 'left' && value !== 'right') {
-            console.warn(`${value}是无效的，iconPosition可以是'left'或者'right'`)
-          }
-          return true
-          //可查看传值内容返回true or false
-        },
-        default: 'left'
-      }
-    },
-    data: function () {
-      return {}
-    },
-    computed: {
-      iconNameCurrent: function () {
-        let icon = this.loading ? 'loading' : this.icon;
-        return icon
-      }
-    },
-    methods: {}
+      default: 'left'
+    }
+  },
+  data: function () {
+    return {}
+  },
+  computed: {
+    iconNameCurrent: function () {
+      let icon = this.loading ? 'loading' : this.icon
+      return icon
+    }
+  },
+  methods: {}
 
-  }
+}
 </script>
 
 <style lang="scss" scoped>
