@@ -8,7 +8,7 @@
         <g-cascade-complex v-for="(item,index) in this.dataSourceHandle" :sourceItem="item"
                            :key="index"></g-cascade-complex>
       </div>
-      <div  v-for="(item,index) in deep" class="parentLevel" :class="`parent${index+1}`"></div>
+      <div  v-for="(item,index) in deep" class="parentLevel" :class="`parent${index+1}`" v-show="currentDeepNum > index"></div>
     </div>
   </div>
 </template>
@@ -33,7 +33,8 @@
       return {
         isShowPopover: false,
         dataSourceHandle: [],
-        eventBus: new Vue()
+        eventBus: new Vue(),
+        currentDeepNum: 0
       }
     },
     provide() {
@@ -53,6 +54,7 @@
     methods: {
       tellMeIndexes($event) {
         if($event.indexArray.length > this.deep) return
+        this.judgeDeepNum($event)
         this.initDataSourceHandle()
         for (let i = 0; i < $event.indexArray.length; i++) {
           for (let j = 0; j < this.dataSource.length; j++) {
@@ -70,6 +72,22 @@
           }
         }
         this.parentDomHandle($event)
+      },
+      judgeDeepNum($event){
+        this.currentDeepNum = this.judgeHasChildren($event)?$event.indexArray.length: $event.indexArray.length -1
+      },
+      judgeHasChildren($event) {
+        let obj = this.dataSource
+        for (let i = 0; i < $event.indexArray.length; i++) {
+          if (i === 0) {
+            obj = obj[$event.indexArray[i]]
+          } else {
+            obj = obj.children[$event.indexArray[i]]
+          }
+          if (i + 1 === $event.indexArray.length) {
+            return obj.hasOwnProperty('children') && obj.children.length > 0
+          }
+        }
       },
       parentDomHandle($event){
         this.$nextTick(()=>{
@@ -115,7 +133,8 @@
   @import "var/var_scss";
 
   .cascade {
-
+    position: relative;
+    display: inline-flex;
   }
 
   .trigger {
@@ -123,37 +142,27 @@
   }
 
   .popover{
-    position: relative;
     border: 1px solid #cccccc;
     border-radius: 5px;
     overflow: hidden;
-    display: flex;
+    display: inline-flex;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: white;
+    margin-left: 2px;
+    @extend .box-shadow;
     .cascadeItemGroup{
       display: flex;
       flex-direction: column;
+      border-right: 1px solid #ddd;
+      padding: 10px;
     }
-    .parent1{
-      border: 1px solid red;
+    .parentLevel{
       min-width: 30px;
       min-height: 20px;
-    }
-    .parent2{
-      border: 1px solid red;
-      min-width: 30px;
-      min-height: 20px;
-
-    }
-    .parent3{
-      border: 1px solid red;
-      min-width: 30px;
-      min-height: 20px;
-
-    }
-    .parent4{
-      border: 1px solid red;
-      min-width: 30px;
-      min-height: 20px;
-
+      border-right: 1px solid #ddd;
+      padding: 10px;
     }
   }
 </style>

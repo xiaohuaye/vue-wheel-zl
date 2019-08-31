@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+    <div>111</div>
     <g-cascade :data-source="source" :deep="3">
       <g-input></g-input>
     </g-cascade>
+    <div>2222</div>
   </div>
 </template>
 
