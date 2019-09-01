@@ -62,8 +62,6 @@ function ajax(parentId = 0) {
   })
 }
 
-console.log(ajax());
-
 export default {
   name: 'app',
   data () {

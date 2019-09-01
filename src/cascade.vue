@@ -109,7 +109,6 @@
         }
         if (this.callback && currentLoopDeep === $event.indexArray.length - 1) {
           this.callback($event).then(res => {
-            console.log('res', res);
             res = res.map(item => {
               item.children = []
               return item
@@ -148,10 +147,10 @@
         }
       },
       judgeDeepNum($event) {
-        if(this.judgeHasChildren($event)){
-          this.currentDeepNum =   $event.indexArray.length
+        if (this.judgeHasChildren($event)) {
+          this.currentDeepNum = $event.indexArray.length
           this.isLoading = true
-        }else{
+        } else {
           this.currentDeepNum = $event.indexArray.length - 1
         }
       },
@@ -172,7 +171,6 @@
         this.$nextTick(() => {
           for (let i = 0; i < 5; i++) {
             let children = document.body.querySelectorAll(`.children${i + 1}>.cascadeItem`)
-            console.log('children', children);
             if (children.length > 0) {
               document.body.querySelector(`.parent${i + 1}`).innerHTML = ""
             }
@@ -235,11 +233,7 @@
       flex-direction: column;
       padding: 10px;
       max-height: 220px;
-      overflow-y: hidden;
-
-      &:hover {
-        overflow-y: auto;
-      }
+      overflow-y: auto;
     }
 
     .parentLevel {
@@ -248,11 +242,7 @@
       border-left: 1px solid #ddd;
       max-height: 220px;
       padding: 10px;
-      overflow-y: hidden;
-
-      &:hover {
-        overflow-y: auto;
-      }
+      overflow-y: auto;
     }
   }
 </style>
