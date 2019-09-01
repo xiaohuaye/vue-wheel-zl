@@ -34,7 +34,8 @@
         isShowPopover: false,
         dataSourceHandle: [],
         eventBus: new Vue(),
-        currentDeepNum: 0
+        currentDeepNum: 0,
+        last$event: {indexArray:[]}
       }
     },
     provide() {
@@ -58,20 +59,35 @@
         this.initDataSourceHandle()
         for (let i = 0; i < $event.indexArray.length; i++) {
           for (let j = 0; j < this.dataSource.length; j++) {
-            let currentIndexArrayNum = $event.indexArray[i]
-            let indexArrayNumFst = $event.indexArray[0]
-            if (i === 0 && j === currentIndexArrayNum) {
-              this.dataSourceHandle[j].children = this.dataSource[j].children.map((item, index) => {
-                let arrayCopy = JSON.parse(JSON.stringify(this.dataSourceHandle[j].indexArray))
-                arrayCopy.push(index)
-                return {name: item.name, indexArray: arrayCopy, children: []}
-              })
-            } else if (i !== 0 && j === currentIndexArrayNum) {
-              this.complexDataSource(this.dataSourceHandle[indexArrayNumFst].children, this.dataSource[indexArrayNumFst].children, i, $event,1)
+            if (j === $event.indexArray[i]) {
+              let dataSourceHandleCopy = this.dataSourceHandle
+              let dataSourceCopy = this.dataSource
+              this.complexDataSource(dataSourceHandleCopy,dataSourceCopy,i,j, $event,0)
             }
           }
         }
-        this.parentDomHandle($event)
+        this.parentDomHandle()
+      },
+      complexDataSource(dataSourceHandleCopy,dataSourceCopy,currentLoopDeep,indexSelected, $event,complexTime) {
+        let $eventIndexArrayCopy = JSON.parse(JSON.stringify($event.indexArray))
+        $eventIndexArrayCopy.splice(currentLoopDeep+1)
+        let $eventIndexArrayCopySplice = {indexArray:$eventIndexArrayCopy}
+        let hasChildren =  this.judgeHasChildren($eventIndexArrayCopySplice)
+        if(!hasChildren) return
+        for(let u = 0; u<$eventIndexArrayCopySplice.indexArray.length;u++){
+          if (u === 0) {
+            dataSourceHandleCopy = dataSourceHandleCopy[$eventIndexArrayCopySplice.indexArray[u]]
+            dataSourceCopy = dataSourceCopy[$eventIndexArrayCopySplice.indexArray[u]]
+          } else {
+            dataSourceHandleCopy = dataSourceHandleCopy.children[$eventIndexArrayCopySplice.indexArray[u]]
+            dataSourceCopy = dataSourceCopy.children[$eventIndexArrayCopySplice.indexArray[u]]
+          }
+        }
+        dataSourceHandleCopy.children = dataSourceCopy.children.map((item, index) => {
+          let arrayCopy = JSON.parse(JSON.stringify(dataSourceHandleCopy.indexArray))
+          arrayCopy.push(index)
+          return {name: item.name, indexArray: arrayCopy, children: []}
+        })
       },
       judgeDeepNum($event){
         this.currentDeepNum = this.judgeHasChildren($event)?$event.indexArray.length: $event.indexArray.length -1
@@ -89,34 +105,18 @@
           }
         }
       },
-      parentDomHandle($event){
+      parentDomHandle(){
         this.$nextTick(()=>{
-          for( let i = $event.indexArray.length - 1 ; i< 5;i++){
-            if(document.body.querySelector(`.parent${i+1}`)){
-              document.body.querySelector(`.parent${i+1}`).innerHTML = ""
-            }
-          }
           for(let i = 0;i<5;i++){
             let children =  document.body.querySelectorAll(`.children${i+1}>.cascadeItem`)
+            if(children.length>0){
+              document.body.querySelector(`.parent${i+1}`).innerHTML = ""
+            }
             for (let j = 0;j<children.length;j++){
               document.body.querySelector(`.parent${i+1}`).appendChild(children[j])
             }
           }
         })
-      },
-      complexDataSource(dataSourceHandleFather, dataSourceFather, i, $event,u) {
-        if (u === i) {
-          if(!dataSourceFather[$event.indexArray[u]] || !dataSourceFather[$event.indexArray[u]].children|| !dataSourceHandleFather[$event.indexArray[u]]) return;
-          dataSourceHandleFather[$event.indexArray[u]].children = dataSourceFather[$event.indexArray[u]].children.map((item, index) => {
-            let arrayCopy = JSON.parse(JSON.stringify(dataSourceHandleFather[$event.indexArray[u]].indexArray))
-            arrayCopy.push(index)
-            return {name: item.name, indexArray: arrayCopy, children: []}
-          })
-        } else {
-          u++
-          if(!dataSourceFather[$event.indexArray[u]] ||!dataSourceFather[$event.indexArray[u]].children) return;
-          this.complexDataSource(dataSourceHandleFather[$event.indexArray[u]].children, dataSourceFather[$event.indexArray[u]].children, i, $event,u)
-        }
       },
       initDataSourceHandle() {
         this.dataSourceHandle = this.dataSource.map((item, index) => {
@@ -134,7 +134,7 @@
 
   .cascade {
     position: relative;
-    display: inline-flex;
+    display: flex;
   }
 
   .trigger {
@@ -150,18 +150,18 @@
     left: 0;
     top: 100%;
     background: white;
-    margin-left: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
     @extend .box-shadow;
     .cascadeItemGroup{
       display: flex;
       flex-direction: column;
-      border-right: 1px solid #ddd;
       padding: 10px;
     }
     .parentLevel{
       min-width: 30px;
       min-height: 20px;
-      border-right: 1px solid #ddd;
+      border-left: 1px solid #ddd;
       padding: 10px;
     }
   }
