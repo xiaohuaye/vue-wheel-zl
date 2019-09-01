@@ -9,7 +9,8 @@
         <g-cascade-complex v-for="(item,index) in this.dataSourceHandle" :sourceItem="item"
                            :key="index"></g-cascade-complex>
       </div>
-      <div  v-for="(item,index) in deep" class="parentLevel" :class="`parent${index+1}`" v-show="currentDeepNum > index"></div>
+      <div v-for="(item,index) in deep" class="parentLevel" :class="`parent${index+1}`"
+           v-show="currentDeepNum > index && !isLoading"></div>
     </div>
   </div>
 </template>
@@ -25,7 +26,7 @@
       dataSource: {
         type: Array
       },
-      deep:{
+      deep: {
         type: Number,
         default: 10
       },
@@ -39,7 +40,8 @@
         dataSourceHandle: [],
         eventBus: new Vue(),
         currentDeepNum: 0,
-        selectEventIndexArray: []
+        selectEventIndexArray: [],
+        isLoading: false
       }
     },
     provide() {
@@ -53,14 +55,14 @@
         this.tellMeIndexes(option)
       })
     },
-    computed:{
-      selectSource(){
+    computed: {
+      selectSource() {
         let dataSourceHandle = this.dataSourceHandle
         let result = ''
-        for(let i = 0;i<this.selectEventIndexArray.length;i++){
-          if(i === 0){
+        for (let i = 0; i < this.selectEventIndexArray.length; i++) {
+          if (i === 0) {
             result += dataSourceHandle[this.selectEventIndexArray[i]].name
-          }else{
+          } else {
             result += '/' + dataSourceHandle[this.selectEventIndexArray[i]].name
           }
           dataSourceHandle = dataSourceHandle[this.selectEventIndexArray[i]].children
@@ -72,31 +74,31 @@
       tellMeIndexes($event) {
         console.log($event);
         this.selectEventIndexArray = $event.indexArray
-        if($event.indexArray.length > this.deep) return
+        if ($event.indexArray.length > this.deep) return
         this.initDataSourceHandle()
         for (let i = 0; i < $event.indexArray.length; i++) {
           for (let j = 0; j < this.dataSource.length; j++) {
             if (j === $event.indexArray[i]) {
               let dataSourceHandleCopy = this.dataSourceHandle
               let dataSourceCopy = this.dataSource
-              this.complexDataSource(dataSourceHandleCopy,dataSourceCopy,i,j, $event)
+              this.complexDataSource(dataSourceHandleCopy, dataSourceCopy, i, j, $event)
             }
           }
         }
-        if(!this.callback){
+        if (!this.callback) {
           this.parentDomHandle()
         }
       },
-      complexDataSource(dataSourceHandleCopy,dataSourceCopy,currentLoopDeep,indexSelected, $event) {
+      complexDataSource(dataSourceHandleCopy, dataSourceCopy, currentLoopDeep, indexSelected, $event) {
         let $eventIndexArrayCopy = JSON.parse(JSON.stringify($event.indexArray))
-        $eventIndexArrayCopy.splice(currentLoopDeep+1)
-        let $eventIndexArrayCopySplice = {indexArray:$eventIndexArrayCopy}
-        let hasChildren =  this.judgeHasChildren($eventIndexArrayCopySplice)
-        if(this.callback){
+        $eventIndexArrayCopy.splice(currentLoopDeep + 1)
+        let $eventIndexArrayCopySplice = {indexArray: $eventIndexArrayCopy}
+        let hasChildren = this.judgeHasChildren($eventIndexArrayCopySplice)
+        if (this.callback) {
           hasChildren = true
         }
-        if(!hasChildren) return
-        for(let u = 0; u<$eventIndexArrayCopySplice.indexArray.length;u++){
+        if (!hasChildren) return
+        for (let u = 0; u < $eventIndexArrayCopySplice.indexArray.length; u++) {
           if (u === 0) {
             dataSourceHandleCopy = dataSourceHandleCopy[$eventIndexArrayCopySplice.indexArray[u]]
             dataSourceCopy = dataSourceCopy[$eventIndexArrayCopySplice.indexArray[u]]
@@ -105,38 +107,38 @@
             dataSourceCopy = dataSourceCopy.children[$eventIndexArrayCopySplice.indexArray[u]]
           }
         }
-        if(this.callback && currentLoopDeep === $event.indexArray.length - 1){
-          this.callback($event).then(res=>{
-            console.log('res',res);
-            res = res.map(item=>{
+        if (this.callback && currentLoopDeep === $event.indexArray.length - 1) {
+          this.callback($event).then(res => {
+            console.log('res', res);
+            res = res.map(item => {
               item.children = []
               return item
             })
-            this.$set(dataSourceCopy,'children',res)
+            this.$set(dataSourceCopy, 'children', res)
             this.judgeDeepNum($event)
-            console.log(dataSourceCopy.children);
             dataSourceHandleCopy.children = dataSourceCopy.children.map((item, index) => {
               let arrayCopy = JSON.parse(JSON.stringify(dataSourceHandleCopy.indexArray))
               arrayCopy.push(index)
               let obj = {}
-              for(let key in item){
-                  obj[key] = item[key]
+              for (let key in item) {
+                obj[key] = item[key]
               }
               obj.indexArray = arrayCopy
               return obj
             })
             this.parentDomHandle()
+            this.isLoading = false
           })
-        }else{
+        } else {
           this.judgeDeepNum($event)
           dataSourceHandleCopy.children = dataSourceCopy.children.map((item, index) => {
             let arrayCopy = JSON.parse(JSON.stringify(dataSourceHandleCopy.indexArray))
             arrayCopy.push(index)
             let obj = {}
-            for(let key in item){
-              if(key === 'children'){
+            for (let key in item) {
+              if (key === 'children') {
                 obj.children = []
-              }else{
+              } else {
                 obj[key] = item[key]
               }
             }
@@ -145,8 +147,13 @@
           })
         }
       },
-      judgeDeepNum($event){
-        this.currentDeepNum = this.judgeHasChildren($event)?$event.indexArray.length: $event.indexArray.length -1
+      judgeDeepNum($event) {
+        if(this.judgeHasChildren($event)){
+          this.currentDeepNum =   $event.indexArray.length
+          this.isLoading = true
+        }else{
+          this.currentDeepNum = $event.indexArray.length - 1
+        }
       },
       judgeHasChildren($event) {
         let obj = this.dataSource
@@ -161,20 +168,18 @@
           }
         }
       },
-      parentDomHandle(){
-        this.$nextTick(()=>{
-          setTimeout(()=>{
-            for(let i = 0;i<5;i++){
-              let children =  document.body.querySelectorAll(`.children${i+1}>.cascadeItem`)
-              console.log('children',children);
-              if(children.length>0){
-                document.body.querySelector(`.parent${i+1}`).innerHTML = ""
-              }
-              for (let j = 0;j<children.length;j++){
-                document.body.querySelector(`.parent${i+1}`).appendChild(children[j])
-              }
+      parentDomHandle() {
+        this.$nextTick(() => {
+          for (let i = 0; i < 5; i++) {
+            let children = document.body.querySelectorAll(`.children${i + 1}>.cascadeItem`)
+            console.log('children', children);
+            if (children.length > 0) {
+              document.body.querySelector(`.parent${i + 1}`).innerHTML = ""
             }
-          },2000)
+            for (let j = 0; j < children.length; j++) {
+              document.body.querySelector(`.parent${i + 1}`).appendChild(children[j])
+            }
+          }
         })
       },
       initDataSourceHandle() {
@@ -182,10 +187,10 @@
           let array = []
           array.push(index)
           let obj = {}
-          for(let key in item){
-            if(key === 'children'){
+          for (let key in item) {
+            if (key === 'children') {
               obj.children = []
-            }else{
+            } else {
               obj[key] = item[key]
             }
           }
@@ -202,6 +207,7 @@
 
 <style lang="scss" scoped>
   @import "var/var_scss";
+
   .cascade {
     position: relative;
     display: flex;
@@ -211,7 +217,7 @@
 
   }
 
-  .popover{
+  .popover {
     border: 1px solid #cccccc;
     border-radius: 5px;
     overflow: hidden;
@@ -223,24 +229,28 @@
     margin-left: -2px;
     margin-right: -2px;
     @extend .box-shadow;
-    .cascadeItemGroup{
+
+    .cascadeItemGroup {
       display: flex;
       flex-direction: column;
       padding: 10px;
       max-height: 220px;
       overflow-y: hidden;
-      &:hover{
+
+      &:hover {
         overflow-y: auto;
       }
     }
-    .parentLevel{
+
+    .parentLevel {
       min-width: 30px;
       min-height: 20px;
       border-left: 1px solid #ddd;
       max-height: 220px;
       padding: 10px;
       overflow-y: hidden;
-      &:hover{
+
+      &:hover {
         overflow-y: auto;
       }
     }

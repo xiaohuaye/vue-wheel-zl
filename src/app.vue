@@ -58,7 +58,7 @@ function ajax(parentId = 0) {
   return new Promise((resolve,reject)=>{
     setTimeout(()=>{
       resolve(db.filter((item) => item.parent_id === parentId))
-    },1000)
+    },300)
   })
 }
 
