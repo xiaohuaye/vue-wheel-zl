@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div>111</div>
-    <g-cascade :data-source="source" :deep="3">
-      <g-input></g-input>
+    <g-cascade v-if="source" :data-source="source" :callback="callBack">
     </g-cascade>
     <div>2222</div>
   </div>
@@ -31,6 +30,7 @@ import TabsHead from './tabs-head'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import Vue from 'vue'
+import db from './db'
 
 Vue.component('g-button', Button)
 Vue.component('g-button-group', ButtonGroup)
@@ -53,65 +53,86 @@ Vue.component('g-tabs-head', TabsHead)
 Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 Vue.use(PluginToast)
+
+function ajax(parentId = 0) {
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve(db.filter((item) => item.parent_id === parentId))
+    },1000)
+  })
+}
+
+console.log(ajax());
+
 export default {
   name: 'app',
   data () {
     return {
-      source: [
-        {
-          name: '浙江',
-          children: [
-            {
-              name: '杭州',
-              children: [
-                { name: '上城',
-                  children:[
-                    {name: '落雨街道',
-                      children:[
-                        {name: '分享小区'},
-                        {name: '萨德小区'}
-                      ]
-                    },
-                    {name: '太阳街道'}
-                  ]
-                },
-                { name: '下城' },
-                { name: '江干' }
-              ]
-            },
-            { name: '嘉兴',
-              children: [
-                { name: '南湖区' },
-                { name: '秀洲区' }
-              ]
-            }
-          ]
-        },
-        {
-          name: '福建',
-          children: [
-            { name: '福州',
-              children: [
-                { name: '鼓楼区' },
-                { name: '将台区' },
-                { name: '仓山区' }
-              ] }
-          ]
-        },
-        {
-          name: '安徽',
-          children: [
-            { name: '合肥',
-              children: [
-                { name: '瑶海' },
-                { name: '庐阳' }
-              ] }
-          ]
-        }
-      ]
+      source: null,
+      callBack: function (obj) {
+        return ajax(obj.id)
+      }
+      // source: [
+      //   {
+      //     name: '浙江',
+      //     children: [
+      //       {
+      //         name: '杭州',
+      //         children: [
+      //           { name: '上城',
+      //             children:[
+      //               {name: '落雨街道',
+      //                 children:[
+      //                   {name: '分享小区'},
+      //                   {name: '萨德小区'}
+      //                 ]
+      //               },
+      //               {name: '太阳街道'}
+      //             ]
+      //           },
+      //           { name: '下城' },
+      //           { name: '江干' }
+      //         ]
+      //       },
+      //       { name: '嘉兴',
+      //         children: [
+      //           { name: '南湖区' },
+      //           { name: '秀洲区' }
+      //         ]
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: '福建',
+      //     children: [
+      //       { name: '福州',
+      //         children: [
+      //           { name: '鼓楼区' },
+      //           { name: '将台区' },
+      //           { name: '仓山区' }
+      //         ] }
+      //     ]
+      //   },
+      //   {
+      //     name: '安徽',
+      //     children: [
+      //       { name: '合肥',
+      //         children: [
+      //           { name: '瑶海' },
+      //           { name: '庐阳' }
+      //         ] }
+      //     ]
+      //   },
+      // ]
     }
   },
   mounted () {
+    ajax().then((res)=>{
+      this.source= res.map((item)=>{
+        item.children = []
+        return item
+      })
+    })
   },
   methods: {}
 }

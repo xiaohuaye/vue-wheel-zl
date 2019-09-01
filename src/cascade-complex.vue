@@ -1,7 +1,7 @@
 <template>
   <div class="cascadeItem">
     <div class="sourceItemName" @click.stop="tellMeIndex(sourceItem)">
-      <div>{{sourceItem.name}}<g-icon v-if="sourceItem.children.length" icon="you"></g-icon></div>
+      <div>{{sourceItem.name}}<g-icon v-if="sourceItem.children && sourceItem.children.length" icon="you"></g-icon></div>
     </div>
     <div :class="`children${sourceItem.indexArray.length}`" style="visibility: hidden">
       <g-cascade-complex  v-for="(item,index) in sourceItem.children" :sourceItem="item" :key="index"></g-cascade-complex>
