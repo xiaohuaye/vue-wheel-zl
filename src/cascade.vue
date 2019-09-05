@@ -1,6 +1,6 @@
 <template>
-  <div class="cascade">
-    <div class="trigger" @click="isShowPopover = !isShowPopover">
+  <div class="cascade" ref="cascade" v-click-outside="close">
+    <div class="trigger" @click="toggle">
       <slot></slot>
       <g-input v-model="selectSource"></g-input>
     </div>
@@ -18,10 +18,11 @@
 <script>
   import CascadeComplex from './cascade-complex'
   import Vue from 'vue'
+  import ClickOutside from './click-outside'
 
   export default {
     name: 'g-cascade',
-
+    directives:{ClickOutside},
     props: {
       dataSource: {
         type: Array
@@ -41,7 +42,7 @@
         eventBus: new Vue(),
         currentDeepNum: 0,
         selectEventIndexArray: [],
-        isLoading: false
+        isLoading: false,
       }
     },
     provide() {
@@ -71,10 +72,24 @@
       }
     },
     methods: {
+      toggle(){
+        if(this.isShowPopover){
+          this.close()
+        }else{
+          this.open()
+        }
+      },
+      close(){
+        this.isShowPopover = false
+      },
+      open(){
+        this.isShowPopover = true
+      },
       tellMeIndexes($event) {
-        console.log($event);
         this.selectEventIndexArray = $event.indexArray
         if ($event.indexArray.length > this.deep) return
+        console.log($event);
+        this.$emit('selectEvent',$event)
         this.initDataSourceHandle()
         for (let i = 0; i < $event.indexArray.length; i++) {
           for (let j = 0; j < this.dataSource.length; j++) {
@@ -170,14 +185,15 @@
       parentDomHandle() {
         this.$nextTick(() => {
           for (let i = 0; i < 5; i++) {
-            let children = document.body.querySelectorAll(`.children${i + 1}>.cascadeItem`)
+            let children = this.$refs.cascade.querySelectorAll(`.children${i + 1}>.cascadeItem`)
             if (children.length > 0) {
-              document.body.querySelector(`.parent${i + 1}`).innerHTML = ""
+              this.$refs.cascade.querySelector(`.parent${i + 1}`).innerHTML = ""
             }
             for (let j = 0; j < children.length; j++) {
-              document.body.querySelector(`.parent${i + 1}`).appendChild(children[j])
+              this.$refs.cascade.querySelector(`.parent${i + 1}`).appendChild(children[j])
             }
           }
+          this.eventBus.$emit('closeLoading',false)
         })
       },
       initDataSourceHandle() {
@@ -208,7 +224,8 @@
 
   .cascade {
     position: relative;
-    display: flex;
+    display: inline-flex;
+    z-index:auto;
   }
 
   .trigger {
@@ -229,20 +246,26 @@
     @extend .box-shadow;
 
     .cascadeItemGroup {
+      background: white;
       display: flex;
       flex-direction: column;
       padding: 10px;
       max-height: 220px;
       overflow-y: auto;
+      white-space: nowrap;
+      z-index: 1;
     }
 
     .parentLevel {
+      background: white;
       min-width: 30px;
       min-height: 20px;
       border-left: 1px solid #ddd;
       max-height: 220px;
       padding: 10px;
       overflow-y: auto;
+      white-space: nowrap;
+      z-index: 1;
     }
   }
 </style>

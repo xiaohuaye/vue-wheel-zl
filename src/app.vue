@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div>111</div>
-    <g-cascade v-if="source" :data-source="source" :callback="callBack">
+    <g-cascade v-if="source" :data-source="source" :callback="callBack" @selectEvent="xxx">
     </g-cascade>
     <div>2222</div>
+    <g-cascade v-if="source" :data-source="source" :callback="callBack">
+    </g-cascade>
   </div>
 </template>
 
@@ -58,7 +60,7 @@ function ajax(parentId = 0) {
   return new Promise((resolve,reject)=>{
     setTimeout(()=>{
       resolve(db.filter((item) => item.parent_id === parentId))
-    },300)
+    },3000)
   })
 }
 
@@ -132,7 +134,11 @@ export default {
       })
     })
   },
-  methods: {}
+  methods: {
+    xxx($event){
+      console.log('$event',$event);
+    }
+  }
 }
 </script>
 
