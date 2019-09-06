@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <div>111</div>
-    <g-cascade v-if="source" :data-source="source" :callback="callBack" @selectEvent="xxx">
+    <g-cascade v-if="source" :data-source="source" :callback="callBack">
     </g-cascade>
     <div>2222</div>
     <g-cascade v-if="source" :data-source="source" :callback="callBack">
     </g-cascade>
+    <div class="appWrapper">
+      <g-input clearable v-model="num" @inputclear="num = $event.clear"></g-input>
+    </div>
   </div>
 </template>
 
@@ -60,7 +63,7 @@ function ajax(parentId = 0) {
   return new Promise((resolve,reject)=>{
     setTimeout(()=>{
       resolve(db.filter((item) => item.parent_id === parentId))
-    },3000)
+    },300)
   })
 }
 
@@ -71,7 +74,8 @@ export default {
       source: null,
       callBack: function (obj) {
         return ajax(obj.id)
-      }
+      },
+      num: 'adadawdad'
       // source: [
       //   {
       //     name: '浙江',
@@ -135,9 +139,6 @@ export default {
     })
   },
   methods: {
-    xxx($event){
-      console.log('$event',$event);
-    }
   }
 }
 </script>
@@ -147,5 +148,8 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  .appWrapper{
+    margin-top: 100px;
   }
 </style>

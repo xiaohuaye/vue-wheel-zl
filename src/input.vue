@@ -1,11 +1,14 @@
 <template>
   <div class="wrapper">
-    <input type="text" :value="value" :disabled="disabled" :readonly="readonly" :class="{error}"
+    <input type="text" :value="inputValue" :disabled="disabled" :readonly="readonly" :class="{error}"
            @change="$emit('change',$event.target.value)"
            @blur="$emit('blur',$event.target.value)"
            @focus="$emit('focus',$event.target.value)"
            @input ="$emit('input',$event.target.value)"
     >
+    <div @click="$emit('inputclear',{clear:''})">
+      <g-icon v-if="isClearShow" icon="error" class="clearForInput" ></g-icon>
+    </div>
     <template v-if="error">
       <g-icon icon="error" class="icon-error"></g-icon>
       <span class="error-message">{{error}}</span>
@@ -33,6 +36,30 @@ export default {
     },
     error: {
       type: String
+    },
+    clearable:{
+
+    }
+  },
+  data(){
+    return {
+      inputValue: this.value
+    }
+  },
+  mounted() {
+    console.log(typeof this.clearable)
+  },
+  computed:{
+    isClearShow(){
+      return typeof this.clearable !== 'undefined' && this.inputValue !== ''
+    }
+  },
+  methods:{
+
+  },
+  watch:{
+    value(newValue, oldValue){
+      this.inputValue = newValue
     }
   }
 }
@@ -40,7 +67,7 @@ export default {
 
 <style scoped lang="scss">
   @import 'var/var_scss';
-  .wrapper {font-size: $font-size;display: inline-block;display: inline-flex;align-items: center;
+  .wrapper {font-size: $font-size;display: inline-block;display: inline-flex;align-items: center;position: relative;
 
     > :not(:last-child) {margin-right: .5em;}
 
@@ -58,5 +85,13 @@ export default {
     > .icon-error {fill: $red;}
 
     > .error-message {color: $red;}
+
+    .clearForInput {
+      fill: #cccccc;
+      position: absolute;
+      right: 0;
+      top: 25%;
+      transform: translateX(-100%);
+    }
   }
 </style>

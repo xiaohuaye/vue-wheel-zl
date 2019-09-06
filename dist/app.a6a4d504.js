@@ -12899,32 +12899,86 @@ var _default = {
     'g-cascade-complex': _cascadeComplex.default
   },
   mounted: function mounted() {
-    this.dataSourceHandle = this.dataSource.map(function (item, index) {
-      return {
-        name: item.name,
-        index: index,
-        deep: 1
-      };
-    });
+    this.initDataSourceHandle();
   },
   methods: {
     tellMeIndexes: function tellMeIndexes($event) {
-      console.log($event);
-      this.dataSourceHandle = this.dataSource.map(function (item, index) {
-        return {
-          name: item.name,
-          index: index,
-          deep: 1
+      var _this = this;
+
+      this.initDataSourceHandle();
+      console.log('$event', $event); //name indexArray
+      // let array = []
+
+      var _loop = function _loop(i) {
+        var _loop2 = function _loop2(j) {
+          //广度
+          if (i < $event.indexArray.length) {
+            var currentIndexArrayNum = $event.indexArray[i];
+            var indexArrayNumFst = $event.indexArray[0];
+
+            if (i === 0 && j === currentIndexArrayNum) {
+              _this.dataSourceHandle[j].children = _this.dataSource[j].children.map(function (item, index) {
+                var indexArray = _this.dataSourceHandle[j].indexArray.push(index);
+
+                return {
+                  name: item.name,
+                  indexArray: indexArray,
+                  children: []
+                };
+              });
+            } else if (i !== 0 && j === currentIndexArrayNum) {
+              var f = function f(dataSourceHandleFather, dataSourceFather) {
+                var u = 1;
+
+                if (u === i) {
+                  dataSourceHandleFather[$event.indexArray[u]].children = dataSourceFather[$event.indexArray[u]].children.map(function (item, index) {
+                    var indexArray = dataSourceHandleFather[$event.indexArray[u]].indexArray.push(index);
+                    return {
+                      name: item.name,
+                      indexArray: indexArray,
+                      children: []
+                    };
+                  });
+                } else {
+                  u++;
+                  f(dataSourceHandleFather[$event.indexArray[u]].children, dataSourceFather[$event.indexArray[u]].children);
+                }
+              };
+
+              f(_this.dataSourceHandle[indexArrayNumFst].children, _this.dataSource[indexArrayNumFst].children);
+            }
+          }
         };
-      });
+
+        //深度
+        for (var j = 0; j < _this.dataSource.length; j++) {
+          _loop2(j);
+        }
+      };
+
+      for (var i = 0; i < $event.indexArray.length; i++) {
+        _loop(i);
+      }
     },
-    mapChildren: function mapChildren(array, index, deep) {
-      deep++;
-      array.map(function (item, itemIndex) {
+    complexDataSource: function complexDataSource(array, source, $event) {
+      var obj = {
+        name: source.name,
+        indexArray: source.indexArray
+      };
+
+      if (source.indexArray.length <= $event.indexArray.length) {
+        obj.children = [];
+      }
+
+      array.push(obj);
+    },
+    initDataSourceHandle: function initDataSourceHandle() {
+      this.dataSourceHandle = this.dataSource.map(function (item, index) {
+        var indexArray = [index];
         return {
           name: item.name,
-          index: itemIndex,
-          deep: deep
+          indexArray: indexArray,
+          children: []
         };
       });
     }
@@ -15058,7 +15112,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64288" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61145" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
