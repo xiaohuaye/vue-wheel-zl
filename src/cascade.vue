@@ -18,6 +18,7 @@
 <script>
   import CascadeComplex from './cascade-complex'
   import Vue from 'vue'
+  import Input from './input'
   import ClickOutside from './click-outside'
 
   export default {
@@ -236,7 +237,8 @@
       }
     },
     components: {
-      'g-cascade-complex': CascadeComplex
+      'g-cascade-complex': CascadeComplex,
+      'g-input': Input
     },
   }
 </script>
