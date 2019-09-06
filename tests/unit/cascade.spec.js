@@ -88,7 +88,6 @@ describe('Cascade组件',()=>{
       return new Promise((resolve,reject)=>{
         setTimeout(()=>{
           resolve(db.filter((item) => item.parent_id === parentId))
-          done()
         })
       })
     }
@@ -114,10 +113,14 @@ describe('Cascade组件',()=>{
         Vue.nextTick(()=>{
           expect(wrapper.find('.popover').isVisible()).to.eq(true)
           let useElementChild1 =  wrapper.find('.sourceItemName')
-          expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+          expect(wrapper.find('.parent1').isVisible()).to.eq(false)
           useElementChild1.trigger('click')
           Vue.nextTick(()=>{
             expect(useElementChild1.contains('.loading')).to.eq(true)
+            setTimeout(()=>{
+              expect(wrapper.find('.parent1').isVisible()).to.eq(true)
+              done()
+            },100)
           })
         })
       })
