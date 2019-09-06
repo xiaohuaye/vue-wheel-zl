@@ -6,8 +6,8 @@
     </div>
     <div class="popover" v-show="isShowPopover">
       <div class="cascadeItemGroup">
-        <g-cascade-complex v-for="(item,index) in this.dataSourceHandle" :sourceItem="item"
-                           :key="index"></g-cascade-complex>
+        <g-cascade-complex v-for="(item,index) in this.dataSourceHandle" :sourceItem="item" :itemDisabled="itemDisabled"
+                           :key="index" ></g-cascade-complex>
       </div>
       <div v-for="(item,index) in deep" class="parentLevel" :class="`parent${index+1}`"
            v-show="currentDeepNum > index && !isLoading"></div>
@@ -34,7 +34,27 @@
       callback: {
         type: Function
       },
-      clearable:{}
+      clearable:{},
+      itemDisabled:{
+        type: Object,
+        validator(value){
+          console.log(value);
+          if(!value.hasOwnProperty('key')){
+            console.warn('此禁用参数对象上必须有key的属性')
+            return false
+          }else{
+            if(!value['key']){
+              console.warn('此禁用参数对象上key属性必须有值')
+              return false
+            }
+          }
+          if(!value.hasOwnProperty('value')){
+            console.warn('此禁用参数对象上必须有value的属性')
+            return false
+          }
+          return true
+        }
+      }
     },
     data() {
       return {
@@ -61,7 +81,6 @@
       selectSource: {
         get:function () {
           let dataSourceHandle = this.dataSourceHandle
-          console.log(dataSourceHandle);
           let result = ''
           for (let i = 0; i < this.selectEventIndexArray.length; i++) {
             if (i === 0) {
@@ -92,7 +111,6 @@
       tellMeIndexes($event) {
         this.selectEventIndexArray = $event.indexArray
         if ($event.indexArray.length > this.deep) return
-        console.log($event);
         this.$emit('selectEvent',$event)
         this.initDataSourceHandle()
         for (let i = 0; i < $event.indexArray.length; i++) {

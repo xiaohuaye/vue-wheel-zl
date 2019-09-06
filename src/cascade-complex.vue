@@ -1,11 +1,11 @@
 <template>
   <div class="cascadeItem">
     <div class="sourceItemName" @click.stop="tellMeIndex(sourceItem)">
-      <div>{{sourceItem.name}}<g-icon v-if="sourceItem.children && sourceItem.children.length" icon="you"></g-icon>
+      <div :class="{disabled: isDisabled}">{{sourceItem.name}}<g-icon v-if="sourceItem.children && sourceItem.children.length" icon="you"></g-icon>
         <g-icon v-if="iconLoading  && !sourceItem.children.length" icon="loading"></g-icon></div>
     </div>
     <div :class="`children${sourceItem.indexArray.length}`" style="visibility: hidden">
-      <g-cascade-complex  v-for="(item,index) in sourceItem.children" :sourceItem="item" :key="index"></g-cascade-complex>
+      <g-cascade-complex  v-for="(item,index) in sourceItem.children" :sourceItem="item" :key="index" :itemDisabled="itemDisabled"></g-cascade-complex>
     </div>
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
     sourceItem: {
       type: Object
     },
+    itemDisabled:{
+      type: Object
+    }
   },
   data(){
     return {
@@ -26,10 +29,17 @@ export default {
     }
   },
   mounted () {
-
+  },
+  computed:{
+    isDisabled(){
+      return this.itemDisabled? this.sourceItem[this.itemDisabled.key] === this.itemDisabled.value: false
+    }
   },
   methods: {
     tellMeIndex (sourceItem) {
+      if(this.isDisabled){
+        return
+      }
       this.eventBus.$off('closeLoading')
       this.eventBus.$on('closeLoading',(option)=>{
         this.iconLoading = false
@@ -52,6 +62,10 @@ export default {
     >.children{
     }
     >.sourceItemName{
+      .disabled{
+        color: #eee;
+        cursor: not-allowed;
+      }
     }
   }
 </style>

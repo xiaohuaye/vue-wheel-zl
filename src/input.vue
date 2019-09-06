@@ -47,13 +47,9 @@ export default {
     }
   },
   mounted() {
-    console.log(typeof this.clearable)
   },
   computed:{
     isClearShow(){
-      console.log(typeof this.clearable !== 'undefined');
-      console.log(this.inputValue !== '');
-      console.log(typeof this.clearable !== 'undefined' && this.inputValue !== '');
       return typeof this.clearable !== 'undefined' && this.inputValue !== ''
     }
   },

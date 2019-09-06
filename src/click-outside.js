@@ -2,7 +2,6 @@ document.addEventListener('click',(e)=>{
   let {target} = e
   callbacks.forEach((item)=>{
     if(target === item.el || item.el.contains(target)){
-      console.log("inside");
       return
     }
     item.callback()    //绑定的函数的调用
