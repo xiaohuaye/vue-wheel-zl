@@ -3,7 +3,8 @@ import {mount, shallowMount} from "@vue/test-utils";
 import Cascade from "@/cascade";
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import db from '../../src/var/db';
+import db from '../../src/db';
+import Vue from 'vue'
 
 chai.use(sinonChai);
 
@@ -11,7 +12,7 @@ describe('Cascade组件',()=>{
   it('存在', () => {
     expect(Cascade).to.be.ok
   })
-  it('同步点开', () => {
+  it('同步点开', (done) => {
     const wrapper = mount(Cascade,{
       propsData: {
         dataSource: [
@@ -71,23 +72,28 @@ describe('Cascade组件',()=>{
     const useElement = wrapper.find('.trigger')
     expect(wrapper.find('.popover').isVisible()).to.eq(false)
     useElement.trigger('click')
-    expect(wrapper.find('.popover').isVisible()).to.eq(true)
-    let useElementChild1 =  wrapper.find('.sourceItemName')
-    expect(wrapper.find('.children1').isEmpty()).to.eq(true)
-    useElementChild1.trigger('click')
-    expect(wrapper.find('.children1').isEmpty()).to.eq(false)
+    Vue.nextTick(()=>{
+      expect(wrapper.find('.popover').isVisible()).to.eq(true)
+      let useElementChild1 =  wrapper.find('.sourceItemName')
+      expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+      useElementChild1.trigger('click')
+      Vue.nextTick(()=>{
+        expect(wrapper.find('.children1').isEmpty()).to.eq(false)
+        done()
+      })
+    })
   })
-  xit('异步点开', (done) => {
+  it('异步点开', (done) => {
     function ajax(parentId = 0) {
       return new Promise((resolve,reject)=>{
         setTimeout(()=>{
           resolve(db.filter((item) => item.parent_id === parentId))
+          done()
         })
       })
     }
     let source = null
     ajax().then((res)=>{
-      console.log(res);
       source= res.map((item)=>{
         item.children = []
         return item
@@ -101,18 +107,23 @@ describe('Cascade组件',()=>{
           },
         }
       })
-      const useElement = wrapper.find('.trigger')
-      expect(wrapper.find('.popover').isVisible()).to.eq(false)
-      useElement.trigger('click')
-      expect(wrapper.find('.popover').isVisible()).to.eq(true)
-      let useElementChild1 =  wrapper.find('.sourceItemName')
-      expect(wrapper.find('.children1').isEmpty()).to.eq(true)
-      useElementChild1.trigger('click')
-      expect(wrapper.find('.children1').isEmpty()).to.eq(false)
-      done()
+      wrapper.vm.$nextTick(()=>{
+        const useElement = wrapper.find('.trigger')
+        expect(wrapper.find('.popover').isVisible()).to.eq(false)
+        useElement.trigger('click')
+        Vue.nextTick(()=>{
+          expect(wrapper.find('.popover').isVisible()).to.eq(true)
+          let useElementChild1 =  wrapper.find('.sourceItemName')
+          expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+          useElementChild1.trigger('click')
+          Vue.nextTick(()=>{
+            expect(useElementChild1.contains('.loading')).to.eq(true)
+          })
+        })
+      })
     })
   })
-  it('点击外面关闭pop', () => {
+  it('点击外面关闭pop', (done) => {
     const wrapper = mount(Cascade,{
       propsData: {
         dataSource: [
@@ -170,13 +181,21 @@ describe('Cascade组件',()=>{
       }
     })
     const useElement = wrapper.find('.trigger')
-    expect(wrapper.find('.popover').isVisible()).to.eq(false)
-    useElement.trigger('click')
-    expect(wrapper.find('.popover').isVisible()).to.eq(true)
-    useElement.trigger('click')
-    expect(wrapper.find('.popover').isVisible()).to.eq(false)
+    Vue.nextTick(()=>{
+      expect(wrapper.find('.popover').isVisible()).to.eq(false)
+      useElement.trigger('click')
+      Vue.nextTick(()=>{
+        expect(wrapper.find('.popover').isVisible()).to.eq(true)
+        useElement.trigger('click')
+        Vue.nextTick(()=>{
+          expect(wrapper.find('.popover').isVisible()).to.eq(false)
+          done()
+        })
+      })
+    })
   })
-  it('不可点击', () => {
+
+  it('不可点击', (done) => {
     const wrapper = mount(Cascade,{
       propsData: {
         dataSource: [
@@ -237,10 +256,15 @@ describe('Cascade组件',()=>{
     const useElement = wrapper.find('.trigger')
     expect(wrapper.find('.popover').isVisible()).to.eq(false)
     useElement.trigger('click')
-    expect(wrapper.find('.popover').isVisible()).to.eq(true)
-    let useElementChild1 =  wrapper.find('.sourceItemName')
-    expect(wrapper.find('.children1').isEmpty()).to.eq(true)
-    useElementChild1.trigger('click')
-    expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+    Vue.nextTick(()=>{
+      expect(wrapper.find('.popover').isVisible()).to.eq(true)
+      let useElementChild1 =  wrapper.find('.sourceItemName')
+      expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+      useElementChild1.trigger('click')
+      Vue.nextTick(()=>{
+        expect(wrapper.find('.children1').isEmpty()).to.eq(true)
+        done()
+      })
+    })
   })
 })
