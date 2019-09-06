@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div>111</div>
-    <g-cascade v-if="source" :data-source="source" :callback="callBack">
+    <g-cascade v-if="source" clearable :data-source="source" :callback="callBack">
     </g-cascade>
     <div>2222</div>
-    <g-cascade v-if="source" :data-source="source" :callback="callBack">
+    <g-cascade v-if="source" :data-source="source" :callback="callBack" clearable>
     </g-cascade>
-    <div class="appWrapper">
-      <g-input clearable v-model="num" @inputclear="num = $event.clear"></g-input>
-    </div>
+<!--    <div class="appWrapper">-->
+<!--      <g-input clearable v-model="num" @inputclear="num = $event.clear"></g-input>-->
+<!--    </div>-->
   </div>
 </template>
 

@@ -5,6 +5,7 @@ import Input from '../src/input'
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
+//todo input清空功能的单元测试没有写
 describe('Input', () => {
   it('存在.', () => {
     expect(Input).to.be.ok

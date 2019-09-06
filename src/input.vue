@@ -6,7 +6,7 @@
            @focus="$emit('focus',$event.target.value)"
            @input ="$emit('input',$event.target.value)"
     >
-    <div @click="$emit('inputclear',{clear:''})">
+    <div @click.stop="$emit('inputclear',{clear:''})">
       <g-icon v-if="isClearShow" icon="error" class="clearForInput" ></g-icon>
     </div>
     <template v-if="error">
@@ -51,6 +51,9 @@ export default {
   },
   computed:{
     isClearShow(){
+      console.log(typeof this.clearable !== 'undefined');
+      console.log(this.inputValue !== '');
+      console.log(typeof this.clearable !== 'undefined' && this.inputValue !== '');
       return typeof this.clearable !== 'undefined' && this.inputValue !== ''
     }
   },

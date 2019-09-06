@@ -2,7 +2,7 @@
   <div class="cascade" ref="cascade" v-click-outside="close">
     <div class="trigger" @click="toggle">
       <slot></slot>
-      <g-input v-model="selectSource"></g-input>
+      <g-input v-model="selectSource" :clearable= "clearable" @inputclear="selectEventIndexArray = [];"></g-input>
     </div>
     <div class="popover" v-show="isShowPopover">
       <div class="cascadeItemGroup">
@@ -33,7 +33,8 @@
       },
       callback: {
         type: Function
-      }
+      },
+      clearable:{}
     },
     data() {
       return {
@@ -57,18 +58,21 @@
       })
     },
     computed: {
-      selectSource() {
-        let dataSourceHandle = this.dataSourceHandle
-        let result = ''
-        for (let i = 0; i < this.selectEventIndexArray.length; i++) {
-          if (i === 0) {
-            result += dataSourceHandle[this.selectEventIndexArray[i]].name
-          } else {
-            result += '/' + dataSourceHandle[this.selectEventIndexArray[i]].name
+      selectSource: {
+        get:function () {
+          let dataSourceHandle = this.dataSourceHandle
+          console.log(dataSourceHandle);
+          let result = ''
+          for (let i = 0; i < this.selectEventIndexArray.length; i++) {
+            if (i === 0) {
+              result += dataSourceHandle[this.selectEventIndexArray[i]].name
+            } else {
+              result += '/' + dataSourceHandle[this.selectEventIndexArray[i]].name
+            }
+            dataSourceHandle = dataSourceHandle[this.selectEventIndexArray[i]].children
           }
-          dataSourceHandle = dataSourceHandle[this.selectEventIndexArray[i]].children
-        }
-        return result
+          return result
+        },
       }
     },
     methods: {
