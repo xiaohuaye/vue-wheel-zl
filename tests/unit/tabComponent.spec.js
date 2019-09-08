@@ -1,15 +1,14 @@
-const expect = chai.expect;
-import Vue from 'vue'
-import Tabs from "../src/tabs";
-import TabsBody from '../src/tabs-body'
-import TabsHead from '../src/tabs-head'
-import TabsItem from '../src/tabs-item'
-import TabsPane from '../src/tabs-pane'
-import Icon from '../src/icon'
-
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
+import chai,{expect} from 'chai';
+import {mount, shallowMount} from "@vue/test-utils";
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Vue from 'vue/dist/vue.esm.js'
+import Tabs from "@/tabs";
+import TabsBody from '@/tabs-body'
+import TabsHead from '@/tabs-head'
+import TabsItem from '@/tabs-item'
+import TabsPane from '@/tabs-pane'
+import Icon from '@/icon'
 
 describe('tab组件测试', () => {
   it('Tabs存在.', () => {
@@ -35,7 +34,7 @@ describe('tab组件测试', () => {
   Vue.component('g-icon', Icon)
   const div = document.createElement('div')
   document.body.appendChild(div)
-  it('验证tab组件传值，item/body组件的展示', () => {
+  it('验证tab组件传值，item/body组件的展示', (done) => {
     div.innerHTML = `<g-tabs selected="finance">
     <g-tabs-head>
       <g-tabs-item name="woman">
@@ -65,10 +64,11 @@ describe('tab组件测试', () => {
       const activePane = vm.$el.querySelector('.tabs-pane')
       expect(activeDiv.innerText).to.be.eq('财经')
       expect(activePane.innerText).to.be.eq('财经相关资讯')
+      done()
     })
   })
 
-  it('disabled参数 item/body组件的展示', () => {
+  it('disabled参数 item/body组件的展示', (done) => {
     div.innerHTML = `<g-tabs selected="finance">
     <g-tabs-head>
       <g-tabs-item name="woman" disabled>
@@ -104,10 +104,11 @@ describe('tab组件测试', () => {
           }
         }
       }
+      done()
     })
   })
 
-  it('点击可点击item，触发pane变化', () => {
+  it('点击可点击item，触发pane变化', (done) => {
     div.innerHTML = `<g-tabs selected="sport">
     <g-tabs-head>
       <g-tabs-item name="woman">
@@ -144,10 +145,11 @@ describe('tab组件测试', () => {
           },100)
         }
       }
+      done()
     })
   })
 
-  it('disabled参数 item不可点击', () => {
+  it('disabled参数 item不可点击', (done) => {
     div.innerHTML = `<g-tabs selected="sport">
     <g-tabs-head>
       <g-tabs-item name="woman">
@@ -185,8 +187,7 @@ describe('tab组件测试', () => {
           },100)
         }
       }
+      done()
     })
   })
-
-
 })

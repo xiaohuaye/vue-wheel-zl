@@ -1,22 +1,19 @@
-const expect = chai.expect;
-import Vue from 'vue'
-import Popover from  '../src/popover'
-import Button from '../src/button'
+import chai,{expect} from 'chai';
+import {mount, shallowMount} from "@vue/test-utils";
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Vue from 'vue/dist/vue.esm.js'
+import Popover from  '@/popover'
+import Button from '@/button'
 
-
-
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
-
-describe('popover组件测试', () => {
+describe('popover组件测试', (done) => {
   it('popover存在.', () => {
     expect(Popover).to.be.exist
   })
   Vue.component('g-popover',Popover)
   Vue.component('g-button', Button);
 
-  it('测试点击出现popover内容', ()=>{
+  it('测试点击出现popover内容', (done)=>{
     let div = document.createElement('div')
     div.innerHTML = `<g-popover class="popover-wrapper">
     <div>
@@ -43,10 +40,11 @@ describe('popover组件测试', () => {
       expect(isHasThisPop).to.be.eq(true)
       vm.$el.remove()
       vm.$destroy()
+      done()
     })
   })
 
-  it('测试点击出现popover内容的方向',()=>{
+  it('测试点击出现popover内容的方向',(done)=>{
     let div = document.createElement('div')
     document.body.appendChild(div)
     div.innerHTML = `<g-popover class="popover-wrapper" position="right">
@@ -75,10 +73,13 @@ describe('popover组件测试', () => {
         }
       })
       expect(popoverCom1.classList.contains('right-position')).to.be.eq(true)
+      vm.$el.remove()
+      vm.$destroy()
+      done()
     })
   })
 
-  it('测试hover出现popover内容',()=>{
+  it('测试hover出现popover内容',(done)=>{
     let div = document.createElement('div')
     document.body.appendChild(div)
     div.innerHTML = `<g-popover class="popover-wrapper" trigger="hover">
@@ -107,43 +108,7 @@ describe('popover组件测试', () => {
       expect(popoverCom2).to.be.eq(true)
       vm.$el.remove()
       vm.$destroy()
+      done()
     })
   })
-
-  xit('测试点击出现popover内容，内部有关闭按钮可关闭', ()=>{
-    let div = document.createElement('div')
-    div.innerHTML = `<g-popover class="popover-wrapper" position="bottom">
-      <div>
-        <g-button>点击</g-button>
-      </div>
-    <template v-slot:popover="{ closePop }">
-      <div style="color: red;">popover <g-button class="testButton" @click="closePop">关闭</g-button></div>
-    </template>
-  </g-popover>`
-    document.body.appendChild(div)
-    const vm = new Vue({
-      el: div
-    })
-    let button = vm.$el.querySelector('.g-button')
-    let popoverCom = document.body.querySelector('.popover-content')
-    expect(popoverCom).to.be.not.exist;
-    button.click()
-    vm.$nextTick(()=>{
-      let popoverCom = document.body.querySelectorAll('.popover-content')
-      expect(popoverCom).to.be.exist;
-      popoverCom = Array.prototype.slice.call(popoverCom);
-      popoverCom.map((node)=>{
-        if(node.querySelector('.testButton')){
-          let button = node.querySelector('.testButton')
-          button.click()
-          vm.$nextTick(()=>{
-
-          })
-        }
-      })
-      vm.$el.remove()
-      vm.$destroy()
-    })
-  })
-
 })

@@ -3,7 +3,7 @@ import {mount, shallowMount} from "@vue/test-utils";
 import Input from "@/input";
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm.js'
 
 chai.use(sinonChai);
 
@@ -57,6 +57,18 @@ describe('Input', () => {
       const inputElementMessage = vm.$el.querySelector('.error-message')
       expect(inputElement.getAttribute('xlink:href')).to.equal('#i-error')
       expect(inputElementMessage.innerHTML).to.equal('错了')
+    })
+    it('清空', (done) => {
+      const wrapper = mount(Input,{
+        propsData:{
+          clearable:'xx',
+          value:'clear'
+        }
+      })
+      expect(wrapper.props('value')).be.eq('clear')
+      wrapper.vm.$emit('inputclear',{clear:'1'})
+      expect(JSON.stringify(wrapper.emitted().inputclear[0])).to.eq('[{"clear":"1"}]')
+      done()
     })
   })
 

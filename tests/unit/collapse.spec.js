@@ -2,7 +2,7 @@ import chai,{expect} from 'chai';
 import {mount, shallowMount} from "@vue/test-utils";
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm.js'
 import Collapse from '@/collapse'
 import CollapseItem from '@/collapse-item'
 
@@ -14,7 +14,7 @@ describe('Collapse', () => {
     expect(CollapseItem).to.be.ok
   })
 
-  it('Collapse默认打开item', () => {
+  it('Collapse默认打开item', (done) => {
     Vue.component('g-collapse', Collapse)
     Vue.component('g-collapse-item', CollapseItem)
     const div = document.createElement('div')
@@ -55,12 +55,13 @@ describe('Collapse', () => {
           expect(getComputedStyle(content).display).to.be.eq('block')
         }
       })
+      vm.$el.remove()
+      vm.$destroy()
+      done()
     })
-    vm.$el.remove()
-    vm.$destroy()
   })
 
-  it('Collapse的singleMode为false时，点击关闭功能', () => {
+  it('Collapse的singleMode为false时，点击关闭功能', (done) => {
     Vue.component('g-collapse', Collapse)
     Vue.component('g-collapse-item', CollapseItem)
     const div = document.createElement('div')
@@ -106,11 +107,12 @@ describe('Collapse', () => {
         })
         vm.$el.remove()
         vm.$destroy()
-      }, 500)
+        done()
+      },300)
     })
   })
 
-  it('Collapse的singleMode为false时，点击打开功能', () => {
+  it('Collapse的singleMode为false时，点击打开功能', (done) => {
     Vue.component('g-collapse', Collapse)
     Vue.component('g-collapse-item', CollapseItem)
     const div = document.createElement('div')
@@ -152,11 +154,12 @@ describe('Collapse', () => {
         })
         vm.$el.remove()
         vm.$destroy()
-      }, 500)
+        done()
+      }, 300)
     })
   })
 
-  it('Collapse的singleMode为true时，点击打开功能', () => {
+  it('Collapse的singleMode为true时，点击打开功能', (done) => {
     Vue.component('g-collapse', Collapse)
     Vue.component('g-collapse-item', CollapseItem)
     const div = document.createElement('div')
@@ -202,7 +205,8 @@ describe('Collapse', () => {
         })
         vm.$el.remove()
         vm.$destroy()
-      }, 500)
+        done()
+      }, 300)
     })
   })
 

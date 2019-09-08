@@ -58,6 +58,7 @@ export default {
          */
       if (this.$refs.line) {
         this.$nextTick(() => {
+          if(!this.$refs.line) return
           this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
         })
       }

@@ -1,10 +1,10 @@
-const expect = chai.expect;
-import Vue from 'vue'
-import Row from '../src/row'
-import Col from '../src/col'
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
+import chai,{expect} from 'chai';
+import {mount, shallowMount} from "@vue/test-utils";
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import Vue from 'vue/dist/vue.esm.js'
+import Row from '@/row'
+import Col from '@/col'
 
 describe('Row', () => {
   it('Row存在.', () => {
@@ -34,12 +34,12 @@ describe('Row', () => {
       expect(getComputedStyle(cols[0]).paddingRight).eq('10px')
       expect(getComputedStyle(row).marginLeft).eq('-10px')
       expect(getComputedStyle(row).marginRight).eq('-10px')
-      done()
       vm.$el.remove()
       vm.$destroy()
+      done()
     })
   })
-  it('Row接收 align 参数', () => {
+  it('Row接收 align 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Row)
@@ -52,8 +52,9 @@ describe('Row', () => {
     expect(getComputedStyle(rowElement).justifyContent).to.equal('center')
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 span 参数', () => {
+  it('Col接收 span 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -66,8 +67,9 @@ describe('Row', () => {
     expect(colElement.classList.contains('col-1')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 offset 参数', () => {
+  it('Col接收 offset 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -80,8 +82,9 @@ describe('Row', () => {
     expect(colElement.classList.contains('offset-1')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 iPad 参数', () => {
+  it('Col接收 iPad 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -95,8 +98,9 @@ describe('Row', () => {
     expect(colElement.classList.contains('offset-iPad-2')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 narrowPC 参数', () => {
+  it('Col接收 narrowPC 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -110,8 +114,9 @@ describe('Row', () => {
     expect(colElement.classList.contains('offset-narrowPC-4')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 pc 参数', () => {
+  it('Col接收 pc 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -125,8 +130,9 @@ describe('Row', () => {
     expect(colElement.classList.contains('offset-pc-4')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-  it('Col接收 widePC 参数', () => {
+  it('Col接收 widePC 参数', (done) => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Col)
@@ -140,6 +146,7 @@ describe('Row', () => {
     expect(colElement.classList.contains('offset-widePC-4')).to.equal(true)
     vm.$el.remove()
     vm.$destroy()
+    done()
   })
-
 })
+
