@@ -6,6 +6,9 @@
     <div>2222</div>
     <g-cascade v-if="source" :data-source="source" :callback="callBack" clearable>
     </g-cascade>
+    <div>2222</div>
+    <g-cascade v-if="source1" :data-source="source1" clearable>
+    </g-cascade>
 <!--    <div class="appWrapper">-->
 <!--      <g-input clearable v-model="num" @inputclear="num = $event.clear"></g-input>-->
 <!--    </div>-->
@@ -75,63 +78,64 @@ export default {
       callBack: function (obj) {
         return ajax(obj.id)
       },
-      num: 'adadawdad'
-      // source: [
-      //   {
-      //     name: '浙江',
-      //     children: [
-      //       {
-      //         name: '杭州',
-      //         children: [
-      //           { name: '上城',
-      //             children:[
-      //               {name: '落雨街道',
-      //                 children:[
-      //                   {name: '分享小区'},
-      //                   {name: '萨德小区'}
-      //                 ]
-      //               },
-      //               {name: '太阳街道'}
-      //             ]
-      //           },
-      //           { name: '下城' },
-      //           { name: '江干' }
-      //         ]
-      //       },
-      //       { name: '嘉兴',
-      //         children: [
-      //           { name: '南湖区' },
-      //           { name: '秀洲区' }
-      //         ]
-      //       }
-      //     ]
-      //   },
-      //   {
-      //     name: '福建',
-      //     children: [
-      //       { name: '福州',
-      //         children: [
-      //           { name: '鼓楼区' },
-      //           { name: '将台区' },
-      //           { name: '仓山区' }
-      //         ] }
-      //     ]
-      //   },
-      //   {
-      //     name: '安徽',
-      //     children: [
-      //       { name: '合肥',
-      //         children: [
-      //           { name: '瑶海' },
-      //           { name: '庐阳' }
-      //         ] }
-      //     ]
-      //   },
-      // ]
+      num: 'adadawdad',
+      source1: [
+        {
+          name: '浙江',
+          children: [
+            {
+              name: '杭州',
+              children: [
+                { name: '上城',
+                  children:[
+                    {name: '落雨街道',
+                      children:[
+                        {name: '分享小区'},
+                        {name: '萨德小区'}
+                      ]
+                    },
+                    {name: '太阳街道'}
+                  ]
+                },
+                { name: '下城' },
+                { name: '江干' }
+              ]
+            },
+            { name: '嘉兴',
+              children: [
+                { name: '南湖区' },
+                { name: '秀洲区' }
+              ]
+            }
+          ]
+        },
+        {
+          name: '福建',
+          children: [
+            { name: '福州',
+              children: [
+                { name: '鼓楼区' },
+                { name: '将台区' },
+                { name: '仓山区' }
+              ] }
+          ]
+        },
+        {
+          name: '安徽',
+          children: [
+            { name: '合肥',
+              children: [
+                { name: '瑶海' },
+                { name: '庐阳' }
+              ] }
+          ]
+        },
+      ]
     }
   },
   mounted () {
     ajax().then((res)=>{
+      console.log(res)
       this.source= res.map((item)=>{
         item.children = []
         return item

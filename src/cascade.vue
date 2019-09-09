@@ -39,7 +39,6 @@
       itemDisabled:{
         type: Object,
         validator(value){
-          console.log(value);
           if(!value.hasOwnProperty('key')){
             console.warn('此禁用参数对象上必须有key的属性')
             return false
@@ -147,6 +146,7 @@
         }
         if (this.callback && currentLoopDeep === $event.indexArray.length - 1) {
           this.callback($event).then(res => {
+            console.log(res);
             res = res.map(item => {
               item.children = []
               return item
@@ -182,6 +182,7 @@
             obj.indexArray = arrayCopy
             return obj
           })
+          this.isLoading = false
         }
       },
       judgeDeepNum($event) {
@@ -201,7 +202,7 @@
             obj = obj.children[$event.indexArray[i]]
           }
           if (i + 1 === $event.indexArray.length) {
-            return obj.hasOwnProperty('children') && obj.children.length > 0
+            return obj.hasOwnProperty('children') && obj.children && obj.children.length > 0
           }
         }
       },

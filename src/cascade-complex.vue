@@ -3,7 +3,7 @@
     <div class="sourceItemName" @click.stop="tellMeIndex(sourceItem)">
       <div :class="{disabled: isDisabled}">{{sourceItem.name}}
         <g-icon v-if="sourceItem.children && sourceItem.children.length" icon="you"></g-icon>
-        <g-icon v-if="iconLoading  && !sourceItem.children.length" icon="loading"></g-icon>
+        <g-icon v-if="iconLoading  && sourceItem.children && !sourceItem.children.length" icon="loading"></g-icon>
       </div>
     </div>
     <div :class="`children${sourceItem.indexArray.length}`" style="visibility: hidden">
