@@ -146,7 +146,6 @@
         }
         if (this.callback && currentLoopDeep === $event.indexArray.length - 1) {
           this.callback($event).then(res => {
-            console.log(res);
             res = res.map(item => {
               item.children = []
               return item

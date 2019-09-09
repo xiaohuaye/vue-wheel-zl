@@ -9,7 +9,6 @@ let validate = value => {
   if (typeof (value) === 'string') {
     value = JSON.parse(value)
   }
-  console.log(value)
   let keys = Object.keys(value)
   let valid = true
   keys.forEach(key => {

@@ -135,7 +135,6 @@ export default {
   },
   mounted () {
     ajax().then((res)=>{
-      console.log(res)
       this.source= res.map((item)=>{
         item.children = []
         return item
