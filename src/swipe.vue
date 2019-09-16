@@ -59,24 +59,28 @@
       changeSelected(index){
         this.updateChildren(index)
         this.$emit('activeIndex',{activeIndex: index})
+        clearTimeout(this.clearT)
+        this.loopAll(index)
       },
-      loopAll(){
+      loopAll(n = this.currentSelect){
+        console.log(n);
         if(typeof(this.loop) !== "undefined"){
           let maxNum = this.$children.length - 1
           let run = ()=>{
-            if(this.currentSelect > maxNum){
-              this.currentSelect = 0
-            }else if( this.currentSelect < 0){
-              this.currentSelect = maxNum
+            if(n > maxNum){
+              n = 0
+            }else if( n < 0){
+              n = maxNum
             }
-            this.changeSelected(this.currentSelect)
+            this.changeSelected(n)
             this.clearT = setTimeout(()=>{
                 run()
               },3000)
+            console.log(n);
             if(this.isReverse) {
-              this.currentSelect--
+              n--
             }else{
-              this.currentSelect++
+              n++
             }
           }
           this.clearT = setTimeout(()=>{
