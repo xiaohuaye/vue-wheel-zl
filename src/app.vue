@@ -4,6 +4,9 @@
       <g-swipe-item class='box'>1</g-swipe-item>
       <g-swipe-item class='box'>2</g-swipe-item>
       <g-swipe-item class='box'>3</g-swipe-item>
+      <g-swipe-item class='box'>4</g-swipe-item>
+      <g-swipe-item class='box'>5</g-swipe-item>
+      <g-swipe-item class='box'>6</g-swipe-item>
     </g-swipe>
   </div>
 </template>
@@ -87,7 +90,7 @@ export default {
     margin-top: 100px;
   }
   .box{
-    width: 200px;
+    width: 400px;
     height: 150px;
     background: #ddd;
     border: 1px solid red;
