@@ -1,17 +1,10 @@
 <template>
   <div id="app">
-    <div>111</div>
-    <g-cascade v-if="source" clearable :data-source="source" :callback="callBack" :itemDisabled="{key:'id',value:70}">
-    </g-cascade>
-    <div>2222</div>
-    <g-cascade v-if="source" :data-source="source" :callback="callBack" clearable>
-    </g-cascade>
-    <div>2222</div>
-    <g-cascade v-if="source1" :data-source="source1" clearable>
-    </g-cascade>
-<!--    <div class="appWrapper">-->
-<!--      <g-input clearable v-model="num" @inputclear="num = $event.clear"></g-input>-->
-<!--    </div>-->
+    <g-swipe :selected="select" loop @activeIndex="activeIndex" reverse>
+      <g-swipe-item class='box'>1</g-swipe-item>
+      <g-swipe-item class='box'>2</g-swipe-item>
+      <g-swipe-item class='box'>3</g-swipe-item>
+    </g-swipe>
   </div>
 </template>
 
@@ -38,8 +31,12 @@ import TabsHead from './tabs-head'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import Vue from 'vue'
+import Swipe from './swipe'
+import SwipeItem from './swipe-item'
 import db from './db'
 
+Vue.component('g-swipe-item',SwipeItem)
+Vue.component('g-swipe',Swipe)
 Vue.component('g-button', Button)
 Vue.component('g-button-group', ButtonGroup)
 Vue.component('g-cascade', Cascade)
@@ -62,91 +59,25 @@ Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 Vue.use(PluginToast)
 
-function ajax(parentId = 0) {
-  return new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-      resolve(db.filter((item) => item.parent_id === parentId))
-    },300)
-  })
-}
-
 export default {
   name: 'app',
   data () {
     return {
-      source: null,
-      callBack: function (obj) {
-        return ajax(obj.id)
-      },
-      num: 'adadawdad',
-      source1: [
-        {
-          name: '浙江',
-          children: [
-            {
-              name: '杭州',
-              children: [
-                { name: '上城',
-                  children:[
-                    {name: '落雨街道',
-                      children:[
-                        {name: '分享小区'},
-                        {name: '萨德小区'}
-                      ]
-                    },
-                    {name: '太阳街道'}
-                  ]
-                },
-                { name: '下城' },
-                { name: '江干' }
-              ]
-            },
-            { name: '嘉兴',
-              children: [
-                { name: '南湖区' },
-                { name: '秀洲区' }
-              ]
-            }
-          ]
-        },
-        {
-          name: '福建',
-          children: [
-            { name: '福州',
-              children: [
-                { name: '鼓楼区' },
-                { name: '将台区' },
-                { name: '仓山区' }
-              ] }
-          ]
-        },
-        {
-          name: '安徽',
-          children: [
-            { name: '合肥',
-              children: [
-                { name: '瑶海' },
-                { name: '庐阳' }
-              ] }
-          ]
-        },
-      ]
+      select: 1
     }
   },
   mounted () {
-    ajax().then((res)=>{
-      this.source= res.map((item)=>{
-        item.children = []
-        return item
-      })
-    })
+
   },
   methods: {
+    activeIndex($event){
+
+    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   * {
     margin: 0;
     padding: 0;
@@ -154,5 +85,11 @@ export default {
   }
   .appWrapper{
     margin-top: 100px;
+  }
+  .box{
+    width: 200px;
+    height: 150px;
+    background: #ddd;
+    border: 1px solid red;
   }
 </style>
