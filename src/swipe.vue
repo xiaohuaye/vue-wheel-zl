@@ -4,7 +4,7 @@
       <div class="g-swipe-inner" ref="inner">
         <slot></slot>
         <div v-if="childrenLength" class="indexForChildren">
-          <div v-for="index in childrenLength" :class="{indexSelected: index === currentSelect + 1}" @click="changeSelected(index - 1)"><span>{{index}}</span></div>
+          <div v-for="index in childrenLength" :class="{indexSelected: index === currentSelect + 1}" @click="clickChangeSelected(index - 1)"><span>{{index}}</span></div>
         </div>
       </div>
     </div>
@@ -27,18 +27,26 @@
         childrenLength: 0,
         currentSelect: 0,
         openLoop: true,
-        clearT: null
+        clearT: null,
+        lastSelectedNum: null,
+        isClickChangeSelected: false
       }
     },
     computed:{
       isReverse(){
         return typeof(this.reverse) !== "undefined"
+      },
+      isInitOpenLoop(){
+        return typeof(this.loop) !== "undefined"
       }
     },
     mounted() {
       this.currentSelect = this.selected
+      this.lastSelectedNum = this.selected
       this.updateChildren()
-      this.loopAll()
+      if(this.isInitOpenLoop){
+        this.loopAll()
+      }
       this.getChildrenLength()
     },
     updated() {
@@ -49,22 +57,47 @@
         this.childrenLength = this.$children.length
       },
       updateChildren(n = this.currentSelect){
+        this.currentSelect = n
         this.$children.forEach((el,index)=>{
           el.swipeIndexNum = index
-          el.currentSelect = n
-          this.currentSelect = n
-          el.isReverse = this.isReverse
+          if(this.isClickChangeSelected === false){
+            el.isReverse = this.isReverse
+          }else{
+            if(this.lastSelectedNum >this.currentSelect){
+              el.isReverse = true
+            }else{
+              el.isReverse = false
+            }
+          }
+          this.$nextTick(()=>{
+            el.currentSelect = n
+          })
         })
       },
-      changeSelected(index){
+      clickChangeSelected(index){
+        this.isClickChangeSelected = true
+        this.basicChangeSelected(index)
+        this.closeTimer()
+        this.openTimer()
+      },
+      basicChangeSelected(index){
+        this.lastSelectedNum = this.currentSelect
         this.updateChildren(index)
         this.$emit('activeIndex',{activeIndex: index})
+      },
+      openTimer(){
+        if(this.openLoop) return
+        this.openLoop = true
+        this.loopAll()
+      },
+      closeTimer(){
+        if(!this.openLoop) return
+        this.openLoop = false
         clearTimeout(this.clearT)
-        this.loopAll(index)
       },
       loopAll(n = this.currentSelect){
-        console.log(n);
-        if(typeof(this.loop) !== "undefined"){
+        if(this.isInitOpenLoop){
+          this.isClickChangeSelected = false
           let maxNum = this.$children.length - 1
           let run = ()=>{
             if(n > maxNum){
@@ -72,11 +105,10 @@
             }else if( n < 0){
               n = maxNum
             }
-            this.changeSelected(n)
+            this.basicChangeSelected(n)
             this.clearT = setTimeout(()=>{
                 run()
               },3000)
-            console.log(n);
             if(this.isReverse) {
               n--
             }else{
@@ -85,7 +117,9 @@
           }
           this.clearT = setTimeout(()=>{
             run()
-          },3000)
+          })
+        }else{
+          this.openLoop = false
         }
       }
     }
