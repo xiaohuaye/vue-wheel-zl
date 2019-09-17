@@ -119,6 +119,5 @@
     width: 400px;
     height: 150px;
     background: #ddd;
-    border: 1px solid red;
   }
 </style>

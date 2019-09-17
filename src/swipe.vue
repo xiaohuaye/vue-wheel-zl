@@ -1,7 +1,7 @@
 <template>
   <div class="g-swipe">
     <div class="g-swipe-window">
-      <div class="g-swipe-inner" ref="inner">
+      <div class="g-swipe-inner" ref="inner" @mouseenter="closeTimer" @mouseleave="openTimer">
         <slot></slot>
         <div v-if="childrenLength" class="indexForChildren">
           <div v-for="index in childrenLength" :class="{indexSelected: index === currentSelect + 1}" @click="clickChangeSelected(index - 1)"><span>{{index}}</span></div>
@@ -78,7 +78,6 @@
         this.isClickChangeSelected = true
         this.basicChangeSelected(index)
         this.closeTimer()
-        this.openTimer()
       },
       basicChangeSelected(index){
         this.lastSelectedNum = this.currentSelect
@@ -134,7 +133,6 @@
     display: inline-block;
     .g-swipe-window{
       overflow: hidden;
-      border: 1px solid blue;
       .g-swipe-inner{
         position: relative;
         .indexForChildren{
@@ -144,14 +142,16 @@
           display: flex;
           transform: translate(-50%);
           >div{
-            border: 1px solid red;
-            width: 20px;
-            height: 20px;
+            background-color: white;
+            width: 15px;
+            height: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            margin: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 12px;
             &.indexSelected{
               background-color: red;
             }
