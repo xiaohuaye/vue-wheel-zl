@@ -109,7 +109,6 @@
       getChildrenLength(){
         let length = 0
         this.$children.forEach(function (child) {
-          console.log(child);
           if(child.$vnode.componentOptions.tag === "g-swipe-item"){
             length ++
           }
@@ -132,6 +131,8 @@
               }
             }
             this.$nextTick(()=>{
+              console.log(1111)
+              console.log(n);
               el.currentSelect = n
             })
             indexNum ++
