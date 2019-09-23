@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div>
-      <g-swipe :selected="select" loop @activeIndex="activeIndex">
+    <div class="appWrapper">
+      <g-swipe :selected="select" loop @activeIndex="activeIndex" need-forward>
         <g-swipe-item class='box'>1</g-swipe-item>
         <g-swipe-item class='box'>2</g-swipe-item>
         <g-swipe-item class='box'>3</g-swipe-item>
@@ -11,7 +11,7 @@
       </g-swipe>
     </div>
 
-    <div>
+    <div class="appWrapper">
       <g-swipe :selected="select" loop @activeIndex="activeIndex" reverse>
         <g-swipe-item class='box'>1</g-swipe-item>
         <g-swipe-item class='box'>2</g-swipe-item>
@@ -22,7 +22,7 @@
       </g-swipe>
     </div>
 
-    <div>
+    <div  class="appWrapper">
       <g-swipe :selected="select" @activeIndex="activeIndex">
         <g-swipe-item class='box'>1</g-swipe-item>
         <g-swipe-item class='box'>2</g-swipe-item>
@@ -90,7 +90,7 @@
     name: 'app',
     data() {
       return {
-        select: 1
+        select: 0
       }
     },
     mounted() {
@@ -112,12 +112,15 @@
   }
 
   .appWrapper {
-    margin-top: 100px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    .box {
+      width: 100%;
+      height: 100%;
+      background: #ddd;
+    }
   }
 
-  .box {
-    width: 400px;
-    height: 150px;
-    background: #ddd;
-  }
+
 </style>
