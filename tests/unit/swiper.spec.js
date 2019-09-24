@@ -48,7 +48,8 @@ describe('swipe组件存在',()=>{
   it('点谁谁出现',(done)=>{
     const wrapper = mount(Swipe,{
       propsData:{
-        timeDelay: 50
+        timeDelay: 50,
+        needNavigation:{}
       },
       slots:{
         default:`<g-swipe-item class='box1'>1</g-swipe-item>
