@@ -76,9 +76,6 @@
           index = this.currentSelect - 1
         }
         this.clickChangeSelected(index)
-        this.$nextTick(()=>{
-          this.openTimer()
-        })
       },
       Backward(){
         let index = 0
@@ -88,9 +85,6 @@
           index = this.currentSelect + 1
         }
         this.clickChangeSelected(index)
-        this.$nextTick(()=>{
-          this.openTimer()
-        })
       },
       onTouchEnd(e){
         this.endSiteX  = e.changedTouches[0].clientX
