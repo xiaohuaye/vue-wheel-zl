@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="appWrapper">
-      <g-swipe :selected="select" loop @activeIndex="activeIndex" need-forward>
+      <g-swipe :selected="select" loop @activeIndex="activeIndex" need-forward :timeDelay="1000">
         <g-swipe-item class='box'>1</g-swipe-item>
         <g-swipe-item class='box'>2</g-swipe-item>
         <g-swipe-item class='box'>3</g-swipe-item>

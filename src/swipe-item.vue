@@ -18,7 +18,6 @@
     },
     computed:{
       visible(){
-        console.log('boolean',this.swipeIndexNum === this.currentSelect);
         return this.swipeIndexNum === this.currentSelect
       }
     }

@@ -24,7 +24,11 @@
       },
       loop:{},
       reverse:{},
-      needForward:{}
+      needForward:{},
+      timeDelay:{
+        type: Number,
+        default: 3000
+      }
     },
     data(){
       return {
@@ -131,8 +135,6 @@
               }
             }
             this.$nextTick(()=>{
-              console.log(1111)
-              console.log(n);
               el.currentSelect = n
             })
             indexNum ++
@@ -172,7 +174,7 @@
             this.basicChangeSelected(n)
             this.clearT = setTimeout(()=>{
                 run()
-              },3000)
+              },this.timeDelay)
             if(this.isReverse) {
               n--
             }else{
