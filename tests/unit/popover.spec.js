@@ -13,7 +13,7 @@ describe('popover组件测试', (done) => {
   Vue.component('g-popover',Popover)
   Vue.component('g-button', Button);
 
-  it('测试点击出现popover内容', (done)=>{
+  it('测试点击出现popover内容', ()=>{
     let div = document.createElement('div')
     div.innerHTML = `<g-popover class="popover-wrapper">
     <div>
@@ -40,7 +40,6 @@ describe('popover组件测试', (done) => {
       expect(isHasThisPop).to.be.eq(true)
       vm.$el.remove()
       vm.$destroy()
-      done()
     })
   })
 
