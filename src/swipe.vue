@@ -5,7 +5,7 @@
       <span v-if="isNeedForward" class="spanBackward" @click="Backward"><g-icon icon="you" ></g-icon></span>
       <div class="g-swipe-inner" ref="inner" @mouseenter="closeTimer" @mouseleave="openTimer" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
         <slot></slot>
-        <div v-if="childrenLength" class="indexForChildren">
+        <div v-if="childrenLength && isNeedNavigation" class="indexForChildren">
           <div v-for="index in childrenLength" :class="{indexSelected: index === currentSelect + 1}" @click="clickChangeSelected(index - 1)"><span>{{index}}</span></div>
         </div>
       </div>
@@ -25,6 +25,7 @@
       loop:{},
       reverse:{},
       needForward:{},
+      needNavigation:{},
       timeDelay:{
         type: Number,
         default: 3000
@@ -53,6 +54,9 @@
       },
       isInitOpenLoop(){
         return typeof(this.loop) !== "undefined"
+      },
+      isNeedNavigation(){
+        return typeof(this.needNavigation) !== "undefined"
       }
     },
     mounted() {
