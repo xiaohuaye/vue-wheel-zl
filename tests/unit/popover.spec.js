@@ -6,14 +6,14 @@ import Vue from 'vue/dist/vue.esm.js'
 import Popover from  '@/popover'
 import Button from '@/button'
 
-describe('popover组件测试', (done) => {
+describe('popover组件测试', () => {
   it('popover存在.', () => {
     expect(Popover).to.be.exist
   })
   Vue.component('g-popover',Popover)
   Vue.component('g-button', Button);
 
-  it('测试点击出现popover内容', ()=>{
+  it('测试点击出现popover内容', (done)=>{
     let div = document.createElement('div')
     div.innerHTML = `<g-popover class="popover-wrapper">
     <div>
@@ -40,6 +40,7 @@ describe('popover组件测试', (done) => {
       expect(isHasThisPop).to.be.eq(true)
       vm.$el.remove()
       vm.$destroy()
+      done()
     })
   })
 
