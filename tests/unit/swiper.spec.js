@@ -58,6 +58,8 @@ describe('swipe组件存在',()=>{
       }
     })
     setTimeout(()=>{
+      console.log(wrapper.html());
+      console.log(wrapper.find('.indexForChildren>div:nth-child(3)').element);
       wrapper.find('.indexForChildren>div:nth-child(3)').trigger('click')
       setTimeout(()=>{
         expect(wrapper.find('.box3').isVisible()).to.eq(true)
