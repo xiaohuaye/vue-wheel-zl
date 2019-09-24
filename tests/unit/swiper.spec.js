@@ -64,8 +64,8 @@ describe('swipe组件存在',()=>{
       setTimeout(()=>{
         expect(wrapper.find('.box3').isVisible()).to.eq(true)
         done()
-      },55)
-    },55)
+      },100)
+    },100)
   })
   it('自动播放',(done)=>{
     const wrapper = mount(Swipe,{
